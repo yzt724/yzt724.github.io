@@ -69,56 +69,6 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-week2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/11/02/week2/" class="article-date">
-  <time class="dt-published" datetime="2024-11-02T05:21:03.000Z" itemprop="datePublished">2024-11-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/11/02/week2/">week2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="图片长宽隐写"><a href="#图片长宽隐写" class="headerlink" title="图片长宽隐写"></a>图片长宽隐写</h3><p>将图片拖入010，修改长或者高，即可看到被隐藏起来的flag</p>
-<h3 id="lsb隐写"><a href="#lsb隐写" class="headerlink" title="lsb隐写"></a>lsb隐写</h3><p>LSB隐写的原理是在图像中随机选择区域，提取该区域像素点的像素值，将要隐藏的信息转换为二进制，逐比特替换该区域像素值的最低位，从而实现秘密信息的嵌入。通过此种方式嵌入的信息，人眼几<br>乎无法识别，原文件大小也没有变化。</p>
-<p>将图片放进stegsolve中，直接左右查看不同通道的图片，得到二维码扫描；或打开analyse中的data extract修改颜色通道，勾选红绿蓝为0，点预览，发现flag的一部分；或另存为新图片，打开得到二维码</p>
-<h3 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h3><p>ZIP压缩包生成时没有加密，通过修改文件的某些地方，导致在解压时会弹出密码输入框，无论输入什么密码都会报错。这种原压缩包没有加密，但通过人工修改造成解压时需要输入密码的现象，就叫作伪加密。</p>
-<p>将文件放进010，修改加密标记位，将其末尾改成偶数（通常改为00），保存后再打开zip文件就不需要密码了</p>
-<h3 id="零宽字符隐写"><a href="#零宽字符隐写" class="headerlink" title="零宽字符隐写"></a>零宽字符隐写</h3><p>零宽度字符是一些不可见的，不可打印的字符。它们存在于页面中主要用于调整字符的显示格式。</p>
-<p>通常肉眼难以分辨，需要全选复制，在unicode在线解码网站（<a target="_blank" rel="noopener" href="https://tool.bfw.wiki/tool/1695021695027599.html%EF%BC%89%E4%B8%AD%E8%BF%9B%E8%A1%8C%E8%A7%A3%E7%A0%81%EF%BC%8C%E5%B0%B1%E8%83%BD%E5%BE%97%E5%88%B0%E8%A2%AB%E9%9A%90%E8%97%8F%E7%9A%84%E4%BF%A1%E6%81%AF">https://tool.bfw.wiki/tool/1695021695027599.html）中进行解码，就能得到被隐藏的信息</a></p>
-<h3 id="编码解码"><a href="#编码解码" class="headerlink" title="编码解码"></a>编码解码</h3><p>Quoted-printable编码:最显著的特征是每个字节前面都有“&#x3D;”,利用在线网页<a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetquotedprintable%E5%92%8CCyberChef%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81%E5%8A%9F%E8%83%BD%E3%80%82">http://web.chacuo.net/charsetquotedprintable和CyberChef可以实现编码和解码功能。</a></p>
-<p>UUencode编码:后的字符串的特征是：所有字符看起来像乱码，但都是可打印字符；如果有多行，那么除了最后一行，都以“M”开头,可以使用在线工具<a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetuuencode%E5%AE%9E%E7%8E%B0%E8%A7%A3%E7%A0%81%E3%80%82">http://web.chacuo.net/charsetuuencode实现解码。</a></p>
-<p>Brainfuck编码：为OoK，[ ], &gt; &lt; + - . , 的样式，用在线解码网站<a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81%E3%80%82">https://www.splitbrain.org/services/ook实现编码和解码。</a></p>
-<h3 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h3><p>根据txt文件的提示，在爆破软件archpr中设置字符类型，再进行掩码攻击</p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>将文件放入wireshark中，根据提示搜索dns，查看结果，发现多条字符串，将其连接在一起，先16进制转ascll码，再转为字符串，最后base64解码即可得到flag</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/02/week2/" data-id="cm2zvzwfc0001dov8btc70lfh" data-title="week2" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-文章-week" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/10/27/%E6%96%87%E7%AB%A0-week/" class="article-date">
@@ -176,7 +126,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/27/%E6%96%87%E7%AB%A0-week/" data-id="cm2zvzwfg0002dov80u8g18zi" data-title="文章 week" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/10/27/%E6%96%87%E7%AB%A0-week/" data-id="cm2zw33cj0001ucv833jg9igt" data-title="文章 week" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -227,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/12/hello-world/" data-id="cm2zvzwf80000dov8ae953dew" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/10/12/hello-world/" data-id="cm2zw33cf0000ucv8faax8mqx" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -257,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li></ul>
     </div>
   </div>
 
@@ -268,10 +218,6 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
-        
-          <li>
-            <a href="/2024/11/02/week2/">week2</a>
-          </li>
         
           <li>
             <a href="/2024/10/27/%E6%96%87%E7%AB%A0-week/">文章 week</a>
