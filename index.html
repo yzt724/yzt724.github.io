@@ -107,76 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/11/02/week2/" data-id="cm2zsgi080002d8v8c3on0jdr" data-title="week2" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-文章-week" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/10/27/%E6%96%87%E7%AB%A0-week/" class="article-date">
-  <time class="dt-published" datetime="2024-10-27T06:13:21.000Z" itemprop="datePublished">2024-10-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/10/27/%E6%96%87%E7%AB%A0-week/">文章 week</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="编码解码"><a href="#编码解码" class="headerlink" title="编码解码"></a>编码解码</h1><h2 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h2><p>【古典密码】是密码学中的其中一个类型，其大部分加密方式都是利用 <strong>替换式密码</strong> 或 <strong>移项式密码</strong>，有时则是两者的混合。</p>
-<h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><p>它是一种<strong>替换加密</strong>的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。</p>
-<h3 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h3><p>是由一些偏移量不同的恺撒密码组成，为了生成密码，需要使用<strong>表格法</strong>。</p>
-<p>这一表格包括了26行字母表，每一行都由前一行向左偏移一位得到。具体使用哪一行字母表进行编译是基于密钥进行的，在过程中会不断地变换。</p>
-<h3 id="培根密码"><a href="#培根密码" class="headerlink" title="培根密码"></a>培根密码</h3><p>培根密码的本质是将字母用一串二进制数替换，但是表示的过程中，没有采取0和1的形式，而使用a和b来代替。</p>
-<p>其本质上是将二进制信息通过样式的区别，加在了正常书写之上。</p>
-<h3 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h3><p>栅栏密码属于古典密码中最经典的<strong>移项式密码</strong>，同凯撒密码等替换式密码代表了密码学中最重要的两个概念。</p>
-<h3 id="Ascll码"><a href="#Ascll码" class="headerlink" title="Ascll码"></a>Ascll码</h3><p>(<a target="_blank" rel="noopener" href="https://www.asciim.cn/">https://www.asciim.cn/</a>)</p>
-<h3 id="base16"><a href="#base16" class="headerlink" title="base16"></a>base16</h3><p>使用数字0-9和字母A-F，对任意字节数据进行编码。称 HEX (十六进制)，是不区分大小写的十六进制编码标准</p>
-<p>流程：给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再转化为16进制</p>
-<h3 id="base32"><a href="#base32" class="headerlink" title="base32"></a>base32</h3><p>使用字母A-Z和数字2-7对任意字节数据进行编码的方案</p>
-<p>流程：给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再根据码表转换</p>
-<p>划分时最后不够5的后面先补0，总体不够40比特的倍数的补等号（一个等号就是5bit）</p>
-<h3 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h3><p>使用字母A-Z,字母a<del>z和数字0</del>9,&#x2F; +对任意字节数据进行编码的方案</p>
-<p>给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再根据码表转换</p>
-<p>划分时最后不够6的后面先补0，总体不够24的补等号（一个等号就是6bit）</p>
-<h1 id="MISC-隐写"><a href="#MISC-隐写" class="headerlink" title="MISC-隐写"></a>MISC-隐写</h1><p>原理：把秘密隐藏到普通的信息中，但是目前的隐写术是将某些秘密信息隐藏于数字媒介中，而又不损害载体原来信息的表达，从而掩盖秘密信息。常见的隐写载体包括文本，图像，音频，视频等。比赛中主要考察两点：隐写方法的识别和信息提取。</p>
-<h2 id="图像隐写"><a href="#图像隐写" class="headerlink" title="图像隐写"></a>图像隐写</h2><h3 id="插入隐写"><a href="#插入隐写" class="headerlink" title="插入隐写"></a>插入隐写</h3><p>指利用文件格式的冗余性，在不影响文件的正常使用从而隐藏信息，这种方法会导致文件的大小发生变化，隐藏信息可能被插入到末尾（追加插入法）或者开头（前置插入法）</p>
-<h3 id="替换隐写"><a href="#替换隐写" class="headerlink" title="替换隐写"></a>替换隐写</h3><p>也就是将几乎不影响文件内容的数据进行修改，达到隐藏信息的目的，最常见的是最低比特位隐写（LSB隐写）。因为有损压缩会损毁修改掉的微小信息。</p>
-<h3 id="JPG图片"><a href="#JPG图片" class="headerlink" title="JPG图片"></a>JPG图片</h3><p>由一个一个段组成，可能长度宽度不对</p>
-<p>文件头识别：FFD8</p>
-<h3 id="gif动图"><a href="#gif动图" class="headerlink" title="gif动图"></a>gif动图</h3><p>它是一个动图，所以可能在某一帧插入敏感信息</p>
-<p>文件头：GIF89a&#x2F;GIF87a</p>
-<h1 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h1><p><strong>流量捕获</strong> 通常题目会提供一个 .pcap 文件，它是网络数据包的捕获文件，我们需要分析其中的流量数据。<br>流量分析的常见流程</p>
-<ol>
-<li>初步检查流量文件 使用Wireshark打开</li>
-<li>协议识别与分析 .pcap 文件，查看流量总量、协议类型</li>
-<li>查找最多或者最少流量。</li>
-<li>筛选和过滤数据包 使用Wireshark的过滤器功能，逐步缩小感兴趣的范围。比如，HTTP流量的过滤条件 是http，DNS是 dns ，通过源&#x2F;目的IP、端口等进一步过滤。</li>
-<li>查找数据流</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/27/%E6%96%87%E7%AB%A0-week/" data-id="cm2zsgi060001d8v86gtt438v" data-title="文章 week" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/11/02/week2/" data-id="cm2zsmb6b0001a4v87fjjc45t" data-title="week2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -227,7 +158,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/12/hello-world/" data-id="cm2zsgi020000d8v8c4k830en" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/10/12/hello-world/" data-id="cm2zsmb670000a4v85e2i64xr" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -271,10 +202,6 @@
         
           <li>
             <a href="/2024/11/02/week2/">week2</a>
-          </li>
-        
-          <li>
-            <a href="/2024/10/27/%E6%96%87%E7%AB%A0-week/">文章 week</a>
           </li>
         
           <li>
