@@ -17,7 +17,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/11/02/week2/"/>
+    <link rel="canonical" href="http://example.com/2024/10/27/解码 隐写/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -27,14 +27,14 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单Misc">
-<meta property="og:url" content="http://example.com/2024/11/02/week2/index.html">
+<meta property="og:title" content="解码 隐写">
+<meta property="og:url" content="http://example.com/2024/10/27/%E8%A7%A3%E7%A0%81%20%E9%9A%90%E5%86%99/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2024-11-02T05:21:03.000Z">
-<meta property="article:modified_time" content="2025-03-16T06:05:06.952Z">
+<meta property="article:published_time" content="2024-10-27T06:13:21.000Z">
+<meta property="article:modified_time" content="2025-03-16T06:04:30.526Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -49,7 +49,7 @@
     
     <title>
         
-            简单Misc | Blog
+            解码 隐写 | Blog
         
     </title>
 
@@ -195,7 +195,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -227,10 +227,10 @@
 			
 			
 			
-			<img src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161402018.png" alt="简单Misc" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			<img src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161403821.png" alt="解码 隐写" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
 			
 			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">简单Misc</h1>
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">解码 隐写</h1>
 			</div>
 			
 		</div>
@@ -251,15 +251,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-02 13:21:03</span>
-        <span class="mobile">2024-11-02 13:21:03</span>
+        <span class="desktop">2024-10-27 14:13:21</span>
+        <span class="mobile">2024-10-27 14:13:21</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-16 14:05:06</span>
-            <span class="mobile">2025-03-16 14:05:06</span>
+            <span class="desktop">2025-03-16 14:04:30</span>
+            <span class="mobile">2025-03-16 14:04:30</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -286,18 +286,37 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="图片长宽隐写"><a href="#图片长宽隐写" class="headerlink" title="图片长宽隐写"></a>图片长宽隐写</h3><p>将图片拖入010，修改长或者高，即可看到被隐藏起来的flag</p>
-<h3 id="lsb隐写"><a href="#lsb隐写" class="headerlink" title="lsb隐写"></a>lsb隐写</h3><p>LSB隐写的原理是在图像中随机选择区域，提取该区域像素点的像素值，将要隐藏的信息转换为二进制，逐比特替换该区域像素值的最低位，从而实现秘密信息的嵌入。通过此种方式嵌入的信息，人眼几<br>乎无法识别，原文件大小也没有变化。</p>
-<p>将图片放进stegsolve中，直接左右查看不同通道的图片，得到二维码扫描；或打开analyse中的data extract修改颜色通道，勾选红绿蓝为0，点预览，发现flag的一部分；或另存为新图片，打开得到二维码</p>
-<h3 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h3><p>ZIP压缩包生成时没有加密，通过修改文件的某些地方，导致在解压时会弹出密码输入框，无论输入什么密码都会报错。这种原压缩包没有加密，但通过人工修改造成解压时需要输入密码的现象，就叫作伪加密。</p>
-<p>将文件放进010，修改加密标记位，将其末尾改成偶数（通常改为00），保存后再打开zip文件就不需要密码了</p>
-<h3 id="零宽字符隐写"><a href="#零宽字符隐写" class="headerlink" title="零宽字符隐写"></a>零宽字符隐写</h3><p>零宽度字符是一些不可见的，不可打印的字符。它们存在于页面中主要用于调整字符的显示格式。</p>
-<p>通常肉眼难以分辨，需要全选复制，在unicode在线解码网站（<a class="link"   target="_blank" rel="noopener" href="https://tool.bfw.wiki/tool/1695021695027599.html%EF%BC%89%E4%B8%AD%E8%BF%9B%E8%A1%8C%E8%A7%A3%E7%A0%81%EF%BC%8C%E5%B0%B1%E8%83%BD%E5%BE%97%E5%88%B0%E8%A2%AB%E9%9A%90%E8%97%8F%E7%9A%84%E4%BF%A1%E6%81%AF" >https://tool.bfw.wiki/tool/1695021695027599.html）中进行解码，就能得到被隐藏的信息<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="编码解码"><a href="#编码解码" class="headerlink" title="编码解码"></a>编码解码</h3><p>Quoted-printable编码:最显著的特征是每个字节前面都有“&#x3D;”,利用在线网页<a class="link"   target="_blank" rel="noopener" href="http://web.chacuo.net/charsetquotedprintable%E5%92%8CCyberChef%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81%E5%8A%9F%E8%83%BD%E3%80%82" >http://web.chacuo.net/charsetquotedprintable和CyberChef可以实现编码和解码功能。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>UUencode编码:后的字符串的特征是：所有字符看起来像乱码，但都是可打印字符；如果有多行，那么除了最后一行，都以“M”开头,可以使用在线工具<a class="link"   target="_blank" rel="noopener" href="http://web.chacuo.net/charsetuuencode%E5%AE%9E%E7%8E%B0%E8%A7%A3%E7%A0%81%E3%80%82" >http://web.chacuo.net/charsetuuencode实现解码。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>Brainfuck编码：为OoK，[ ], &gt; &lt; + - . , 的样式，用在线解码网站<a class="link"   target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81%E3%80%82" >https://www.splitbrain.org/services/ook实现编码和解码。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h3><p>根据txt文件的提示，在爆破软件archpr中设置字符类型，再进行掩码攻击</p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>将文件放入wireshark中，根据提示搜索dns，查看结果，发现多条字符串，将其连接在一起，先16进制转ascll码，再转为字符串，最后base64解码即可得到flag</p>
+			<h1 id="编码解码"><a href="#编码解码" class="headerlink" title="编码解码"></a>编码解码</h1><h2 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h2><p>【古典密码】是密码学中的其中一个类型，其大部分加密方式都是利用 <strong>替换式密码</strong> 或 <strong>移项式密码</strong>，有时则是两者的混合。</p>
+<h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><p>它是一种<strong>替换加密</strong>的技术，明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。</p>
+<h3 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h3><p>是由一些偏移量不同的恺撒密码组成，为了生成密码，需要使用<strong>表格法</strong>。</p>
+<p>这一表格包括了26行字母表，每一行都由前一行向左偏移一位得到。具体使用哪一行字母表进行编译是基于密钥进行的，在过程中会不断地变换。</p>
+<h3 id="培根密码"><a href="#培根密码" class="headerlink" title="培根密码"></a>培根密码</h3><p>培根密码的本质是将字母用一串二进制数替换，但是表示的过程中，没有采取0和1的形式，而使用a和b来代替。</p>
+<p>其本质上是将二进制信息通过样式的区别，加在了正常书写之上。</p>
+<h3 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h3><p>栅栏密码属于古典密码中最经典的<strong>移项式密码</strong>，同凯撒密码等替换式密码代表了密码学中最重要的两个概念。</p>
+<h3 id="Ascll码"><a href="#Ascll码" class="headerlink" title="Ascll码"></a>Ascll码</h3><p>(<a class="link"   target="_blank" rel="noopener" href="https://www.asciim.cn/" >https://www.asciim.cn/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>)</p>
+<h3 id="base16"><a href="#base16" class="headerlink" title="base16"></a>base16</h3><p>使用数字0-9和字母A-F，对任意字节数据进行编码。称 HEX (十六进制)，是不区分大小写的十六进制编码标准</p>
+<p>流程：给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再转化为16进制</p>
+<h3 id="base32"><a href="#base32" class="headerlink" title="base32"></a>base32</h3><p>使用字母A-Z和数字2-7对任意字节数据进行编码的方案</p>
+<p>流程：给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再根据码表转换</p>
+<p>划分时最后不够5的后面先补0，总体不够40比特的倍数的补等号（一个等号就是5bit）</p>
+<h3 id="base64"><a href="#base64" class="headerlink" title="base64"></a>base64</h3><p>使用字母A-Z,字母a<del>z和数字0</del>9,&#x2F; +对任意字节数据进行编码的方案</p>
+<p>给定的字符串根据Ascll标转化成二进制–&gt;重新划分–&gt;再根据码表转换</p>
+<p>划分时最后不够6的后面先补0，总体不够24的补等号（一个等号就是6bit）</p>
+<h1 id="MISC-隐写"><a href="#MISC-隐写" class="headerlink" title="MISC-隐写"></a>MISC-隐写</h1><p>原理：把秘密隐藏到普通的信息中，但是目前的隐写术是将某些秘密信息隐藏于数字媒介中，而又不损害载体原来信息的表达，从而掩盖秘密信息。常见的隐写载体包括文本，图像，音频，视频等。比赛中主要考察两点：隐写方法的识别和信息提取。</p>
+<h2 id="图像隐写"><a href="#图像隐写" class="headerlink" title="图像隐写"></a>图像隐写</h2><h3 id="插入隐写"><a href="#插入隐写" class="headerlink" title="插入隐写"></a>插入隐写</h3><p>指利用文件格式的冗余性，在不影响文件的正常使用从而隐藏信息，这种方法会导致文件的大小发生变化，隐藏信息可能被插入到末尾（追加插入法）或者开头（前置插入法）</p>
+<h3 id="替换隐写"><a href="#替换隐写" class="headerlink" title="替换隐写"></a>替换隐写</h3><p>也就是将几乎不影响文件内容的数据进行修改，达到隐藏信息的目的，最常见的是最低比特位隐写（LSB隐写）。因为有损压缩会损毁修改掉的微小信息。</p>
+<h3 id="JPG图片"><a href="#JPG图片" class="headerlink" title="JPG图片"></a>JPG图片</h3><p>由一个一个段组成，可能长度宽度不对</p>
+<p>文件头识别：FFD8</p>
+<h3 id="gif动图"><a href="#gif动图" class="headerlink" title="gif动图"></a>gif动图</h3><p>它是一个动图，所以可能在某一帧插入敏感信息</p>
+<p>文件头：GIF89a&#x2F;GIF87a</p>
+<h1 id="流量分析"><a href="#流量分析" class="headerlink" title="流量分析"></a>流量分析</h1><p><strong>流量捕获</strong> 通常题目会提供一个 .pcap 文件，它是网络数据包的捕获文件，我们需要分析其中的流量数据。<br>流量分析的常见流程</p>
+<ol>
+<li>初步检查流量文件 使用Wireshark打开</li>
+<li>协议识别与分析 .pcap 文件，查看流量总量、协议类型</li>
+<li>查找最多或者最少流量。</li>
+<li>筛选和过滤数据包 使用Wireshark的过滤器功能，逐步缩小感兴趣的范围。比如，HTTP流量的过滤条件 是http，DNS是 dns ，通过源&#x2F;目的IP、端口等进一步过滤。</li>
+<li>查找数据流</li>
+</ol>
 
 		</div>
 
@@ -305,18 +324,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 简单Misc</li>
+        <li><strong>标题:</strong> 解码 隐写</li>
         <li><strong>作者:</strong> 压轴题</li>
         <li><strong>创建于
-                :</strong> 2024-11-02 13:21:03</li>
+                :</strong> 2024-10-27 14:13:21</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-03-16 14:05:06
+                    :</strong> 2025-03-16 14:04:30
             </li>
         
         <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2024/11/02/week2/
+            <strong>链接:</strong> https://redefine.ohevan.com/2024/10/27/解码 隐写/
         </li>
         <li>
             <strong>
@@ -342,29 +361,17 @@
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
 			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/03/16/2025-ASM-Signin-%E9%A2%98%E8%A7%A3/">
+				<a class="prev" rel="prev" href="/2024/11/02/%E7%AE%80%E5%8D%95Misc/">
 					<span class="left arrow-icon flex justify-center items-center">
 						<i class="fa-solid fa-chevron-left"></i>
 					</span>
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">2025]ASM?Signin!题解</span>
+						<span class="post-nav-title-item">简单Misc</span>
 						<span class="post-nav-item">上一篇</span>
 					</span>
 				</a>
 			</div>
 			
-			
-			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2024/10/27/week1/">
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">解码 隐写</span>
-						<span class="post-nav-item">下一篇</span>
-					</span>
-					<span class="right arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-right"></i>
-					</span>
-				</a>
-			</div>
 			
 		</div>
 		
@@ -421,8 +428,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">简单Misc</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E9%95%BF%E5%AE%BD%E9%9A%90%E5%86%99"><span class="nav-text">图片长宽隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsb%E9%9A%90%E5%86%99"><span class="nav-text">lsb隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip%E4%BC%AA%E5%8A%A0%E5%AF%86"><span class="nav-text">zip伪加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%AE%BD%E5%AD%97%E7%AC%A6%E9%9A%90%E5%86%99"><span class="nav-text">零宽字符隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="nav-text">编码解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%86%E7%A0%B4"><span class="nav-text">爆破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-text">DNS</span></a></li></ol></li></ol>
+		<div class="page-title">解码 隐写</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="nav-text">编码解码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81"><span class="nav-text">古典密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="nav-text">凯撒密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%B4%E5%90%89%E5%B0%BC%E4%BA%9A%E5%AF%86%E7%A0%81"><span class="nav-text">维吉尼亚密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%B9%E6%A0%B9%E5%AF%86%E7%A0%81"><span class="nav-text">培根密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81"><span class="nav-text">栅栏密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ascll%E7%A0%81"><span class="nav-text">Ascll码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base16"><span class="nav-text">base16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base32"><span class="nav-text">base32</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base64"><span class="nav-text">base64</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MISC-%E9%9A%90%E5%86%99"><span class="nav-text">MISC-隐写</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%83%8F%E9%9A%90%E5%86%99"><span class="nav-text">图像隐写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E9%9A%90%E5%86%99"><span class="nav-text">插入隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%BF%E6%8D%A2%E9%9A%90%E5%86%99"><span class="nav-text">替换隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JPG%E5%9B%BE%E7%89%87"><span class="nav-text">JPG图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gif%E5%8A%A8%E5%9B%BE"><span class="nav-text">gif动图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90"><span class="nav-text">流量分析</span></a></li></ol>
 
 	</div>
 </div>
