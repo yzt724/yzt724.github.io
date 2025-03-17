@@ -17,7 +17,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/11/02/简单misc/"/>
+    <link rel="canonical" href="http://example.com/2025/03/17/buuctf-simplerev-题解/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -27,15 +27,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单Misc">
-<meta property="og:url" content="http://example.com/2024/11/02/%E7%AE%80%E5%8D%95Misc/index.html">
+<meta property="og:title" content="BUUCTF[SimpleRev]题解">
+<meta property="og:url" content="http://example.com/2025/03/17/BUUCTF-SimpleRev-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2024-11-02T05:21:03.000Z">
-<meta property="article:modified_time" content="2025-03-17T13:21:19.479Z">
+<meta property="article:published_time" content="2025-03-17T13:26:41.000Z">
+<meta property="article:modified_time" content="2025-03-17T13:48:06.569Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -49,7 +50,7 @@
     
     <title>
         
-            简单Misc | Blog
+            BUUCTF[SimpleRev]题解 | Blog
         
     </title>
 
@@ -227,10 +228,10 @@
 			
 			
 			
-			<img src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161402018.png" alt="简单Misc" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			<img src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172129042.png" alt="BUUCTF[SimpleRev]题解" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
 			
 			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">简单Misc</h1>
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">BUUCTF[SimpleRev]题解</h1>
 			</div>
 			
 		</div>
@@ -251,20 +252,31 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-02 13:21:03</span>
-        <span class="mobile">2024-11-02 13:21:03</span>
+        <span class="desktop">2025-03-17 21:26:41</span>
+        <span class="mobile">2025-03-17 21:26:41</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-03-17 21:21:19</span>
-            <span class="mobile">2025-03-17 21:21:19</span>
+            <span class="desktop">2025-03-17 21:48:06</span>
+            <span class="mobile">2025-03-17 21:48:06</span>
             <span class="hover-info">更新</span>
         </span>
     
 
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%A2%98%E8%A7%A3/">题解</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -286,18 +298,49 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="图片长宽隐写"><a href="#图片长宽隐写" class="headerlink" title="图片长宽隐写"></a>图片长宽隐写</h3><p>将图片拖入010，修改长或者高，即可看到被隐藏起来的flag</p>
-<h3 id="lsb隐写"><a href="#lsb隐写" class="headerlink" title="lsb隐写"></a>lsb隐写</h3><p>LSB隐写的原理是在图像中随机选择区域，提取该区域像素点的像素值，将要隐藏的信息转换为二进制，逐比特替换该区域像素值的最低位，从而实现秘密信息的嵌入。通过此种方式嵌入的信息，人眼几<br>乎无法识别，原文件大小也没有变化。</p>
-<p>将图片放进stegsolve中，直接左右查看不同通道的图片，得到二维码扫描；或打开analyse中的data extract修改颜色通道，勾选红绿蓝为0，点预览，发现flag的一部分；或另存为新图片，打开得到二维码</p>
-<h3 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h3><p>ZIP压缩包生成时没有加密，通过修改文件的某些地方，导致在解压时会弹出密码输入框，无论输入什么密码都会报错。这种原压缩包没有加密，但通过人工修改造成解压时需要输入密码的现象，就叫作伪加密。</p>
-<p>将文件放进010，修改加密标记位，将其末尾改成偶数（通常改为00），保存后再打开zip文件就不需要密码了</p>
-<h3 id="零宽字符隐写"><a href="#零宽字符隐写" class="headerlink" title="零宽字符隐写"></a>零宽字符隐写</h3><p>零宽度字符是一些不可见的，不可打印的字符。它们存在于页面中主要用于调整字符的显示格式。</p>
-<p>通常肉眼难以分辨，需要全选复制，在unicode在线解码网站（<a class="link"   target="_blank" rel="noopener" href="https://tool.bfw.wiki/tool/1695021695027599.html%EF%BC%89%E4%B8%AD%E8%BF%9B%E8%A1%8C%E8%A7%A3%E7%A0%81%EF%BC%8C%E5%B0%B1%E8%83%BD%E5%BE%97%E5%88%B0%E8%A2%AB%E9%9A%90%E8%97%8F%E7%9A%84%E4%BF%A1%E6%81%AF" >https://tool.bfw.wiki/tool/1695021695027599.html）中进行解码，就能得到被隐藏的信息<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="编码解码"><a href="#编码解码" class="headerlink" title="编码解码"></a>编码解码</h3><p>Quoted-printable编码:最显著的特征是每个字节前面都有“&#x3D;”,利用在线网页<a class="link"   target="_blank" rel="noopener" href="http://web.chacuo.net/charsetquotedprintable%E5%92%8CCyberChef%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81%E5%8A%9F%E8%83%BD%E3%80%82" >http://web.chacuo.net/charsetquotedprintable和CyberChef可以实现编码和解码功能。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>UUencode编码:后的字符串的特征是：所有字符看起来像乱码，但都是可打印字符；如果有多行，那么除了最后一行，都以“M”开头,可以使用在线工具<a class="link"   target="_blank" rel="noopener" href="http://web.chacuo.net/charsetuuencode%E5%AE%9E%E7%8E%B0%E8%A7%A3%E7%A0%81%E3%80%82" >http://web.chacuo.net/charsetuuencode实现解码。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>Brainfuck编码：为OoK，[ ], &gt; &lt; + - . , 的样式，用在线解码网站<a class="link"   target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook%E5%AE%9E%E7%8E%B0%E7%BC%96%E7%A0%81%E5%92%8C%E8%A7%A3%E7%A0%81%E3%80%82" >https://www.splitbrain.org/services/ook实现编码和解码。<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="爆破"><a href="#爆破" class="headerlink" title="爆破"></a>爆破</h3><p>根据txt文件的提示，在爆破软件archpr中设置字符类型，再进行掩码攻击</p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>将文件放入wireshark中，根据提示搜索dns，查看结果，发现多条字符串，将其连接在一起，先16进制转ascll码，再转为字符串，最后base64解码即可得到flag</p>
+			<h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4><p>64位 无upx壳 拖入IDA打开</p>
+<h4 id="Shift-F12查看字符串"><a href="#Shift-F12查看字符串" class="headerlink" title="Shift+F12查看字符串"></a>Shift+F12查看字符串</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172133383.png"
+                     
+                ></p>
+<p>找到关键的两句 Please input your flag: 和 Congratulation!\n 继续跟进 发现这两句都在Decry函数中 也就是说Decry就是这道题的关键函数</p>
+<h4 id="分析Decry函数"><a href="#分析Decry函数" class="headerlink" title="分析Decry函数"></a>分析Decry函数</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172136920.png"
+                     
+                ></p>
+<p>发现text与str2需要相等</p>
+<h4 id="寻找text"><a href="#寻找text" class="headerlink" title="寻找text"></a>寻找text</h4><p>text就时经过join函数处理的key3和v9    join函数的主要作用是把key3和v9拼接起来</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172141053.png"
+                     
+                ></p>
+<p>key3就是字符串kills追踪就能找到 v9原来是16进制的数字拼接时要注意用小端序   </p>
+<p>text&#x3D;killshadow</p>
+<p>key那里同理 注意大小端序 拼接完key&#x3D;ADSFKNDCLS</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172144404.png"
+                     
+                ></p>
+<p>这里把key转成小写字母 </p>
+<h4 id="分析加密过程"><a href="#分析加密过程" class="headerlink" title="分析加密过程"></a>分析加密过程</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172145774.png"
+                     
+                ></p>
+<p>容易看出输入的flag全是字母 现在已知str2&#x3D;text&#x3D;killshadow，需要把过程逆回去</p>
+<p>exp</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line"></span><br><span class="line">#pragma warning(disable:4996)</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i, j, n = 0, v5 = 10, v3 = 0, v2 = 0;</span><br><span class="line">    char v1;</span><br><span class="line">    char flag[11] = &#123; 0 &#125;;</span><br><span class="line">    char str2[104] = &#123; 0 &#125;;</span><br><span class="line">    char key[] = &quot;adsfkndcls&quot;;</span><br><span class="line">    char text[] = &quot;killshadow&quot;;</span><br><span class="line">    for (j = 0; j &lt; 10; ++j) &#123;</span><br><span class="line">        for (v2 = 0; v2 &lt; 10; ++v2) &#123;</span><br><span class="line">            v1 = text[v2] - 97 + 26 * j - 97 + key[v3++ % v5] + 39;</span><br><span class="line">            if ((v1 &gt;= 65 &amp;&amp; v1 &lt;= 90) || (v1 &gt;= 97 &amp;&amp; v1 &lt;= 122)) &#123;</span><br><span class="line">                flag[v2] = v1;</span><br><span class="line">                if (++n == 10) &#123;</span><br><span class="line">                    printf(&quot;%s\n&quot;, flag);</span><br><span class="line">                    system(&quot;PAUSE&quot;);</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    system(&quot;PAUSE&quot;);</span><br><span class="line">    return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>运行得到KLDQCUDFZO 包上flag即可</p>
 
 		</div>
 
@@ -305,18 +348,18 @@
 		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
 			<div class="article-copyright-info-container">
     <ul>
-        <li><strong>标题:</strong> 简单Misc</li>
+        <li><strong>标题:</strong> BUUCTF[SimpleRev]题解</li>
         <li><strong>作者:</strong> 压轴题</li>
         <li><strong>创建于
-                :</strong> 2024-11-02 13:21:03</li>
+                :</strong> 2025-03-17 21:26:41</li>
         
             <li>
                 <strong>更新于
-                    :</strong> 2025-03-17 21:21:19
+                    :</strong> 2025-03-17 21:48:06
             </li>
         
         <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2024/11/02/简单Misc/
+            <strong>链接:</strong> https://redefine.ohevan.com/2025/03/17/BUUCTF-SimpleRev-题解/
         </li>
         <li>
             <strong>
@@ -335,29 +378,25 @@
 		
 
 		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E9%A2%98%E8%A7%A3/">#题解</a>&nbsp;
+			</li>
+			
+		</ul>
+		
 
 		
 
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/03/16/2025-ASM-Signin-%E9%A2%98%E8%A7%A3/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">2025]ASM?Signin!题解</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2024/10/27/%E8%A7%A3%E7%A0%81%20%E9%9A%90%E5%86%99/">
+				<a class="next" rel="next" href="/2025/03/16/2025-ASM-Signin-%E9%A2%98%E8%A7%A3/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">解码 隐写</span>
+						<span class="post-nav-title-item">2025]ASM?Signin!题解</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -378,8 +417,8 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">简单Misc</div>
-		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E9%95%BF%E5%AE%BD%E9%9A%90%E5%86%99"><span class="nav-text">图片长宽隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsb%E9%9A%90%E5%86%99"><span class="nav-text">lsb隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zip%E4%BC%AA%E5%8A%A0%E5%AF%86"><span class="nav-text">zip伪加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6%E5%AE%BD%E5%AD%97%E7%AC%A6%E9%9A%90%E5%86%99"><span class="nav-text">零宽字符隐写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81"><span class="nav-text">编码解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%86%E7%A0%B4"><span class="nav-text">爆破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-text">DNS</span></a></li></ol></li></ol>
+		<div class="page-title">BUUCTF[SimpleRev]题解</div>
+		
 
 	</div>
 </div>
