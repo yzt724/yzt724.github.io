@@ -341,9 +341,6 @@
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            RC4加密原理初始化S表1.对S表进行线性填充，一般为256个字节填充完以后S[0]&#x3D;0,S[1]&#x3D;1,S[2]&#x3D;2,S[3]&#x3D;3,……S[254]&#x3D;254,S[255]&#x3D;255,s[255]&#x3D;[0,1,2,3,4,5,6,7,……254,255]
-2.用种子密钥填充另一个256字节的K表如果输入长度小于256个字节，则进...
                         
                     </div>
 
@@ -432,10 +429,6 @@
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            安卓逆向apk 文件结构APK 是 Android PacKage 的缩写，是 Android 源文件打包后的安装包。apk 其实就是一个 zip 格式的压缩包。想要知道 apk 包含了什么，可以修改后缀名为zip，然后用解压缩工具打开 apk 文件。 如果有 代码混淆 和 加密，通过普通解压缩工具打开里面的文件或目录会看到各种乱码。APK 文件 目录：
-
-assets   不经过 aapt...
                         
                     </div>
 
@@ -486,18 +479,6 @@ assets   不经过 aapt...
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            32位 无壳 IDA打开shift+f12查看字符串 发现
-
-说明这道题可能与base64编码解码有关
-找main函数
-发现关键函数 DialogFunc
-进入DialogFunc函数查看发现flag的长度等于8 且给v7~v16赋值
-
-发现最后有一个if判断语句
-然后逆着看
-
-发现v4 v5是base64编码后的flag  解码v4 v5得到 flag[5,6,7]&#x3D;[j,M,p...
                         
                     </div>
 
@@ -536,13 +517,6 @@ assets   不经过 aapt...
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            查壳64位 无upx壳 拖入IDA打开
-Shift+F12查看字符串
-找到关键的两句 Please input your flag: 和 Congratulation!\n 继续跟进 发现这两句都在Decry函数中 也就是说Decry就是这道题的关键函数
-分析Decry函数
-发现text与str2需要相等
-寻找texttext就时经过join函数处理的key3和v9    join函数的主要...
                         
                     </div>
 
@@ -581,17 +555,6 @@ Shift+F12查看字符串
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            打开题目src可见 该题为汇编代码
-数据段给出了两个 DATA1和DATA2数据
-
-代码段start将输入的字符串与DATA2比较 如果相同 则显示right
-其中分别调用了DO1函数实现DATA1内部数据的位置交换 ENC函数将输入的字符串与DATA1异或
-
-DO1函数如下判断DI的值 并调用了DO2函数
-
-DO2 函数如下
-作用 第一次交换（0-3与4-7）第二次交换（4-7与8-11）...
                         
                     </div>
 
