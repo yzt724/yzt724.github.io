@@ -34,7 +34,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2025-05-23T11:21:18.000Z">
-<meta property="article:modified_time" content="2025-05-23T12:44:24.611Z">
+<meta property="article:modified_time" content="2025-05-23T13:02:31.009Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -326,8 +326,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-23 20:44:24</span>
-            <span class="mobile">2025-05-23 20:44:24</span>
+            <span class="desktop">2025-05-23 21:02:31</span>
+            <span class="mobile">2025-05-23 21:02:31</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -398,28 +398,34 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505231956956.png"
                       alt="descript"
                 >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.459510061242345in”}</p>
-<h2 id="ezrce"><a href="#ezrce" class="headerlink" title="ezrce"></a>ezrce</h2><p>直接使用黑名单外的函数进行绕过就行</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">小白的flask网站</span><br><span class="line"></span><br><span class="line">尝试注入一下吧</span><br><span class="line"></span><br><span class="line">Enter your name...</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Welcome, PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/binHOSTNAME=xuanyuanbei-31774b6b70ed45dbLANG=C.UTF-8GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568PYTHON_VERSION=3.8.20PYTHONDONTWRITEBYTECODE=1PYTHONUNBUFFERED=1UWSGI_INI=/app/uwsgi.iniUWSGI_CHEAPER=2UWSGI_PROCESSES=16NGINX_MAX_UPLOAD=0NGINX_WORKER_PROCESSES=1LISTEN_PORT=80STATIC_URL=/staticSTATIC_PATH=/app/staticSTATIC_INDEX=0PYTHONPATH=/appGZCTF_FLAG=flag&#123;1e07cef3-1334-4ba5-a213-6e1f09a0585f&#125;GZCTF_TEAM_ID=321KUBERNETES_PORT_443_TCP_ADDR=10.43.0.1KUBERNETES_SERVICE_HOST=10.43.0.1KUBERNETES_SERVICE_PORT=443KUBERNETES_SERVICE_PORT_HTTPS=443KUBERNETES_PORT=tcp://10.43.0.1:443KUBERNETES_PORT_443_TCP=tcp://10.43.0.1:443KUBERNETES_PORT_443_TCP_PROTO=tcpKUBERNETES_PORT_443_TCP_PORT=443HOME=/root&quot;&#125;，表单为&#123;&#x27;action&#x27;: &#x27;/&#x27;, &#x27;method&#x27;: &#x27;GET&#x27;, &#x27;inputs&#x27;: &#123;&#x27;name&#x27;&#125;&#125;!</span><br><span class="line"></span><br><span class="line">© 2025 - Powered by tools</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="ezrce"><a href="#ezrce" class="headerlink" title="ezrce"></a>ezrce</h2><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line"></span><br><span class="line">function waf($a) &#123;</span><br><span class="line">    $disable_fun = array(</span><br><span class="line">        &quot;exec&quot;, &quot;shell_exec&quot;, &quot;system&quot;, &quot;passthru&quot;, &quot;proc_open&quot;, &quot;show_source&quot;, </span><br><span class="line">        &quot;phpinfo&quot;, &quot;popen&quot;, &quot;dl&quot;, &quot;proc_terminate&quot;, &quot;touch&quot;, &quot;escapeshellcmd&quot;, </span><br><span class="line">        &quot;escapeshellarg&quot;, &quot;assert&quot;, &quot;substr_replace&quot;, &quot;call_user_func_array&quot;, </span><br><span class="line">        &quot;call_user_func&quot;, &quot;array_filter&quot;, &quot;array_walk&quot;, &quot;array_map&quot;, </span><br><span class="line">        &quot;register_shutdown_function&quot;, &quot;register_tick_function&quot;, &quot;filter_var&quot;, </span><br><span class="line">        &quot;filter_var_array&quot;, &quot;uasort&quot;, &quot;uksort&quot;, &quot;array_reduce&quot;, &quot;array_walk&quot;, </span><br><span class="line">        &quot;array_walk_recursive&quot;, &quot;pcntl_exec&quot;, &quot;fopen&quot;, &quot;fwrite&quot;, </span><br><span class="line">        &quot;file_put_contents&quot;, &quot;readfile&quot;, &quot;file_get_contents&quot;, &quot;highlight_file&quot;, &quot;eval&quot;</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line">    $disable_fun = array_map(&#x27;strtolower&#x27;, $disable_fun);</span><br><span class="line">    $a = strtolower($a);</span><br><span class="line"></span><br><span class="line">    if (in_array($a, $disable_fun)) &#123;</span><br><span class="line">        echo &quot;宝宝这对嘛,这不对噢&quot;;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">    return $a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$num = $_GET[&#x27;num&#x27;];</span><br><span class="line">$new = $_POST[&#x27;new&#x27;];</span><br><span class="line">$star = $_POST[&#x27;star&#x27;];</span><br><span class="line"></span><br><span class="line">if (isset($num) &amp;&amp; $num != 1234) &#123;</span><br><span class="line">    echo &quot;看来第一层对你来说是小case&lt;br&gt;&quot;;</span><br><span class="line">    if (is_numeric($num) &amp;&amp; $num &gt; 1234) &#123;</span><br><span class="line">        echo &quot;还是有点实力的嘛&lt;br&gt;&quot;;</span><br><span class="line">        if (isset($new) &amp;&amp; isset($star)) &#123;</span><br><span class="line">            echo &quot;看起来你遇到难关了哈哈&lt;br&gt;&quot;;</span><br><span class="line">            $b = waf($new); </span><br><span class="line">            if ($b) &#123; </span><br><span class="line">                call_user_func($b, $star); </span><br><span class="line">                echo &quot;恭喜你，又成长了&lt;br&gt;&quot;;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>直接使用黑名单外的函数进行绕过就行</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image6.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”4.428715004374453in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_564724_fhdxY9HcegtuckUn_1747816500?w=1017&h=715&type=image/png"
+                      alt="img"
+                ></p>
 <h2 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image7.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.758731408573928in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_806128_-Wig5OXhheDmMBsE_1747816568?w=1555&h=681&type=image/png"
+                      alt="img"
+                ></p>
 <p><strong>GET参数检测通过！</strong></p>
 <p><strong>POST参数检测通过！</strong></p>
 <p><strong>Cookie检测通过！</strong></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image8.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.4187489063867016in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_227632_8fWmR7tsDaJDA6lx_1747816677?w=1909&h=733&type=image/png"
+                      alt="img"
+                ></p>
 <p><strong>🎉 恭喜你！下一关路径是：.&#x2F;l23evel4.php</strong></p>
 <p><img  
                      lazyload
@@ -428,20 +434,24 @@
                       alt="descript"
                 >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.5358366141732285in”}</p>
 <p><strong>你是聪明人，下一关路径是：.&#x2F;levelThree.php</strong></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line"></span><br><span class="line">// 判断 Referer 是否符合</span><br><span class="line">$referer = isset($_SERVER[&#x27;HTTP_REFERER&#x27;]) ? $_SERVER[&#x27;HTTP_REFERER&#x27;] : &#x27;&#x27;;</span><br><span class="line"></span><br><span class="line">if (strpos($referer, &#x27;secretcode&#x27;) !== false) &#123;</span><br><span class="line">    // 进一步要求POST参数</span><br><span class="line">    if (isset($_POST[&#x27;key&#x27;]) &amp;&amp; $_POST[&#x27;key&#x27;] === &#x27;ctfpass&#x27;) &#123;</span><br><span class="line">        echo file_get_contents(&#x27;./xixi.txt&#x27;);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;Referer对了，但是POST参数呢？&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    echo &quot;你缺少正确的Referer头~&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;            </span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image10.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.4265540244969377in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_174168_n295OTdSwumwh1A6_1747816849?w=1812&h=698&type=image/png"
+                      alt="img"
+                ></p>
 <p><strong>下一关的路径是.&#x2F;level444Four.php</strong></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image11.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.9976367016622922in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_867999_ODiwbp-IeTILmR4X_1747816904?w=1144&h=726&type=image/png"
+                      alt="img"
+                ></p>
 <p><strong>使用代码Head请求</strong></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">                JS源码（请仔细分析）:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">(function()&#123;</span><br><span class="line">    var a = [&#x27;E&#x27;, &#x27;l&#x27;, &#x27;W&#x27;, &#x27;_&#x27;, &#x27;F&#x27;, &#x27;3&#x27;, &#x27;t&#x27;, &#x27;0&#x27;, &#x27;C&#x27;, &#x27;C&#x27;];</span><br><span class="line">    var order = [2, 5, 1, 8, 7, 0, 3, 9, 6, 4];</span><br><span class="line">    var code = &#x27;&#x27;;</span><br><span class="line">    for (var i = 0; i &lt; order.length; i++) &#123;</span><br><span class="line">        code += a[order[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(&quot;Your hidden key is:&quot;, code);</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;      </span><br></pre></td></tr></table></figure></div>
+
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -451,9 +461,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image13.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.2874496937882767in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_570240_KJK6vdCtZTvPKLB6_1747817092?w=1280&h=668&type=image/png"
+                      alt="img"
+                ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -468,12 +478,14 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505231956734.png"
                       alt="descript"
                 >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.1974890638670166in”}</p>
-<h2 id="ezssrf1-0"><a href="#ezssrf1-0" class="headerlink" title="ezssrf1.0"></a>ezssrf1.0</h2><p><img  
+<h2 id="ezssrf1-0"><a href="#ezssrf1-0" class="headerlink" title="ezssrf1.0"></a>ezssrf1.0</h2><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$url = $_GET[&#x27;url&#x27;];</span><br><span class="line"></span><br><span class="line">if ($url == null)</span><br><span class="line">    die(&quot;Try to add ?url=xxxx.&quot;);</span><br><span class="line"></span><br><span class="line">$x = parse_url($url);</span><br><span class="line"></span><br><span class="line">if (!$x)</span><br><span class="line">    die(&quot;(;_;)&quot;);</span><br><span class="line"></span><br><span class="line">if ($x[&#x27;host&#x27;] === null &amp;&amp; $x[&#x27;scheme&#x27;] === &#x27;http&#x27;) &#123;</span><br><span class="line">    echo (&#x27;Well, Going to &#x27; . $url);</span><br><span class="line">    $ch = curl_init($url);</span><br><span class="line">    curl_setopt($ch, CURLOPT_HEADER, 0);</span><br><span class="line">    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);</span><br><span class="line">    $result = curl_exec($ch);</span><br><span class="line">    curl_close($ch);</span><br><span class="line">    echo ($result);</span><br><span class="line">&#125; else</span><br><span class="line">    echo &quot;(^-＿-^)&quot;;</span><br><span class="line">Try to add ?url=xxxx.</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image16.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.1555621172353456in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_23150_EZWWVAYRtZrP78mp_1747817540?w=1066&h=534&type=image/png"
+                      alt="img"
+                ></p>
 <p>看出來是ssrf</p>
 <p>但是不能直接执行</p>
 <p>主要要求：</p>
@@ -481,19 +493,19 @@
 <p>$x[&#39;scheme&#39;] &#x3D;&#x3D;&#x3D; &#39;http&#39;：URL的协议是HTTP。</p>
 <p>如果条件满足， curl 访问提供的URL</p>
 <p>结合了 parse_url() 的宽松解析和 curl 的URL修复行为</p>
-<p>使用http:<a class="link"   href="mailto:&#x64;&#97;&#117;&#110;&#64;&#x31;&#x32;&#55;&#46;&#x30;&#46;&#48;&#46;&#49;" >&#x64;&#97;&#117;&#110;&#64;&#x31;&#x32;&#55;&#46;&#x30;&#46;&#48;&#46;&#49;<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>&#x2F;flag就能够实现ssrf访问服务器本地文件</p>
+<p>使用http:<a class="link"   href="mailto:&#x64;&#97;&#117;&#110;&#64;&#49;&#x32;&#x37;&#x2e;&#x30;&#46;&#x30;&#x2e;&#49;" >&#x64;&#97;&#117;&#110;&#64;&#49;&#x32;&#x37;&#x2e;&#x30;&#46;&#x30;&#x2e;&#49;<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>&#x2F;flag就能够实现ssrf访问服务器本地文件</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image17.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.2717891513560806in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_219642_ZQ_sWek-q1gpTlj1_1747817744?w=1123&h=405&type=image/png"
+                      alt="img"
+                ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image18.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”1.8302329396325459in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_518664_yuzhfOoZOJXTBa_5_1747817762?w=1449&h=421&type=image/png"
+                      alt="img"
+                ></p>
 <h2 id="ez-web1"><a href="#ez-web1" class="headerlink" title="ez_web1"></a>ez_web1</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -507,16 +519,16 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image20.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.1890234033245846in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_607872_KYUUi5NM386DixQR_1747819386?w=1920&h=972&type=image/png"
+                      alt="img"
+                ></p>
 <p>有三个页面</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image21.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.5433595800524933in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_203294_3vJoKq5J9YA5aqVE_1747819405?w=1920&h=1080&type=image/png"
+                      alt="img"
+                ></p>
 <p>还有一个上传页面</p>
 <p><img  
                      lazyload
@@ -528,9 +540,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image23.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.728850612423447in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_387889_o7n1uAWqk6eziPU7_1747819492?w=1490&h=882&type=image/png"
+                      alt="img"
+                ></p>
 <p>尝试任意文件读取，目录穿越，目录遍历</p>
 <p>发现能够成功，但&#x2F;flag读不了，读取proc下环境变量出了</p>
 <p><img  
@@ -543,9 +555,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image25.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”4.532426727909011in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_916627_rKR_S9BzuDX5D2us_1747818096?w=984&h=708&type=image/png"
+                      alt="img"
+                ></p>
 <p>看到pyi，将exe解包为pyc</p>
 <p><img  
                      lazyload
@@ -567,9 +579,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image28.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”1.7308727034120734in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NTI3MjUzMzAyOQ_702096_2RNFVwTG8VAnCgRL_1747816435?w=1645&h=452&type=image/png"
+                      alt="img"
+                ></p>
 <p>观察了角落发现了一个rgb色块，使用脚本提取出来</p>
 <p>import numpy as np</p>
 <p>from PIL import Image</p>
@@ -619,9 +631,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image30.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”1.2170505249343833in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NTI3MjUzMzAyOQ_404987_AlbzFQKewD-xMong_1747817630?w=1030&h=199&type=image/png"
+                      alt="img"
+                ></p>
 <p>观察最后牢记50 4b 03 04 14 00，所以是每三个为一组逆序输出</p>
 <p>def reverse_chunk_join(hex_str, chunk_size&#x3D;6):</p>
 <p># 反转字符串</p>
@@ -657,9 +669,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image31.png"
-                      alt="descript"
-                >{width&#x3D;”5.864583333333333in”<br>height&#x3D;”2.375in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NTI3MjUzMzAyOQ_528367_Y508tZfonow0b0JW_1747818023?w=563&h=228&type=image/png"
+                      alt="img"
+                ></p>
 <p>得到了最后的flag，为best_FPS_g@me!!}</p>
 <p>所以flag为密码</p>
 <p>flag{Val0rant_1s_th3_best_FPS_g@me!!}</p>
@@ -667,18 +679,18 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image32.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”5.284451006124234in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_957109_A6EfZF3VgCF2SFs-_1747817840?w=1049&h=880&type=image/png"
+                      alt="img"
+                ></p>
 <p>但是没有密码，需要爆破，爆破出密码是1234</p>
 <p>然后得到一个泰山石敢当的图片</p>
 <p>放到这个软件，分析色彩通道</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image33.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”4.209213692038495in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_611141_l11uiCWKDL-uRzYN_1747817985?w=1736&h=1160&type=image/png"
+                      alt="img"
+                ></p>
 <p>这个不是最终的flag，维吉尼亚解码，需要密码，回看zip的信息，得到密码是lovely。一定要注意空格</p>
 <p><img  
                      lazyload
@@ -692,13 +704,17 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505231956588.png"
                       alt="descript"
                 >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”4.2919794400699915in”}</p>
-<h2 id="数据识别与审计"><a href="#数据识别与审计" class="headerlink" title="数据识别与审计"></a>数据识别与审计</h2><h3 id="pdf"><a href="#pdf" class="headerlink" title="pdf"></a>pdf</h3><p>一个一个点</p>
+<h2 id="数据识别与审计"><a href="#数据识别与审计" class="headerlink" title="数据识别与审计"></a>数据识别与审计</h2><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">公司管理员在商品测评汇总平台中的文件服务器，存放了一些商品相关或者用户上传的文件数据，包括 TXT，图片，PDF，音频数据。在各种数据中，可能泄露了一些敏感信息或者某些用户插入了恶意代码到 各种类型数据中，每个类型有5个。请选手对于各种数据类型的文件进行审计，找到带有敏感信息或者恶意代码的数据文 件，并将文件名列出来。flag为md5(文件名排序)</span><br><span class="line"></span><br><span class="line">排序规则：TXT&gt;图片&gt;PDF&gt;音频数据,且数字&gt;大小写字母 例如：提取的答案是1a.txt,q5.txt,Qa.txt,aa.pdf,b.png， 则flag为flag&#123;md5(1a.txt,q5.txt,Qa.txt,b.png,aa.pdf)&#125;=flag&#123;4b24307829e14b4acdfdc5b43d87554f&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="pdf"><a href="#pdf" class="headerlink" title="pdf"></a>pdf</h3><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bVKINl.pdf hnPRx1.pdf mIR13t.pdf OGoyOG.pdf rSG2pW.pdf</span><br></pre></td></tr></table></figure></div>
+
+<p>一个一个点</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505231956950.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.2395253718285213in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_854697_q3DLTqS6tzKMWyak_1747824104?w=616&h=219&type=image/png"
+                      alt="img"
+                ></p>
 <p>全是弹窗</p>
 <h3 id="txt"><a href="#txt" class="headerlink" title="txt"></a>txt</h3><p>使用工具搜&quot;号&quot;和”@”，找到一些敏感信息</p>
 <p><img  
@@ -707,20 +723,22 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505231956265.png"
                       alt="descript"
                 >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.367972440944882in”}</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Me4CoMw7.txt</span><br><span class="line">请将发票，发送到我的邮箱，wanglili@gmail.com。</span><br><span class="line">FiBRFFnG.txt</span><br><span class="line">客服竟然知道了我的身份证号410526199804052000</span><br><span class="line">gWa0DiTs.txt</span><br><span class="line">这个商城平台竟然将我的手机号19724837916，泄露给了商家！</span><br><span class="line">9h0zQJok.txt</span><br><span class="line">我的地址是郑州市金水区园田路999号院，客服竟然给我写成了西安市。</span><br><span class="line">T0BPOXDY.txt</span><br><span class="line">我的家庭地址是南京江北区金融大道35号</span><br></pre></td></tr></table></figure></div>
+
 <h3 id="wav"><a href="#wav" class="headerlink" title="wav"></a>wav</h3><p>一般音频</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image38.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.8358497375328082in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_246786_t3bZqPGepHd2Iq88_1747824820?w=813&h=366&type=image/png"
+                      alt="img"
+                ></p>
 <p>异常音频</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image39.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.8358497375328082in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_399111_7carMnIUQSx3fwSy_1747824852?w=813&h=366&type=image/png"
+                      alt="img"
+                ></p>
 <p>Bd2IYe3.wav,bjVwvcC.wav,H0KDChj.wav,ou9E9Mh.wav,UEbzH4X.wav</p>
 <h3 id="png"><a href="#png" class="headerlink" title="png"></a>png</h3><p>文件放随波逐流，文件尾部有恶意代码</p>
 <p><img  
@@ -729,22 +747,26 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505231956835.png"
                       alt="descript"
                 >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.8358497375328082in”}</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a4ijc0fu.png,b7aykkl9.png,lhf82t3d.png,sofhifed.png,wxrozxe3.png,</span><br></pre></td></tr></table></figure></div>
+
 <p>AI排序</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9h0zQJok.txt,FiBRFFnG.txt,gWa0DiTs.txt,Me4CoMw7.txt,T0BPOXDY.txt,a4ijc0fu.png,b7aykkl9.png,lhf82t3d.png,sofhifed.png,wxrozxe3.png,bVKINl.pdf,hnPRx1.pdf,mIR13t.pdf,OGoyOG.pdf,rSG2pW.pdf,Bd2IYe3.wav,bjVwvcC.wav,H0KDChj.wav,ou9E9Mh.wav,UEbzH4X.wav</span><br></pre></td></tr></table></figure></div>
+
 <p>按照格式md5后包裹即可</p>
 <p>flag{234ed8ef5421c5e559420dbf841db68f}</p>
 <h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="ezBase"><a href="#ezBase" class="headerlink" title="ezBase"></a>ezBase</h2><h4 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h4><p>先查壳是upx壳，直接脱脱不下来，应该是魔改壳，放到010里面将3个小写的upx都改成大写的UPX后再脱壳就可以了。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image41.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”4.086314523184602in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_29558_Wu4LkLDbN0heef3a_1747803791?w=1224&h=794&type=image/png"
+                      alt="img"
+                ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image42.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”1.6274486001749782in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_671180_ZPeyVK6RFOC6D-Ji_1747803817?w=1227&h=317&type=image/png"
+                      alt="img"
+                ></p>
 <p>脱完后放到IDA里是自定义base64编码，先加密后再与0x04异或，逆向过来所以先与0x04异或再base64解码。</p>
 <p><img  
                      lazyload
@@ -756,23 +778,23 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image44.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.0843339895013124in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_942563_so6DzElwVxj6wHc9_1747804051?w=1977&h=968&type=image/png"
+                      alt="img"
+                ></p>
 <h2 id="你知道base吗"><a href="#你知道base吗" class="headerlink" title="你知道base吗"></a>你知道base吗</h2><h5 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h5><p>无壳，直接ida打开，分析main函数，进去main_0函数首先输入key，key以v10为密钥经过tea加密后等于v9，写脚本解密得到key，此key也是下面rc4加密的key</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image45.png"
-                      alt="descript"
-                >{width&#x3D;”4.645833333333333in”<br>height&#x3D;”5.010416666666667in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NzMwMjY1ODE2OA_469364_64AldYWUksx2LVbl_1747815319?w=446&h=481&type=image/png"
+                      alt="img"
+                ></p>
 <p>base_table以key为密钥，经过rc4加密后等于v20+v21数组，解密得到table</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image46.png"
-                      alt="descript"
-                >{width&#x3D;”3.9479166666666665in”<br>height&#x3D;”1.90625in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NzMwMjY1ODE2OA_752720_eR3sG1LfV3c0d_N4_1747815458?w=379&h=183&type=image/png"
+                      alt="img"
+                ></p>
 <p>flag以table为索引表，自定义base32加密得到v24，写脚本解密</p>
 <p><img  
                      lazyload
@@ -783,9 +805,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image48.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”0.6886701662292214in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NzMwMjY1ODE2OA_484434_nVS9RvCMZZdJN4K0_1747815620?w=622&h=68&type=image/png"
+                      alt="img"
+                ></p>
 <h5 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h5><div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line">#tea解密</span><br><span class="line"></span><br><span class="line">def tea_decrypt(v, k):</span><br><span class="line"></span><br><span class="line">    v0, v1 = v\[0\], v\[1\]</span><br><span class="line"></span><br><span class="line">    delta = 0x9E3779B9</span><br><span class="line"></span><br><span class="line">    sum = (delta \* 32) &amp; 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line">    for \_ in range(32):</span><br><span class="line"></span><br><span class="line">        v1 = (v1 - (((v0 \&lt;\&lt; 4) + k\[2\]) \^ (v0 + sum) \^ ((v0 \&gt;\&gt;</span><br><span class="line"></span><br><span class="line">5) + k\[3\]))) &amp; 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line">        v0 = (v0 - (((v1 \&lt;\&lt; 4) + k\[0\]) \^ (v1 + sum) \^ ((v1 \&gt;\&gt;</span><br><span class="line"></span><br><span class="line">5) + k\[1\]))) &amp; 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line">        sum = (sum - delta) &amp; 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line">    return \[v0, v1\]</span><br><span class="line"></span><br><span class="line">\# 给定密文v9和密钥v10</span><br><span class="line"></span><br><span class="line">v9 = \[0xA92F3865, 0x9E60E953\]</span><br><span class="line"></span><br><span class="line">v10 = \[0x12345678, 0x3456789A, 0x89ABCDEF, 0x12345678\]</span><br><span class="line"></span><br><span class="line">plain = tea_decrypt(v9, v10)</span><br><span class="line"></span><br><span class="line">key_bytes = plain\[0\].to_bytes(4, \&#x27;little\&#x27;) + plain\[1\].to_bytes(4,</span><br><span class="line">\&#x27;little\&#x27;)</span><br><span class="line"></span><br><span class="line">print(\&quot;明文 key (bytes):\&quot;, key_bytes)      #明文 key (bytes):</span><br><span class="line">b\&#x27;y0uokTea\&#x27;</span><br><span class="line"></span><br><span class="line">rc4解密</span><br><span class="line"></span><br><span class="line">def rc4_init(key):</span><br><span class="line"></span><br><span class="line">    S = list(range(256))</span><br><span class="line"></span><br><span class="line">    j = 0</span><br><span class="line"></span><br><span class="line">    key_len = len(key)</span><br><span class="line"></span><br><span class="line">    for i in range(256):</span><br><span class="line"></span><br><span class="line">        j = (j + S\[i\] + key\[i % key_len\]) % 256</span><br><span class="line"></span><br><span class="line">        S\[i\], S\[j\] = S\[j\], S\[i\]</span><br><span class="line"></span><br><span class="line">    return S</span><br><span class="line"></span><br><span class="line">def rc4_keystream(S, length):</span><br><span class="line"></span><br><span class="line">    i = j = 0</span><br><span class="line"></span><br><span class="line">    stream = \[\]</span><br><span class="line"></span><br><span class="line">    for \_ in range(length):</span><br><span class="line"></span><br><span class="line">        i = (i + 1) % 256</span><br><span class="line"></span><br><span class="line">        j = (j + S\[i\]) % 256</span><br><span class="line"></span><br><span class="line">        S\[i\], S\[j\] = S\[j\], S\[i\]</span><br><span class="line"></span><br><span class="line">        K = S\[(S\[i\] + S\[j\]) % 256\]</span><br><span class="line"></span><br><span class="line">        stream.append(K)</span><br><span class="line"></span><br><span class="line">    return stream</span><br><span class="line"></span><br><span class="line">def decrypt(cipher_bytes, key):</span><br><span class="line"></span><br><span class="line">    key_bytes = \[ord(c) for c in key\]</span><br><span class="line"></span><br><span class="line">    S = rc4_init(key_bytes)</span><br><span class="line"></span><br><span class="line">    keystream = rc4_keystream(S, len(cipher_bytes))</span><br><span class="line"></span><br><span class="line">    plain = \[(c - k) % 256 for c, k in zip(cipher_bytes, keystream)\]</span><br><span class="line"></span><br><span class="line">    return bytes(plain)</span><br><span class="line"></span><br><span class="line">已知密文</span><br><span class="line"></span><br><span class="line">ciphertext = \[</span><br><span class="line"></span><br><span class="line">    0xD4, 0x59, 0x23, 0x76, 0xB4, 0xBF, 0xE3, 0x2C, 0x58, 0x8F,</span><br><span class="line"></span><br><span class="line">    0x56, 0x19, 0xDA, 0xF0, 0xC0, 0xBD, 0x36, 0x3D, 0x7B, 0x46,</span><br><span class="line"></span><br><span class="line">    0x1B, 0xB8, 0x17, 0x1F, 0xE3, 0xD0, 0x03, 0x45, 0xCD, 0x04,</span><br><span class="line"></span><br><span class="line">    0xED, 0xC9, 0x67, 0xE6, 0xAB, 0x29, 0xA7, 0xBC, 0x0B, 0xDE,</span><br><span class="line"></span><br><span class="line">    0x5C, 0x30, 0x71, 0xD7, 0xD5, 0x5A, 0xC6, 0x9F, 0x40, 0x65,</span><br><span class="line"></span><br><span class="line">    0xC4, 0x71, 0xA9, 0xC3, 0xAE, 0xD9, 0xB5, 0xE5, 0x12, 0x8C,</span><br><span class="line"></span><br><span class="line">    0x80, 0x52, 0x34, 0x36,</span><br><span class="line"></span><br><span class="line">\]</span><br><span class="line"></span><br><span class="line">key = \&quot;y0uokTea\&quot;       #tea解出来key</span><br><span class="line"></span><br><span class="line">plaintext = decrypt(ciphertext, key)</span><br><span class="line"></span><br><span class="line">print(plaintext.decode(errors=\&#x27;replace\&#x27;))  # 用 replace 防止非 ascii</span><br><span class="line">报错</span><br><span class="line"></span><br><span class="line">自定义base32解密</span><br><span class="line"></span><br><span class="line">def custom_base32_decode(encoded_str, base32_table):</span><br><span class="line"></span><br><span class="line">    base32_table = base32_table\[1:33\]  # 使用 a3\[1:33\]</span><br><span class="line"></span><br><span class="line">    char_to_val = &#123;c: i for i, c in enumerate(base32_table)&#125;</span><br><span class="line"></span><br><span class="line">    decoded_bytes = bytearray()</span><br><span class="line"></span><br><span class="line">    for i in range(0, len(encoded_str), 8):</span><br><span class="line"></span><br><span class="line">        chunk = encoded_str\[i:i+8\]</span><br><span class="line"></span><br><span class="line">        if len(chunk) \&lt; 8:</span><br><span class="line"></span><br><span class="line">            chunk = chunk.ljust(8, base32_table\[0\])  #</span><br><span class="line">填充（理论上不需要）</span><br><span class="line"></span><br><span class="line">        value = 0</span><br><span class="line"></span><br><span class="line">        for c in chunk:</span><br><span class="line"></span><br><span class="line">            value = (value \&lt;\&lt; 5) \| char_to_val\[c\]</span><br><span class="line"></span><br><span class="line">        for shift in \[32, 24, 16, 8, 0\]:</span><br><span class="line"></span><br><span class="line">            decoded_bytes.append((value \&gt;\&gt; shift) &amp; 0xFF)</span><br><span class="line"></span><br><span class="line">    return decoded_bytes</span><br><span class="line"></span><br><span class="line">encoded = \&quot;0tCPwtnncFZyYUlSK/4Cw0/echcG2lteBWnG2Ulw0htCYTMW\&quot;  </span><br><span class="line"></span><br><span class="line">给的密文</span><br><span class="line"></span><br><span class="line">base32_table =</span><br><span class="line">\&quot;gVxwoFhPyT/YM0BKcHe4b8GCUZtlnLW2SJO51IErk+q6vzpamdARX9siND3uQfj7\&quot;</span><br><span class="line"></span><br><span class="line">rc4解出来的</span><br><span class="line"></span><br><span class="line">original_bytes = custom_base32_decode(encoded, base32_table)</span><br><span class="line"></span><br><span class="line">print(\&quot;Recovered a1 (ascii):\&quot;,</span><br><span class="line">original_bytes.decode(errors=\&#x27;replace\&#x27;))</span><br></pre></td></tr></table></figure></div>
 
 
@@ -794,9 +816,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image49.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.598946850393701in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NzMwMjY1ODE2OA_155576_WuowpkcN1QBlfZNU_1747818213?w=1304&h=538&type=image/png"
+                      alt="img"
+                ></p>
 <p>利用rc4是流密码的特性，写一个hook脚本，在模拟器输入一串字符串，运行脚本给出对应经过函数加密后的密文，输入一个示例（足够长），拿到后去解密key数组，用key数组解密密文得到正确的flag</p>
 <p><img  
                      lazyload
@@ -807,9 +829,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image51.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.644880796150481in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NzMwMjY1ODE2OA_487126_VGcakDYLg-Y7_Xn4_1747818451?w=1272&h=736&type=image/png"
+                      alt="img"
+                ></p>
 <p>hook脚本</p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(function () &#123;</span><br><span class="line"></span><br><span class="line">    var MainActivity = Java.use(\&quot;com.example.hookme.MainActivity\&quot;);</span><br><span class="line"></span><br><span class="line">    // Hook rc4Encrypt(String input)</span><br><span class="line"></span><br><span class="line">    MainActivity.rc4Encrypt.implementation = function (input) &#123;</span><br><span class="line"></span><br><span class="line">        console.log(\&quot;\[\*\] Called rc4Encrypt()\&quot;);</span><br><span class="line"></span><br><span class="line">        console.log(\&quot;    Input: \&quot; + input);</span><br><span class="line"></span><br><span class="line">        var result = this.rc4Encrypt(input);</span><br><span class="line"></span><br><span class="line">        // Convert byte\[\] to hex string</span><br><span class="line"></span><br><span class="line">        var resultHex = byteArrayToHex(result);</span><br><span class="line"></span><br><span class="line">        console.log(\&quot;    RC4 Output (Hex): \&quot; + resultHex);</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    function byteArrayToHex(byteArray) &#123;</span><br><span class="line"></span><br><span class="line">        var result = \&quot;\&quot;;</span><br><span class="line"></span><br><span class="line">        for (var i = 0; i \&lt; byteArray.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            var byte = byteArray\[i\];</span><br><span class="line"></span><br><span class="line">            result += (\&quot;0\&quot; + (byte &amp; 0xff).toString(16)).slice(-2);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">exp</span><br><span class="line"></span><br><span class="line">def xor_bytes(b1: bytes, b2: bytes) -\&gt; bytes:</span><br><span class="line"></span><br><span class="line">    return bytes(\[x \^ y for x, y in zip(b1, b2)\])</span><br><span class="line"></span><br><span class="line">\# === Step 1: 用于恢复 keystream 的已知明文和密文 ===</span><br><span class="line"></span><br><span class="line">\# 必须都是 44 字节（即 44 个字符，或 88 个十六进制字符）</span><br><span class="line"></span><br><span class="line">known_plaintext =</span><br><span class="line">b\&quot;flag&#123;this_is_just_a_dummy_test_for_recovering_rc4&#125;\&quot;</span><br><span class="line"></span><br><span class="line">known_ciphertext_hex =</span><br><span class="line">\&quot;f235b888b3e5eddbea2abea7f69ff820c797a5dde01a10b8ba876b97c4fcf472f39bf8dcad03b89b36435258859078a6a81a\&quot;</span><br><span class="line"></span><br><span class="line">known_ciphertext = bytes.fromhex(known_ciphertext_hex)</span><br><span class="line"></span><br><span class="line">\# 确保长度一致</span><br><span class="line"></span><br><span class="line">if len(known_plaintext) != len(known_ciphertext):</span><br><span class="line"></span><br><span class="line">    raise ValueError(f\&quot;明文和密文长度不一致: &#123;len(known_plaintext)&#125; !=</span><br><span class="line">&#123;len(known_ciphertext)&#125;\&quot;)</span><br><span class="line"></span><br><span class="line">\# Step 2: 恢复 keystream</span><br><span class="line"></span><br><span class="line">keystream = xor_bytes(known_plaintext, known_ciphertext)</span><br><span class="line"></span><br><span class="line">print(\&quot;✅ Recovered keystream (hex):\&quot;, keystream.hex())</span><br><span class="line"></span><br><span class="line">\# === Step 3: 使用 keystream 解密另一个密文 ===</span><br><span class="line"></span><br><span class="line">\# 替换为你要解密的真实目标密文</span><br><span class="line"></span><br><span class="line">target_ciphertext_hex =</span><br><span class="line">\&quot;f235b888b3f4e08bff17e7e29bc3bf67d0f9a1b7b6581bb4a1eb299684e99923a8d193caf91d\&quot;</span><br><span class="line"></span><br><span class="line">target_ciphertext = bytes.fromhex(target_ciphertext_hex)</span><br><span class="line"></span><br><span class="line">\# 解密目标密文</span><br><span class="line"></span><br><span class="line">if len(target_ciphertext) \&gt; len(keystream):</span><br><span class="line"></span><br><span class="line">    raise ValueError(\&quot;密文长度超过 keystream 长度，无法解密\&quot;)</span><br><span class="line"></span><br><span class="line">decrypted = xor_bytes(target_ciphertext, keystream)</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line"></span><br><span class="line">    print(\&quot;🔓 Decrypted plaintext:\&quot;,</span><br><span class="line">decrypted.decode(errors=\&quot;ignore\&quot;))</span><br><span class="line"></span><br><span class="line">except Exception as e:</span><br><span class="line"></span><br><span class="line">    print(\&quot;❌ 解码失败:\&quot;, e)</span><br></pre></td></tr></table></figure></div>
 
@@ -827,22 +849,22 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image53.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”1.79290791776028in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NzMwMjY1ODE2OA_449852_4JtvyZ0M5W-efxie_1747816167?w=1697&h=483&type=image/png"
+                      alt="img"
+                ></p>
 <h2 id="简单编码"><a href="#简单编码" class="headerlink" title="简单编码"></a>简单编码</h2><p>txt中给的abab形式，很明显转换为01二进制转ascll就行</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image54.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”6.790798337707787in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_253219_AcE9AGdZOvVCwQ0c_1747817865?w=769&h=829&type=image/png"
+                      alt="img"
+                ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image55.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”3.9976367016622922in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1Njg3NTQ4NDMyNg_604947_HPDLLEd2Rw-d9vHo_1747817804?w=1144&h=726&type=image/png"
+                      alt="img"
+                ></p>
 <p>接着进入厨师</p>
 <p><img  
                      lazyload
@@ -871,9 +893,9 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image61.png"
-                      alt="descript"
-                >{width&#x3D;”6.065972222222222in”<br>height&#x3D;”3.342807305336833in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_346100_9s1fgfJUsrvapuYU_1747804212?w=744&h=410&type=image/png"
+                      alt="img"
+                ></p>
 <p>放到IDA里分析</p>
 <p><img  
                      lazyload
@@ -942,16 +964,16 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:\hexo\source\pandoc-3.7.0.1\images\media\image64.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”1.551751968503937in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_813388_ZcwFM7suWUpymE3Q_1747804992?w=1092&h=269&type=image/png"
+                      alt="img"
+                ></p>
 <p>放到ida里面进行查看，进行分析</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="D:/hexo/source/pandoc-3.7.0.1/images/media/image65.png"
-                      alt="descript"
-                >{width&#x3D;”6.299305555555556in”<br>height&#x3D;”2.1640824584426945in”}</p>
+                     data-src="https://wdcdn.qpic.cn/MTY4ODg1NjcyNTYxNjc5MA_105929_iZzV-gYS7ayBpKha_1747805327?w=1208&h=415&type=image/png"
+                      alt="img"
+                ></p>
 <p>第一步，泄露 canary，将 canary 的最低位替换为 &#39;W&#39;，再通过 recv()<br>读回输出，反推出原 canary。因为 canary 的最低字节通常是<br>\x00，这样可以方便泄露完整值。</p>
 <p>第二步，构造 payload 利用 canary 通过检查，b&#39;b&#39;*0x18：填满栈缓冲；</p>
 <p>p64(canary)：正确的 canary 防止检测失败；p64(0)：覆盖旧的 rbp；</p>
