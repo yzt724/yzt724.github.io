@@ -17,7 +17,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2025/03/17/buuctf-simplerev-题解/"/>
+    <link rel="canonical" href="http://example.com/2025/10/21/2019红帽杯[childre]/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -27,15 +27,16 @@
         
         <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BUUCTF[SimpleRev]题解">
-<meta property="og:url" content="http://example.com/2025/03/17/BUUCTF-SimpleRev-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:title" content="2019红帽杯[childRE]">
+<meta property="og:url" content="http://example.com/2025/10/21/2019%E7%BA%A2%E5%B8%BD%E6%9D%AF[childRE]/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
-<meta property="article:published_time" content="2025-03-17T13:26:41.000Z">
-<meta property="article:modified_time" content="2025-05-23T11:17:16.511Z">
+<meta property="article:published_time" content="2025-10-21T12:41:10.000Z">
+<meta property="article:modified_time" content="2025-10-21T12:54:00.029Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="二叉树">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -49,7 +50,7 @@
     
     <title>
         
-            BUUCTF[SimpleRev]题解 | Blog
+            2019红帽杯[childRE] | Blog
         
     </title>
 
@@ -298,7 +299,7 @@
 		<div class="article-title relative w-full">
 			
 			<div class="w-full flex items-center pt-6 justify-start">
-				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">BUUCTF[SimpleRev]题解</h1>
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">2019红帽杯[childRE]</h1>
 			</div>
 			
 		</div>
@@ -317,15 +318,15 @@
 					<div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-03-17 21:26:41</span>
-        <span class="mobile">2025-03-17 21:26:41</span>
+        <span class="desktop">2025-10-21 20:41:10</span>
+        <span class="mobile">2025-10-21 20:41:10</span>
         <span class="hover-info">创建</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-23 19:17:16</span>
-            <span class="mobile">2025-05-23 19:17:16</span>
+            <span class="desktop">2025-10-21 20:54</span>
+            <span class="mobile">2025-10-21 20:54</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -339,7 +340,7 @@
                     
                         
                         <li>
-                            <a href="/categories/%E9%A2%98%E8%A7%A3/">题解</a>&nbsp;
+                            <a href="/categories/wp/">wp</a>&nbsp;
                         </li>
                     
                     
@@ -347,6 +348,17 @@
             </ul>
         </span>
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -364,54 +376,73 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h4 id="查壳"><a href="#查壳" class="headerlink" title="查壳"></a>查壳</h4><p>64位 无upx壳 拖入IDA打开</p>
-<h4 id="Shift-F12查看字符串"><a href="#Shift-F12查看字符串" class="headerlink" title="Shift+F12查看字符串"></a>Shift+F12查看字符串</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172133383.png"
-                     
-                ></p>
-<p>找到关键的两句 Please input your flag: 和 Congratulation!\n 继续跟进 发现这两句都在Decry函数中 也就是说Decry就是这道题的关键函数</p>
-<h4 id="分析Decry函数"><a href="#分析Decry函数" class="headerlink" title="分析Decry函数"></a>分析Decry函数</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172136920.png"
-                     
-                ></p>
-<p>发现text与str2需要相等</p>
-<h4 id="寻找text"><a href="#寻找text" class="headerlink" title="寻找text"></a>寻找text</h4><p>text就时经过join函数处理的key3和v9    join函数的主要作用是把key3和v9拼接起来</p>
+			<p>函数主要做了三步处理</p>
+<p>1：input经过XMMI2_FP_Emulation函数处理得到v4，接着进一步循环处理得到v5</p>
+<p>2：v5经过函数UnDecorateSymbolName处理得到outputString</p>
+<p>3：if判断，如果相等则提示flag{MD5(your input)}</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172141053.png"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202510212008765.png"
                      
                 ></p>
-<p>key3就是字符串kills追踪就能找到 v9原来是16进制的数字拼接时要注意用小端序   </p>
-<p>text&#x3D;killshadow</p>
-<p>key那里同理 注意大小端序 拼接完key&#x3D;ADSFKNDCLS</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172144404.png"
-                     
-                ></p>
-<p>这里把key转成小写字母 </p>
-<h4 id="分析加密过程"><a href="#分析加密过程" class="headerlink" title="分析加密过程"></a>分析加密过程</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202503172145774.png"
-                     
-                ></p>
-<p>容易看出输入的flag全是字母 现在已知str2&#x3D;text&#x3D;killshadow，需要把过程逆回去</p>
-<p>exp</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line"></span><br><span class="line">#pragma warning(disable:4996)</span><br><span class="line"></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i, j, n = 0, v5 = 10, v3 = 0, v2 = 0;</span><br><span class="line">    char v1;</span><br><span class="line">    char flag[11] = &#123; 0 &#125;;</span><br><span class="line">    char str2[104] = &#123; 0 &#125;;</span><br><span class="line">    char key[] = &quot;adsfkndcls&quot;;</span><br><span class="line">    char text[] = &quot;killshadow&quot;;</span><br><span class="line">    for (j = 0; j &lt; 10; ++j) &#123;</span><br><span class="line">        for (v2 = 0; v2 &lt; 10; ++v2) &#123;</span><br><span class="line">            v1 = text[v2] - 97 + 26 * j - 97 + key[v3++ % v5] + 39;</span><br><span class="line">            if ((v1 &gt;= 65 &amp;&amp; v1 &lt;= 90) || (v1 &gt;= 97 &amp;&amp; v1 &lt;= 122)) &#123;</span><br><span class="line">                flag[v2] = v1;</span><br><span class="line">                if (++n == 10) &#123;</span><br><span class="line">                    printf(&quot;%s\n&quot;, flag);</span><br><span class="line">                    system(&quot;PAUSE&quot;);</span><br><span class="line">                    return 0;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    system(&quot;PAUSE&quot;);</span><br><span class="line">    return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>处理第三步较简单，解密得到outputString</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">from binascii import hexlify</span><br><span class="line"></span><br><span class="line"># --- 把你给出的数组直接放这里 ---</span><br><span class="line">a123 = &quot;1234567890-=!@#$%^&amp;*()_+qwertyuiop[]QWERTYUIOP&#123;&#125;asdfghjkl;&#x27;ASDFG&quot;</span><br><span class="line">A = &quot;(_@4620!08!6_0*0442!@186%%0@3=66!!974*3234=&amp;0^3&amp;1@=&amp;0908!6_0*&amp;&quot;</span><br><span class="line">B = &quot;55565653255552225565565555243466334653663544426565555525555222&quot;</span><br><span class="line"># ----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line"># 基本检查</span><br><span class="line">if len(A) != 62 or len(B) != 62:</span><br><span class="line">    print(&quot;警告：A 或 B 长度不是 62（len(A)=%d, len(B)=%d）。请确认输入是否正确。&quot; % (len(A), len(B)))</span><br><span class="line"></span><br><span class="line">if len(a123) &lt; 23:</span><br><span class="line">    raise SystemExit(&quot;错误：a123 长度小于 23，无法按 %23 索引。&quot;)</span><br><span class="line"></span><br><span class="line"># 转为字符列表（直接使用字符串索引也可以）</span><br><span class="line">tbl = list(a123)</span><br><span class="line">A_list = list(A)</span><br><span class="line">B_list = list(B)</span><br><span class="line"></span><br><span class="line">recovered = [None] * 62</span><br><span class="line">multiple_candidates = &#123;&#125;</span><br><span class="line"></span><br><span class="line">for i in range(62):</span><br><span class="line">    Ai = A_list[i]</span><br><span class="line">    Bi = B_list[i]</span><br><span class="line">    candidates = []</span><br><span class="line">    # 枚举所有可能的字节值 0..255</span><br><span class="line">    for x in range(256):</span><br><span class="line">        # 注意：x % 23 索引 tbl 中的字符；x // 23 为整数除法</span><br><span class="line">        if tbl[x % 23] == Ai and tbl[x // 23] == Bi:</span><br><span class="line">            candidates.append(x)</span><br><span class="line">    if not candidates:</span><br><span class="line">        print(f&quot;[!] 位置 &#123;i&#125;: 没有找到满足条件的字节 (A=&#x27;&#123;Ai&#125;&#x27;, B=&#x27;&#123;Bi&#125;&#x27;)&quot;)</span><br><span class="line">        raise SystemExit(1)</span><br><span class="line">    if len(candidates) &gt; 1:</span><br><span class="line">        multiple_candidates[i] = candidates</span><br><span class="line">        # 我们先取第一个作为默认解，继续尝试还原</span><br><span class="line">    recovered[i] = candidates[0]</span><br><span class="line"></span><br><span class="line"># 输出结果</span><br><span class="line">out_bytes = bytes(recovered)</span><br><span class="line">print(&quot;Recovered outputString (hex):&quot;, hexlify(out_bytes).decode())</span><br><span class="line"># 尝试以 ascii 打印，可见不可打印字符会以替代符展示</span><br><span class="line">try:</span><br><span class="line">    print(&quot;Recovered outputString (ascii):&quot;, out_bytes.decode(&#x27;ascii&#x27;, errors=&#x27;replace&#x27;))</span><br><span class="line">except:</span><br><span class="line">    print(&quot;无法以 ASCII 显示&quot;)</span><br><span class="line"></span><br><span class="line"># 如果存在多个候选，显示它们以便你决定是否需要穷举所有组合</span><br><span class="line">if multiple_candidates:</span><br><span class="line">    print(&quot;\n注意：下列位置存在多个候选字节（索引: 候选值列表）——如果需要可做完全穷举：&quot;)</span><br><span class="line">    for idx, cand in multiple_candidates.items():</span><br><span class="line">        cand_str = &quot;, &quot;.join(f&quot;&#123;c&#125; (0x&#123;c:02x&#125;, &#x27;&#123;(chr(c) if 32&lt;=c&lt;127 else &#x27;?&#x27;)&#125;&#x27;)&quot; for c in cand)</span><br><span class="line">        print(f&quot;  &#123;idx&#125;: &#123;cand_str&#125;&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;\n所有位置均找到唯一候选。&quot;)</span><br><span class="line">#outputString=private: char * __thiscall R0Pxx::My_Aut0_PWN(unsigned char *)</span><br></pre></td></tr></table></figure></div>
 
-<p>运行得到KLDQCUDFZO 包上flag即可</p>
+<p>第二步的处理需要搜索函数UnDecorateSymbolName的作用</p>
+<blockquote>
+<p>参考资料1<br>第二个参数为未修饰的名字，第三个参数为长度，第四个参数为0表示完全修饰，第一个参数为输出地址</p>
+</blockquote>
+<blockquote>
+<p>参考材料2<br>c++函数名的修饰更为复杂，提供的信息也更为丰富。<br>无论 __cdecl，__fastcall还是__stdcall调用方式，函数修饰都是以一个“?”开始，后面紧跟函数的名字。再后面是参数表的开始标识和依照参数类型代号拼出的参数表。</p>
+</blockquote>
+<p>v5 &#x3D; ?My_Aut0_PWN</p>
+<blockquote>
+<p>对于C++的类成员函数(其调用方式是thiscall)，函数的名字修饰与非成员的C++函数稍有不同，首先就是在函数名字和参数表之间插入以“@”字 符引导的类名</p>
+</blockquote>
+<p>v5 &#x3D; ?My_Aut0_PWN@R0Pxx</p>
+<blockquote>
+<p>其次是参数表的开始标识不同，公有（public）成员函数的标识是“@@QAE”，保护（protected）成员函数的标识是 “@@IAE”，私有(private)成员函数的标识是“@@AAE”，假设函数声明使用了constkeyword，则对应的标识应分别为“@@QBE”，“@@IBE”和“@@ABE”。</p>
+</blockquote>
+<p>因为函数为 private，私有成员<br>所以 v5 &#x3D; ?My_Aut0_PWN@R0Pxx@@AAE<br>后面就是添加参数了，先加入函数返回值参数，函数的返回值类型为char *</p>
+<blockquote>
+<p>参数表的拼写代号如下：<br>X–void<br>D–char<br>E–unsigned char<br>F–short<br>H–int<br>I–unsigned int<br>J–long<br>K–unsigned long（DWORD）<br>M–float<br>N–double<br>_N–bool<br>U–struct<br>…<br>指针的方式有些特别。用PA表示指针，用PB表示const类型的指针。</p>
+</blockquote>
+<p>char *也就是PAD<br>所以 v5 &#x3D; ?My_Aut0_PWN@R0Pxx@@AAEPAD<br>然后是参数的类型 unsigned char *，也就是PAE<br>所以 v5 &#x3D; ?My_Aut0_PWN@R0Pxx@@AAEPADPAE</p>
+<blockquote>
+<p>参数表后以“@Z”标识整个名字的结束。假设该函数无参数，则以“Z”标识结束。</p>
+</blockquote>
+<p>所以最终v5 &#x3D; ?My_Aut0_PWN@R0Pxx@@AAEPADPAE@Z</p>
+<p>第一步，目前已知v5（即后序遍历的结果），可以手搓出来该二叉树，然后先序遍历就得到input&#x3D;Z0@tRAEyuP@xAAA?M_A0_WNPx@@EPDP</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202510212019985.png"
+                      alt="image-20251021201959933"
+                ></p>
+<p>最后md5加密得到flag{63b148e750fed3a33419168ac58083f5}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202510212022098.png"
+                      alt="image-20251021202223006"
+                ></p>
+<p>或者动调找出位置的变换关系，函数处理</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">from hashlib import md5</span><br><span class="line"></span><br><span class="line">a = &quot;?My_Aut0_PWN@R0Pxx@@AAEPADPAE@Z&quot;</span><br><span class="line">b = 0x50, 0x51, 0x48, 0x52, 0x53, 0x49, 0x44, 0x54, 0x55, 0x4a, 0x56, 0x57, 0x4b, 0x45, 0x42, 0x58, 0x59, 0x4c, 0x5a, 0x5b, 0x4d, 0x46, 0x5c, 0x5d, 0x4e, 0x5e, 0x5f, 0x4f, 0x47, 0x43, 0x41 </span><br><span class="line">tmp = list(a)</span><br><span class="line"></span><br><span class="line">def encrypt_md5(s):</span><br><span class="line">    new_md5 = md5()</span><br><span class="line">    new_md5.update(s.encode(encoding=&#x27;utf-8&#x27;))</span><br><span class="line">    return new_md5.hexdigest()</span><br><span class="line"></span><br><span class="line">for i in range(0,len(a)):</span><br><span class="line">    tmp[b[i] - 65] = a[i]</span><br><span class="line">flag = &#x27;&#x27;.join(tmp)</span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">	 print(encrypt_md5(flag))</span><br><span class="line">#Z0@tRAEyuP@xAAA?M_A0_WNPx@@EPDP</span><br><span class="line">#63b148e750fed3a33419168ac58083f5</span><br></pre></td></tr></table></figure></div>
+
 
 		</div>
 
 		
 
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">#二叉树</a>&nbsp;
+			</li>
+			
+		</ul>
 		
 
 		
@@ -419,23 +450,11 @@
 		
 		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
 			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/03/18/BUUCTF-%E5%88%AE%E5%BC%80%E6%9C%89%E5%A5%96-%E9%A2%98%E8%A7%A3/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">BUUCTF[刮开有奖]题解</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/03/16/2025-ASM-Signin-%E9%A2%98%E8%A7%A3/">
+				<a class="next" rel="next" href="/2025/05/23/%E5%BE%A1%E7%BD%91%E6%9D%AFwp/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item">2025 ASM?Signin!题解</span>
+						<span class="post-nav-title-item">御网杯wp</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -456,7 +475,7 @@
 		<div class="post-toc-wrap">
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
-		<div class="page-title">BUUCTF[SimpleRev]题解</div>
+		<div class="page-title">2019红帽杯[childRE]</div>
 		
 
 	</div>
