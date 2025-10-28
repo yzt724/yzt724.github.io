@@ -267,7 +267,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -275,7 +275,7 @@
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">10</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -494,14 +494,14 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202504011711859.png"
                      
                 ></p>
-<p>输入一串字符串加密后判断是否与<a class="link"   href="mailto:&#x50;&#x79;&#118;&#x72;&#97;&#x67;&#70;&#x76;&#x71;&#114;&#x59;&#x62;&#116;&#118;&#97;&#102;&#78;&#101;&#x72;&#x52;&#x6e;&#102;&#108;&#64;&#115;&#x79;&#110;&#101;&#114;&#x2d;&#98;&#97;&#46;&#112;&#98;&#x7a;" >&#x50;&#x79;&#118;&#x72;&#97;&#x67;&#70;&#x76;&#x71;&#114;&#x59;&#x62;&#116;&#118;&#97;&#102;&#78;&#101;&#x72;&#x52;&#x6e;&#102;&#108;&#64;&#115;&#x79;&#110;&#101;&#114;&#x2d;&#98;&#97;&#46;&#112;&#98;&#x7a;<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>相等，加密逻辑在13行rot13加密，遍历字符串,判断每一位的值</p>
+<p>输入一串字符串加密后判断是否与<a class="link"   href="mailto:&#x50;&#121;&#x76;&#x72;&#x61;&#103;&#70;&#118;&#x71;&#114;&#89;&#98;&#x74;&#x76;&#97;&#x66;&#x4e;&#101;&#114;&#82;&#110;&#x66;&#108;&#x40;&#x73;&#x79;&#110;&#101;&#x72;&#45;&#98;&#x61;&#46;&#112;&#98;&#122;" >&#x50;&#121;&#x76;&#x72;&#x61;&#103;&#70;&#118;&#x71;&#114;&#89;&#98;&#x74;&#x76;&#97;&#x66;&#x4e;&#101;&#114;&#82;&#110;&#x66;&#108;&#x40;&#x73;&#x79;&#110;&#101;&#x72;&#45;&#98;&#x61;&#46;&#112;&#98;&#122;<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>相等，加密逻辑在13行rot13加密，遍历字符串,判断每一位的值</p>
 <p>1.和”Z”(90)比较大小,根据结果返回90或者122</p>
 <p>2.执行c&#x3D;c+13,并且和左边表达式返回的90或122比较大小</p>
 <p>3.如果是满足大于等于关系,返回c(此时的c就是c&#x3D;c+13)，否则返回c-26(此时c&gt;”z”或者c&gt;”Z”,c-26相当于循环了一次)</p>
 <p>exp</p>
 <div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">s = &#x27;PyvragFvqrYbtvafNerRnfl@syner-ba.pbz&#x27;</span><br><span class="line">flag = &#x27;&#x27;</span><br><span class="line">for i in s:</span><br><span class="line">    if (i &gt;= &#x27;A&#x27; and i &lt;= &#x27;Z&#x27;):</span><br><span class="line">        x = ord(i) - 13</span><br><span class="line">        if x &lt; 65:</span><br><span class="line">            x += 26</span><br><span class="line">        flag += chr(x)</span><br><span class="line">    elif (i &gt;= &#x27;a&#x27; and i &lt;= &#x27;z&#x27;):</span><br><span class="line">        x = ord(i) - 13</span><br><span class="line">        if x &lt; 97:</span><br><span class="line">            x += 26</span><br><span class="line">        flag += chr(x)</span><br><span class="line">    else:</span><br><span class="line">        flag += i</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure></div>
 
-<p>得到<a class="link"   href="mailto:&#x43;&#108;&#105;&#101;&#110;&#116;&#83;&#105;&#x64;&#x65;&#x4c;&#x6f;&#x67;&#x69;&#110;&#x73;&#65;&#114;&#101;&#x45;&#97;&#115;&#x79;&#64;&#102;&#108;&#97;&#114;&#101;&#45;&#x6f;&#110;&#46;&#99;&#111;&#109;" >&#x43;&#108;&#105;&#101;&#110;&#116;&#83;&#105;&#x64;&#x65;&#x4c;&#x6f;&#x67;&#x69;&#110;&#x73;&#65;&#114;&#101;&#x45;&#97;&#115;&#x79;&#64;&#102;&#108;&#97;&#114;&#101;&#45;&#x6f;&#110;&#46;&#99;&#111;&#109;<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>可以去网页验证一下发现提示Correct flag!包上flag{}就行</p>
+<p>得到<a class="link"   href="mailto:&#x43;&#108;&#105;&#x65;&#110;&#116;&#x53;&#105;&#100;&#x65;&#76;&#x6f;&#x67;&#105;&#110;&#x73;&#x41;&#x72;&#101;&#69;&#x61;&#x73;&#x79;&#64;&#x66;&#x6c;&#97;&#x72;&#101;&#x2d;&#111;&#110;&#46;&#99;&#111;&#109;" >&#x43;&#108;&#105;&#x65;&#110;&#116;&#x53;&#105;&#100;&#x65;&#76;&#x6f;&#x67;&#105;&#110;&#x73;&#x41;&#x72;&#101;&#69;&#x61;&#x73;&#x79;&#64;&#x66;&#x6c;&#97;&#x72;&#101;&#x2d;&#111;&#110;&#46;&#99;&#111;&#109;<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>可以去网页验证一下发现提示Correct flag!包上flag{}就行</p>
 <h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>解压得到两个文件 pub.key就是rsa算法中的公钥 flag.enc就是加密后的密文 因此我们要通过pub.key解析出n,e,p,q,d，再利用脚本解密flag.enc。</p>
 <p>利用网站解析出e，n</p>
 <p><img  
@@ -730,7 +730,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 9 篇文章
+                        共撰写了 10 篇文章
                     </span>
                     
                 </p>
