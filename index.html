@@ -476,11 +476,6 @@
 
                     <div class="home-article-content markdown-body">
                         
-                            
-                            main函数经过分析可知，真正的加密过程是在main函数发生异常后，系统执行的，而不是以call直接调用，所以只看汇编是找不到真正执行的函数
-
-main函数最后call sub_411136是在比较两个字符串，也就是说执行完一系列加密后，最终回到main函数进行比较，返回right或者wrong
-接着分析，当main发生异常后，系统会依次执行哪些函数，这些函数各有什么作用，首先分析main函...
                         
                     </div>
 
