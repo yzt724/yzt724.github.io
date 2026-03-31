@@ -413,8 +413,11 @@
                     <div class="home-article-content markdown-body">
                         
                             
-                            大家好
+                            base64输入v4（即为flag），根据verify_flag函数返回结果进行if判断，verify_flag函数内部调用base64_encode，同时给出了密文str2
+分析base64_encode，为标准base64加密，直接解密得到PCTF{b4s3_64_3nc0d1ng_1s_fun}
 
+flagshift+f12，直接找到flag
+flag{IDA_Is_Awesome_F...
                         
                     </div>
 
