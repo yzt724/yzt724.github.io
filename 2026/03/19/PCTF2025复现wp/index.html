@@ -94,7 +94,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
 <meta property="article:published_time" content="2026-03-19T13:03:07.421Z">
-<meta property="article:modified_time" content="2026-03-31T12:32:39.435Z">
+<meta property="article:modified_time" content="2026-04-08T11:55:57.123Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
@@ -332,8 +332,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2026-03-31 20:32:39</span>
-            <span class="mobile">2026-03-31 20:32:39</span>
+            <span class="desktop">2026-04-08 19:55:57</span>
+            <span class="mobile">2026-04-08 19:55:57</span>
             <span class="hover-info">更新</span>
         </span>
     
@@ -417,7 +417,7 @@
                       alt="image-20260325205107708"
                 ></p>
 <p>解法一：写函数decrypt_flag，运行得到flag{simple_upx_encryption_is_weak}</p>
-<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">encrypted_flag = [<span class="number">0x3E</span>, <span class="number">0x5C</span>, <span class="number">0x33</span>, <span class="number">0x38</span>, <span class="number">0x28</span>, <span class="number">0x36</span>, <span class="number">0x2A</span>, <span class="number">0x3F</span>, <span class="number">0x35</span>, <span class="number">0x38</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x14</span>, <span class="number">0x30</span>, <span class="number">0x29</span>, <span class="number">0x20</span>, <span class="number">0x6F</span>, <span class="number">0x37</span>, <span class="number">0x31</span>, <span class="number">0x30</span>, <span class="number">0x37</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x22</span>, <span class="number">0x31</span>, <span class="number">0x3D</span>, <span class="number">0x30</span>, <span class="number">0x25</span>, <span class="number">0x1A</span>, <span class="number">0x30</span>, <span class="number">0x2B</span>, <span class="number">0x6F</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x3A</span>, <span class="number">0x32</span>, <span class="number">0x2E</span>, <span class="number">0x3E</span></span><br><span class="line">]</span><br><span class="line"><span class="comment"># 2. 填入 xor_key 的 14 位数值</span></span><br><span class="line">xor_key = [<span class="number">0x58</span>, <span class="number">0x30</span>, <span class="number">0x52</span>, <span class="number">0x5F</span>, <span class="number">0x53</span>, <span class="number">0x45</span>, <span class="number">0x43</span>, <span class="number">0x52</span>, <span class="number">0x45</span>, <span class="number">0x54</span>, </span><br><span class="line">  <span class="number">0x5F</span>, <span class="number">0x4B</span>, <span class="number">0x45</span>, <span class="number">0x59</span>, <span class="number">0x00</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>():</span><br><span class="line">     flag =<span class="string">&#x27;&#x27;</span></span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(encrypted_flag)):</span><br><span class="line">          c = encrypted_flag[i]^xor_key[i % <span class="number">14</span>]</span><br><span class="line">          flag +=<span class="built_in">chr</span>(c)</span><br><span class="line">     <span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">        decrypt()</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">encrypted_flag = [<span class="number">0x3E</span>, <span class="number">0x5C</span>, <span class="number">0x33</span>, <span class="number">0x38</span>, <span class="number">0x28</span>, <span class="number">0x36</span>, <span class="number">0x2A</span>, <span class="number">0x3F</span>, <span class="number">0x35</span>, <span class="number">0x38</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x14</span>, <span class="number">0x30</span>, <span class="number">0x29</span>, <span class="number">0x20</span>, <span class="number">0x6F</span>, <span class="number">0x37</span>, <span class="number">0x31</span>, <span class="number">0x30</span>, <span class="number">0x37</span>, </span><br><span class="line">  <span class="number">0x3A</span>, <span class="number">0x22</span>, <span class="number">0x31</span>, <span class="number">0x3D</span>, <span class="number">0x30</span>, <span class="number">0x25</span>, <span class="number">0x1A</span>, <span class="number">0x30</span>, <span class="number">0x2B</span>, <span class="number">0x6F</span>, </span><br><span class="line">  <span class="number">0x25</span>, <span class="number">0x3A</span>, <span class="number">0x32</span>, <span class="number">0x2E</span>, <span class="number">0x3E</span></span><br><span class="line">]</span><br><span class="line"><span class="comment">#填入 xor_key 的 14 位数值</span></span><br><span class="line">xor_key = [<span class="number">0x58</span>, <span class="number">0x30</span>, <span class="number">0x52</span>, <span class="number">0x5F</span>, <span class="number">0x53</span>, <span class="number">0x45</span>, <span class="number">0x43</span>, <span class="number">0x52</span>, <span class="number">0x45</span>, <span class="number">0x54</span>, </span><br><span class="line">  <span class="number">0x5F</span>, <span class="number">0x4B</span>, <span class="number">0x45</span>, <span class="number">0x59</span>, <span class="number">0x00</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>():</span><br><span class="line">     flag =<span class="string">&#x27;&#x27;</span></span><br><span class="line">     <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(encrypted_flag)):</span><br><span class="line">          c = encrypted_flag[i]^xor_key[i % <span class="number">14</span>]</span><br><span class="line">          flag +=<span class="built_in">chr</span>(c)</span><br><span class="line">     <span class="built_in">print</span>(flag)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">        decrypt()</span><br></pre></td></tr></table></figure></div>
 
 <p>解法二：直接动调得到s2</p>
 <h4 id="base64-pro"><a href="#base64-pro" class="headerlink" title="base64_pro"></a>base64_pro</h4><p>输入v4（flag），verify_flag(v4)函数返回1就提示”Congratulations! Correct flag!”</p>
@@ -449,12 +449,12 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202603252146191.png"
                       alt="image-20260325214606143"
                 ></p>
-<h4 id="Maze"><a href="#Maze" class="headerlink" title="Maze"></a>Maze</h4><p>pyc题目，首先将exe转化得到py代码，其中主maze.py生成迷宫的地图，然后在main.py中定义了每个方向对应的字母，根据地图找到正确的路径后，对路径进行md5加密得到flag</p>
+<h4 id="Maze"><a href="#Maze" class="headerlink" title="Maze"></a>Maze</h4><p>pyc题目，首先将exe转化得到py代码，其中maze.py生成迷宫的地图，然后在main.py中定义了每个方向对应的字母，根据地图找到正确的路径后，对路径进行md5加密得到flag</p>
 <p>把main.py的代码头改成</p>
 <div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="comment">#获取 maze.py 所在的文件夹绝对路径</span></span><br><span class="line">module_path = <span class="string">r&#x27;D:\题\pctf\maze&#x27;</span></span><br><span class="line"><span class="comment">#再导入</span></span><br><span class="line"><span class="keyword">import</span> maze</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br></pre></td></tr></table></figure></div>
 
 <p>再把这一行的False改成True</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">do_you_want_to_see_the_maze = False</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">do_you_want_to_see_the_maze = <span class="literal">False</span></span><br></pre></td></tr></table></figure></div>
 
 <p>此时运行就可以得到生成的迷宫地图了，可以看出来S是起点，E是终点，接下来就是找正确的路径了</p>
 <p><img  
@@ -463,16 +463,369 @@
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202603271922656.png"
                       alt="image-20260327192159510"
                 ></p>
-<p>用bfs算法找到正确的路径，在进行md5加密后得到flag：PCTF{9243bde4ab373794de19d751ca10e9b9}</p>
-<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line">sys.path.insert(0, r&#x27;D:\题\pctf\maze&#x27;)</span><br><span class="line">from collections import deque</span><br><span class="line">import maze</span><br><span class="line">import hashlib</span><br><span class="line"></span><br><span class="line"># 初始化迷宫</span><br><span class="line">width = 61</span><br><span class="line">height = 61</span><br><span class="line">Maze = maze.get_map(width, height)</span><br><span class="line"># 显示迷宫</span><br><span class="line">Maze.showMap()</span><br><span class="line"></span><br><span class="line"># BFS求解最短路径</span><br><span class="line">def solve_maze():</span><br><span class="line">    queue = deque([(1, 1, &quot;&quot;)])</span><br><span class="line">    visited = set([(1, 1)])</span><br><span class="line">    </span><br><span class="line">    moves = [</span><br><span class="line">        (&#x27;s&#x27;, 1, 0),   # s: 下 (x+1)</span><br><span class="line">        (&#x27;w&#x27;, -1, 0),  # w: 上 (x-1)</span><br><span class="line">        (&#x27;d&#x27;, 0, 1),   # d: 右 (y+1)</span><br><span class="line">        (&#x27;a&#x27;, 0, -1)   # a: 左 (y-1)</span><br><span class="line">    ]</span><br><span class="line">    </span><br><span class="line">    print(&quot;\n正在计算最短路径...&quot;)</span><br><span class="line">    </span><br><span class="line">    while queue:</span><br><span class="line">        curr_x, curr_y, path = queue.popleft()</span><br><span class="line">        </span><br><span class="line">        # 检查是否到达终点 (值为3)</span><br><span class="line">        if Maze.map[curr_x][curr_y] == 3:</span><br><span class="line">            print(f&quot;✓ 找到路径！长度: &#123;len(path)&#125;&quot;)</span><br><span class="line">            print(f&quot;路径: &#123;path&#125;&quot;)</span><br><span class="line">            </span><br><span class="line">            path_md5 = hashlib.md5(path.encode(&#x27;utf-8&#x27;)).hexdigest()</span><br><span class="line">            flag = f&#x27;PCTF&#123;&#123;&#123;path_md5&#125;&#125;&#125;&#x27;</span><br><span class="line">            print(f&quot;Flag: &#123;flag&#125;&quot;)</span><br><span class="line">            return path</span><br><span class="line">        </span><br><span class="line">        # 尝试四个方向</span><br><span class="line">        for char, dx, dy in moves:</span><br><span class="line">            nx, ny = curr_x + dx, curr_y + dy</span><br><span class="line">            </span><br><span class="line">            if 0 &lt;= nx &lt; height and 0 &lt;= ny &lt; width:</span><br><span class="line">                cell_value = Maze.map[nx][ny]</span><br><span class="line">                if cell_value != 1 and (nx, ny) not in visited:  # 不是墙(1)</span><br><span class="line">                    visited.add((nx, ny))</span><br><span class="line">                    queue.append((nx, ny, path + char))</span><br><span class="line">    </span><br><span class="line">    print(&quot;未找到路径&quot;)</span><br><span class="line">    return None</span><br><span class="line"></span><br><span class="line">path = solve_maze()</span><br></pre></td></tr></table></figure></div>
+<p>用<strong>BFS</strong>算法找到正确的路径，在进行md5加密后得到flag：PCTF{9243bde4ab373794de19d751ca10e9b9}</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.insert(<span class="number">0</span>, <span class="string">r&#x27;D:\题\pctf\maze&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="keyword">import</span> maze</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="comment"># 初始化迷宫</span></span><br><span class="line">width = <span class="number">61</span></span><br><span class="line">height = <span class="number">61</span></span><br><span class="line">Maze = maze.get_map(width, height)</span><br><span class="line"><span class="comment"># 显示迷宫</span></span><br><span class="line">Maze.showMap()</span><br><span class="line"><span class="comment"># BFS求解最短路径</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solve_maze</span>():</span><br><span class="line">    queue = deque([(<span class="number">1</span>, <span class="number">1</span>, <span class="string">&quot;&quot;</span>)])</span><br><span class="line">    visited = <span class="built_in">set</span>([(<span class="number">1</span>, <span class="number">1</span>)])</span><br><span class="line">    moves = [</span><br><span class="line">        (<span class="string">&#x27;s&#x27;</span>, <span class="number">1</span>, <span class="number">0</span>),   <span class="comment"># s: 下 (x+1)</span></span><br><span class="line">        (<span class="string">&#x27;w&#x27;</span>, -<span class="number">1</span>, <span class="number">0</span>),  <span class="comment"># w: 上 (x-1)</span></span><br><span class="line">        (<span class="string">&#x27;d&#x27;</span>, <span class="number">0</span>, <span class="number">1</span>),   <span class="comment"># d: 右 (y+1)</span></span><br><span class="line">        (<span class="string">&#x27;a&#x27;</span>, <span class="number">0</span>, -<span class="number">1</span>)   <span class="comment"># a: 左 (y-1)</span></span><br><span class="line">    ]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n正在计算最短路径...&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span> queue:</span><br><span class="line">        curr_x, curr_y, path = queue.popleft()</span><br><span class="line">        <span class="comment"># 检查是否到达终点 (值为3)</span></span><br><span class="line">        <span class="keyword">if</span> Maze.<span class="built_in">map</span>[curr_x][curr_y] == <span class="number">3</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;✓ 找到路径！长度: <span class="subst">&#123;<span class="built_in">len</span>(path)&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;路径: <span class="subst">&#123;path&#125;</span>&quot;</span>)</span><br><span class="line">            path_md5 = hashlib.md5(path.encode(<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()</span><br><span class="line">            flag = <span class="string">f&#x27;PCTF&#123;&#123;<span class="subst">&#123;path_md5&#125;</span>&#125;&#125;&#x27;</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;Flag: <span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> path</span><br><span class="line">        <span class="comment"># 尝试四个方向</span></span><br><span class="line">        <span class="keyword">for</span> char, dx, dy <span class="keyword">in</span> moves:</span><br><span class="line">            nx, ny = curr_x + dx, curr_y + dy</span><br><span class="line">            <span class="keyword">if</span> <span class="number">0</span> &lt;= nx &lt; height <span class="keyword">and</span> <span class="number">0</span> &lt;= ny &lt; width:</span><br><span class="line">                cell_value = Maze.<span class="built_in">map</span>[nx][ny]</span><br><span class="line">                <span class="keyword">if</span> cell_value != <span class="number">1</span> <span class="keyword">and</span> (nx, ny) <span class="keyword">not</span> <span class="keyword">in</span> visited:  <span class="comment"># 不是墙(1)</span></span><br><span class="line">                    visited.add((nx, ny))</span><br><span class="line">                    queue.append((nx, ny, path + char))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;未找到路径&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">path = solve_maze()</span><br></pre></td></tr></table></figure></div>
 
-<h4 id="冈易云音乐"><a href="#冈易云音乐" class="headerlink" title="冈易云音乐"></a>冈易云音乐</h4><p>结合题目描述跟界面提示，这道题要求用户名jjkk114514，对应的激活码</p>
+<h4 id="冈易云音乐"><a href="#冈易云音乐" class="headerlink" title="冈易云音乐"></a>冈易云音乐</h4><p>结合题目描述跟界面提示，这道题要求用户名jjkk114514，对应的激活码，也就是说，找到对应的流程是怎么运行的，使用用户名为jjkk114514顺序运行一遍，就可以得到激活码</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
                      data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202603302143696.png"
                      
                 ></p>
+<p>猜测应该会有加密，找到了AES的相关内容</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604031758535.png"
+                      alt="image-20260403175801422"
+                ></p>
+<p>RijnDael_AES_LONG_455120是AES加密算法中的S盒，有三个函数引用了他，分别是</p>
+<p>1.密钥扩展函数 (sub_4015C0)</p>
+<p><strong>作用</strong>：AES密钥扩展</p>
+<ul>
+<li>将原始16字节密钥扩展为轮密钥</li>
+<li>为每一轮AES加密生成所需的子密钥</li>
+<li>确保加密过程中每一轮都使用不同的密钥</li>
+</ul>
+<p>2.行移位函数 (sub_401770)</p>
+<p><strong>作用</strong>：AES行移位操作</p>
+<ul>
+<li>对状态矩阵的每一行进行循环移位</li>
+<li>第一行：不移位</li>
+<li>第二行：左移1个字节</li>
+<li>第三行：左移2个字节</li>
+<li>第四行：左移3个字节</li>
+<li>增加加密的扩散性</li>
+</ul>
+<p>3.列混合函数 (sub_401830)</p>
+<p><strong>作用</strong>：AES列混合操作</p>
+<ul>
+<li>对状态矩阵的每一列进行线性变换</li>
+<li>使用固定的多项式进行矩阵乘法</li>
+<li>进一步增强加密的扩散性和混淆性</li>
+</ul>
+<p><code>RijnDael_AES_CHAR</code> 和 <code>RijnDael_AES_LONG</code> 实际上指向同一个内存地址或包含相同的数据，它们指向同一个内存位置，是同一个AES S盒的不同类型表示</p>
+<p>RijnDael_AES_LONG_inv_455020是 AES 加密算法中的逆 S 盒（Inverse S-Box），用于 AES 解密过程中的字节替换操作，它只在函数sub_401740中被调用</p>
+<p>分析可知<code>sub_426E80</code>对用户名进行加密处理并验证激活码，其中处理步骤可分为</p>
+<ol>
+<li>程序从配置文件读取用户名和激活码</li>
+<li>对用户名进行MD5哈希</li>
+<li>将用户名和MD5哈希组合</li>
+<li>计算组合数据的SHA256哈希</li>
+<li>分割SHA256哈希为左右各16字节</li>
+<li>使用左16字节作为AES密钥，对用户输入的激活码进行加密</li>
+<li>将加密结果与右16字节进行比较</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604031826151.png"
+                      alt="image-20260403182615065"
+                ></p>
+<p>解密需要使用SHA256后的右16字节为密文进行AES-128 ECB模式解密，得到激活码为c68b2adadacf92f286b73b8c6b6ca392</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calculate_activation_code</span>(<span class="params">username</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    计算用户名对应的激活码</span></span><br><span class="line"><span class="string">    算法流程：</span></span><br><span class="line"><span class="string">    1. 计算用户名的MD5哈希</span></span><br><span class="line"><span class="string">    2. 将用户名和MD5哈希组合</span></span><br><span class="line"><span class="string">    3. 计算组合数据的SHA256哈希</span></span><br><span class="line"><span class="string">    4. 分割SHA256结果为左右各16字节</span></span><br><span class="line"><span class="string">    5. 使用左16字节作为AES-128 ECB密钥</span></span><br><span class="line"><span class="string">    6. 解密右16字节得到激活码</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 1. 计算用户名的MD5哈希</span></span><br><span class="line">    md5_hash = hashlib.md5(username.encode(<span class="string">&#x27;utf-8&#x27;</span>)).digest()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;MD5哈希: <span class="subst">&#123;md5_hash.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment"># 2. 将用户名和MD5哈希组合</span></span><br><span class="line">    combined_data = username.encode(<span class="string">&#x27;utf-8&#x27;</span>) + md5_hash</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;组合数据: <span class="subst">&#123;combined_data.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment"># 3. 计算SHA256哈希</span></span><br><span class="line">    sha256_hash = hashlib.sha256(combined_data).digest()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;SHA256哈希: <span class="subst">&#123;sha256_hash.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment"># 4. 分割SHA256结果</span></span><br><span class="line">    left_16_bytes = sha256_hash[:<span class="number">16</span>]  <span class="comment"># AES密钥</span></span><br><span class="line">    right_16_bytes = sha256_hash[<span class="number">16</span>:] <span class="comment"># 待解密数据</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;左16字节 (AES密钥): <span class="subst">&#123;left_16_bytes.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;右16字节 (待解密数据): <span class="subst">&#123;right_16_bytes.<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="comment"># 5. 使用AES-128 ECB模式解密</span></span><br><span class="line">    cipher = AES.new(left_16_bytes, AES.MODE_ECB)</span><br><span class="line">    activation_code = cipher.decrypt(right_16_bytes)</span><br><span class="line">    <span class="comment"># 6. 转换为十六进制字符串</span></span><br><span class="line">    activation_code_hex = activation_code.<span class="built_in">hex</span>()</span><br><span class="line">    <span class="keyword">return</span> activation_code_hex</span><br><span class="line"><span class="comment"># 测试用户名</span></span><br><span class="line">username = <span class="string">&quot;jjkk114514&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;计算用户名 &#x27;<span class="subst">&#123;username&#125;</span>&#x27; 的激活码:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">70</span>)</span><br><span class="line">activation_code = calculate_activation_code(username)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;=&quot;</span> * <span class="number">70</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;用户名 &#x27;<span class="subst">&#123;username&#125;</span>&#x27; 的激活码: <span class="subst">&#123;activation_code&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;(32位十六进制字符串)&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="encrypt-system"><a href="#encrypt-system" class="headerlink" title="encrypt_system"></a>encrypt_system</h4><p>题目给了两个文件，结合提示，应该是使用文件加密器.exe对flag.doc加密后得到了flag.doc.encrypt，需要分析文件加密器.exe的加密逻辑</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604071546801.png"
+                      alt="image-20260407154641701"
+                ></p>
+<p>找到了TEA 算法的CBC 模式的加密函数，分析代码可知，随机生成KEY和IV，对明文进行加密后，将密文+16字节的KEY+8字节的IV按顺序打包进文件</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604071551149.png"
+                      alt="image-20260407155135080"
+                ></p>
+<p>需要先读取出来文件末尾隐藏的KEY跟IV，然后再对文件进行解密</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line">DELTA = <span class="number">289739801</span></span><br><span class="line">ROUNDS = <span class="number">65</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">tea_decrypt_block</span>(<span class="params">v0,v1,key</span>):</span><br><span class="line">    sumv = (DELTA * ROUNDS) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(ROUNDS):</span><br><span class="line">        v1 = (v1 - (((v0&lt;&lt;<span class="number">4</span>)+key[<span class="number">2</span>]) ^ (v0+sumv) ^ ((v0&gt;&gt;<span class="number">5</span>)+key[<span class="number">3</span>]))) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        v0 = (v0 - (((v1&lt;&lt;<span class="number">4</span>)+key[<span class="number">0</span>]) ^ (v1+sumv) ^ ((v1&gt;&gt;<span class="number">5</span>)+key[<span class="number">1</span>]))) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        sumv = (sumv - DELTA) &amp; <span class="number">0xffffffff</span></span><br><span class="line">    <span class="keyword">return</span> v0,v1</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt_file</span>(<span class="params">data</span>):</span><br><span class="line">    key = data[-<span class="number">24</span>:-<span class="number">8</span>]<span class="comment"># 倒数第24到第8字节是密钥</span></span><br><span class="line">    iv  = data[-<span class="number">8</span>:]<span class="comment"># 最后8个字节是初始化向量</span></span><br><span class="line">    cipher = data[:-<span class="number">24</span>]<span class="comment"># 除了最后24字节，前面的全是加密后的密文</span></span><br><span class="line">    key = struct.unpack(<span class="string">&quot;&lt;4I&quot;</span>,key)</span><br><span class="line">    out = <span class="string">b&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(cipher),<span class="number">8</span>):</span><br><span class="line">        block = cipher[i:i+<span class="number">8</span>]</span><br><span class="line">        v0,v1 = struct.unpack(<span class="string">&quot;&lt;2I&quot;</span>,block)</span><br><span class="line">        v0,v1 = tea_decrypt_block(v0,v1,key)</span><br><span class="line">        plain = struct.pack(<span class="string">&quot;&lt;2I&quot;</span>,v0,v1)</span><br><span class="line">        plain = <span class="built_in">bytes</span>([plain[j]^iv[j] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>)])</span><br><span class="line">        iv = block</span><br><span class="line">        out += plain</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line">data=<span class="built_in">open</span>(<span class="string">&quot;flag.doc.encrypt&quot;</span>,<span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line">plain=decrypt_file(data)</span><br><span class="line"><span class="built_in">open</span>(<span class="string">&quot;decrypt.doc&quot;</span>,<span class="string">&quot;wb&quot;</span>).write(plain)</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="flower-dance"><a href="#flower-dance" class="headerlink" title="flower_dance"></a>flower_dance</h4><p>一个被修改过标志位的upx压缩壳，改回正确的标志位后再”upx -d”</p>
+<table>
+<thead>
+<tr>
+<th>十六进制</th>
+<th>ASCII 码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>55 50 58 30</td>
+<td>UPX0</td>
+</tr>
+<tr>
+<td>55 50 58 31</td>
+<td>UPX1</td>
+</tr>
+<tr>
+<td>55 50 58 32</td>
+<td>UPX2</td>
+</tr>
+<tr>
+<td>55 50 58 21</td>
+<td>UPX!</td>
+</tr>
+</tbody></table>
+<p>发现两个同一类型的花指令（永真&#x2F;永假跳转）</p>
+<ol>
+<li><code>xor ebx, ebx</code></li>
+</ol>
+<ul>
+<li><strong>动作</strong>：将 <code>ebx</code> 寄存器与自己执行“异或”运算。</li>
+<li><strong>结果</strong>：任何数与自己异或结果都是 <strong>0</strong>。所以这句执行完，<code>ebx</code> 的值必然是 <code>0</code>。</li>
+<li><strong>副作用</strong>：它会修改 CPU 的标志寄存器（EFLAGS），因为结果是 0，所以 <strong>ZF（零标志位）会被设为 1</strong>。</li>
+</ul>
+<ol start="2">
+<li><code>test ebx, ebx</code></li>
+</ol>
+<ul>
+<li><strong>动作</strong>：对 <code>ebx</code> 执行“逻辑与”运算，但不保存结果，只影响标志位。</li>
+<li><strong>结果</strong>：因为上一句刚把 <code>ebx</code> 变回 0，所以 <code>0 &amp; 0</code> 的结果依然是 0。</li>
+<li><strong>结论</strong>：这句其实是多余的（上一句已经改过标志位了），它在这里是为了再次确认 <strong>ZF &#x3D; 1</strong>。</li>
+</ul>
+<ol start="3">
+<li><code>jnz short near ptr byte_401256</code></li>
+</ol>
+<ul>
+<li><strong>动作</strong>：<code>jnz</code> 的意思是 <strong>Jump if Not Zero</strong>（如果结果不为 0 则跳转，即当 ZF &#x3D; 0 时跳转）。</li>
+<li><strong>真相</strong>：由于已知 ZF 必然等于 1，所以<strong>这个跳转永远不会发生</strong>（这叫“永假跳转”）。</li>
+<li><strong>陷阱</strong>：加壳者通常会在 <code>00401256</code> 这个地址放一个<strong>错误的字节</strong>（比如 <code>0xE8</code> 这种代表 Call 指令的开头）。反汇编器看到这句 <code>jnz</code>，会以为这里可能跳走，于是尝试去解析 <code>401256</code> 处的“假指令”，导致后面的代码显示全部乱掉。</li>
+</ul>
+<ol start="4">
+<li><code>jz short loc_401257</code></li>
+</ol>
+<ul>
+<li><strong>动作</strong>：<code>jz</code> 的意思是 <strong>Jump if Zero</strong>（如果结果为 0 则跳转，即当 ZF &#x3D; 1 时跳转）。</li>
+<li><strong>真相</strong>：因为 ZF 必然等于 1，所以<strong>这个跳转百分之百会发生</strong>（这叫“永真跳转”）。</li>
+<li><strong>意义</strong>：它确保了程序能够“跳过”中间那个用来迷惑人的 <code>401256</code> 错误字节，直接跳到正确的代码起始点 <code>00401257</code> 继续运行。</li>
+</ul>
+<p>把这四行nop掉就可以</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604071637051.png"
+                      alt="image-20260407163705001"
+                ></p>
+<p>密文是Buf2+v9，encrypt是带有自定义偏移异或的魔改RC4算法，用密文再执行一边encrypt即可得到flag</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">solve</span>():</span><br><span class="line">    <span class="comment"># 1. 拼接 37 字节完整密文</span></span><br><span class="line">    buf2 = [</span><br><span class="line">        <span class="number">0x3E</span>, <span class="number">0x03</span>, <span class="number">0x28</span>, <span class="number">0x28</span>, <span class="number">0x81</span>, <span class="number">0x5A</span>, <span class="number">0xF9</span>, <span class="number">0x67</span>, <span class="number">0x8B</span>, <span class="number">0x75</span>,</span><br><span class="line">        <span class="number">0x4A</span>, <span class="number">0xA2</span>, <span class="number">0x7D</span>, <span class="number">0xE0</span>, <span class="number">0xE8</span>, <span class="number">0x24</span>, <span class="number">0x8F</span>, <span class="number">0x3E</span>, <span class="number">0xAA</span>, <span class="number">0x6D</span>, <span class="number">0xD1</span></span><br><span class="line">    ]</span><br><span class="line">    v9_part = [<span class="built_in">ord</span>(<span class="string">&#x27;k&#x27;</span>), <span class="built_in">ord</span>(<span class="string">&#x27;5&#x27;</span>), <span class="built_in">ord</span>(<span class="string">&#x27;0&#x27;</span>)] <span class="comment"># &quot;k50&quot;</span></span><br><span class="line">    v9_rest = [</span><br><span class="line">        <span class="number">0xFF</span>, <span class="number">0x84</span>, <span class="number">0x5A</span>, <span class="number">0x38</span>, <span class="number">0x75</span>, <span class="number">0xCB</span>, <span class="number">0x84</span>, <span class="number">0x09</span>, </span><br><span class="line">        <span class="number">0x91</span>, <span class="number">0x27</span>, <span class="number">0x22</span>, <span class="number">0xBB</span>, <span class="number">0xFC</span></span><br><span class="line">    ]</span><br><span class="line">    cipher = buf2 + v9_part + v9_rest</span><br><span class="line">    <span class="comment"># 2. 密钥</span></span><br><span class="line">    key = <span class="string">b&quot;This_is_a_rc4_key&quot;</span></span><br><span class="line">    <span class="comment"># 3. 变种 RC4 算法实现</span></span><br><span class="line">    s = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">256</span>))</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        j = (j + s[i] + key[i % <span class="built_in">len</span>(key)]) % <span class="number">256</span></span><br><span class="line">        s[i], s[j] = s[j], s[i]</span><br><span class="line">    v8 = <span class="number">0</span></span><br><span class="line">    v7 = <span class="number">0</span></span><br><span class="line">    flag = []</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> cipher:</span><br><span class="line">        v8 = (v8 + <span class="number">1</span>) % <span class="number">256</span></span><br><span class="line">        v7 = (v7 + s[v8]) % <span class="number">256</span></span><br><span class="line">        s[v8], s[v7] = s[v7], s[v8]</span><br><span class="line">        <span class="comment"># 变种位置：在标准异或基础上再 ^ 0x56</span></span><br><span class="line">        <span class="comment"># 标准：res = c ^ s[(s[v8] + s[v7]) % 256]</span></span><br><span class="line">        res = c ^ <span class="number">0x56</span> ^ s[(s[v8] + s[v7]) % <span class="number">256</span>] </span><br><span class="line">        flag.append(res)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Flag 为:&quot;</span>, <span class="built_in">bytes</span>(flag).decode(errors=<span class="string">&#x27;ignore&#x27;</span>))</span><br><span class="line">solve()</span><br><span class="line"><span class="comment">#Flag 为: PCTF&#123;RC4_hid3_1n_fl0wers_4nd_ba9_UPX&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="贪吃蛇"><a href="#贪吃蛇" class="headerlink" title="贪吃蛇"></a>贪吃蛇</h4><p>提示”听说玩到200分就会出现flag，是真的吗“，找到判断分数是否大于200对应的代码，对已给出的flag数组进行取反操作并转换为字符串，得到PCTF{Y0u_are_re11y_a_gam3_h4cker}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604071848080.png"
+                      alt="image-20260407184807001"
+                ></p>
+<h4 id="eazyflag1"><a href="#eazyflag1" class="headerlink" title="eazyflag1"></a>eazyflag1</h4><p>核心逻辑是对用户输入的字符串进行<strong>两层加密</strong>，并与内置的十六进制字符串进行比对。</p>
+<p>第一层加密：其中key1，key2已给出，经过验证是假的key</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604072121500.png"
+                      alt="image-20260407212124391"
+                ></p>
+<p>可以使用hook脚本直接访问成员变量，得到key1&#x3D;17，key2&#x3D;18</p>
+<div class="code-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;f.f.eazyflag.MainActivity&#x27;</span>);</span><br><span class="line">    <span class="comment">// Hook 第一层加密函数</span></span><br><span class="line">    <span class="title class_">MainActivity</span>.<span class="property">firstLayerEncrypt</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">inputStr</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;=========================================&quot;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[*] 拦截到加密调用，正在读取内存中的 Key...&quot;</span>);</span><br><span class="line">        <span class="comment">// 直接从当前对象（this）中读取变量的值</span></span><br><span class="line">        <span class="comment">// 注意：在 Frida 中访问类成员变量通常需要加 .value</span></span><br><span class="line">        <span class="keyword">var</span> realKey1 = <span class="variable language_">this</span>.<span class="property">key1</span>.<span class="property">value</span>;</span><br><span class="line">        <span class="keyword">var</span> realKey2 = <span class="variable language_">this</span>.<span class="property">key2</span>.<span class="property">value</span>;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[!] 当前内存中的 key1 = &quot;</span> + realKey1 + <span class="string">&quot; (0x&quot;</span> + realKey1.<span class="title function_">toString</span>(<span class="number">16</span>) + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[!] 当前内存中的 key2 = &quot;</span> + realKey2 + <span class="string">&quot; (0x&quot;</span> + realKey2.<span class="title function_">toString</span>(<span class="number">16</span>) + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        <span class="comment">// 执行原逻辑并返回</span></span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">firstLayerEncrypt</span>(inputStr);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604072125901.png"
+                      alt="image-20260407212510834"
+                ></p>
+<p>第二层加密：打开so文件可以发现是rc4加密，但是key没有明确给出，可以通过脚本直接拦截得到加密时使用的密钥流（与密文长度相同）</p>
+<div class="code-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&#x27;f.f.eazyflag.MainActivity&#x27;</span>);</span><br><span class="line">    <span class="title class_">MainActivity</span>.<span class="property">firstLayerEncrypt</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params">inputStr</span>) &#123;</span><br><span class="line">        <span class="comment">// 1. 获取进入第二层前的“明文”</span></span><br><span class="line">        <span class="keyword">var</span> firstLayerResult = <span class="variable language_">this</span>.<span class="title function_">firstLayerEncrypt</span>(inputStr);</span><br><span class="line">        <span class="comment">// 2. 获取第二层加密后的“密文”</span></span><br><span class="line">        <span class="comment">// 这里可以直接调用实例方法，模拟执行一次完整的加密</span></span><br><span class="line">        <span class="keyword">var</span> finalCipher = <span class="variable language_">this</span>.<span class="title function_">secondLayerEncrypt</span>(firstLayerResult);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;=========================================&quot;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[*] 正在推导 RC4 密钥流...&quot;</span>);</span><br><span class="line">        <span class="keyword">var</span> keystream = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; firstLayerResult.<span class="property">length</span>; i++) &#123;</span><br><span class="line">            <span class="comment">// 核心公式：密钥流 = 明文 ^ 密文</span></span><br><span class="line">            <span class="keyword">var</span> k = (firstLayerResult[i] &amp; <span class="number">0xFF</span>) ^ (finalCipher[i] &amp; <span class="number">0xFF</span>);</span><br><span class="line">            keystream += k.<span class="title function_">toString</span>(<span class="number">16</span>).<span class="title function_">padStart</span>(<span class="number">2</span>, <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] 提取出的密钥流 (Hex): &quot;</span> + keystream);</span><br><span class="line">        <span class="keyword">return</span> firstLayerResult;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604072151511.png"
+                      alt="image-20260407215117440"
+                ></p>
+<p>然后根据原逻辑解密，得到flag{yes?_youget_true_flag}</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">final_solve</span>():</span><br><span class="line">    <span class="comment"># 1. 题目给出的最终比对目标（密文）</span></span><br><span class="line">    target_cipher = <span class="string">&quot;bc273817ab96cf4a4206321199dbe36140e1dee3d7dbc89ea76f7e&quot;</span></span><br><span class="line">    <span class="comment"># 2. 用 Frida 提取出来的真实 RC4 密钥流</span></span><br><span class="line">    keystream_hex = <span class="string">&quot;35a8ba9fd7ec493e02664881ef5365162096ab9551bb411125e700&quot;</span></span><br><span class="line">    cipher_bytes = <span class="built_in">bytes</span>.fromhex(target_cipher)</span><br><span class="line">    keystream_bytes = <span class="built_in">bytes</span>.fromhex(keystream_hex)</span><br><span class="line">    <span class="comment"># --- 第一步：逆向 RC4 ---</span></span><br><span class="line">    <span class="comment"># 逻辑：最终密文 ^ 密钥流 = 第一层加密后的字节数组</span></span><br><span class="line">    first_layer_encrypted = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(cipher_bytes)):</span><br><span class="line">        first_layer_encrypted.append(cipher_bytes[i] ^ keystream_bytes[i])</span><br><span class="line">    <span class="comment"># 打印 RC4 还原后的中间结果</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-&quot;</span> * <span class="number">50</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[*] 逆向 RC4 后的结果 (Hex): <span class="subst">&#123;<span class="built_in">bytes</span>(first_layer_encrypted).<span class="built_in">hex</span>()&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;-&quot;</span> * <span class="number">50</span>)</span><br><span class="line">    <span class="comment"># --- 第二步：逆向第一层 Java 加密 ---</span></span><br><span class="line">    <span class="comment"># 真实 Key：key1=17, key2=18</span></span><br><span class="line">    <span class="comment"># 加密公式：(char ^ 17) + 18</span></span><br><span class="line">    <span class="comment"># 逆向公式：(byte - 18) ^ 17</span></span><br><span class="line">    key1 = <span class="number">17</span></span><br><span class="line">    key2 = <span class="number">18</span></span><br><span class="line">    flag = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> first_layer_encrypted:</span><br><span class="line">        <span class="comment"># 使用 &amp; 0xFF 模拟 Java byte 的溢出处理</span></span><br><span class="line">        original_char_code = ((b - key2) &amp; <span class="number">0xFF</span>) ^ key1</span><br><span class="line">        flag += <span class="built_in">chr</span>(original_char_code)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[+] 恭喜！最终 Flag 是: <span class="subst">&#123;flag&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    final_solve()</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="eazyflag2"><a href="#eazyflag2" class="headerlink" title="eazyflag2"></a>eazyflag2</h4><p>提示要用frida去hook</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081115903.png"
+                      alt="image-20260408111551805"
+                ></p>
+<p>分析代码，decryptFlagUltimate方法生成并返回了flag</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081221012.png"
+                      alt="image-20260408122131721"
+                ></p>
+<p>hook脚本可以自动调用该静态方法并打印出结果</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081222486.png"
+                      alt="image-20260408122252346"
+                ></p>
+<div class="code-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Java</span>.<span class="title function_">perform</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 1. 获取目标类的引用</span></span><br><span class="line">    <span class="keyword">var</span> <span class="title class_">MainActivity</span> = <span class="title class_">Java</span>.<span class="title function_">use</span>(<span class="string">&quot;f.f.eazyflag2.MainActivity&quot;</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[*] 正在尝试主动调用 decryptFlagUltimate()...&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 2. 直接主动调用静态方法</span></span><br><span class="line">        <span class="keyword">var</span> flag = <span class="title class_">MainActivity</span>.<span class="title function_">decryptFlagUltimate</span>();</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[+] 成功获取 Flag: &quot;</span> + flag);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;======================================&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[-] 调用失败: &quot;</span> + e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 备选方案：如果主动调用报错，我们 Hook 这个方法</span></span><br><span class="line">    <span class="comment">// 当你点击手机上的按钮时，如果它在某处被调用，这里会拦截并打印</span></span><br><span class="line">    <span class="title class_">MainActivity</span>.<span class="property">decryptFlagUltimate</span>.<span class="property">implementation</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> result = <span class="variable language_">this</span>.<span class="title function_">decryptFlagUltimate</span>();</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;[*] Hook 监听到方法调用，Flag 结果: &quot;</span> + result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="ZeroTwo的权限"><a href="#ZeroTwo的权限" class="headerlink" title="ZeroTwo的权限"></a>ZeroTwo的权限</h4><ol>
+<li>入口检查</li>
+</ol>
+<p>程序首先检查输入的长度。如果不是 8 位，直接返回 0（失败）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081535977.png"
+                      alt="image-20260408153512889"
+                ></p>
+<ol start="2">
+<li>陷阱排除 (Fake Flags)</li>
+</ol>
+<p>程序会检查输入是否包含特定字符串（如 <code>2025PCTF</code>、<code>PCTF</code> 等，小彩蛋：YNPcz3与正确验证码前六位只有一个字母存在大小写的区别）</p>
+<ul>
+<li>如果命中这些字符串，<code>validate</code> 函数会返回特定的代码（如 36、37…）。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081540698.png"
+                      alt="image-20260408154056612"
+                ></p>
+<ul>
+<li>在 UI 层的 <code>switch</code> 语句中，这些代码会引导程序调用 <code>f()</code> 函数，弹出一个假 Flag（例如 <code>PCTF&#123;this_is_fake_flag_1&#125;</code>）</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081543567.png"
+                      alt="image-20260408154343467"
+                ></p>
+<ol start="3">
+<li>核心生成：<code>E(input)</code> 变换</li>
+</ol>
+<p>如果输入是普通的 8 位字符串，程序会调用复杂的 <code>E(input)</code> 函数。这个函数对输入进行了多步数学和位运算变换：</p>
+<ol>
+<li><strong>XOR 混淆</strong>：输入与一组动态生成的密钥进行异或</li>
+<li><strong>循环左移</strong>：字节级别的数据循环移动</li>
+<li><strong>代数运算</strong>：进行非线性的加减乘除混淆</li>
+<li><strong>S 盒置换</strong>：利用硬编码的 <code>NP</code> 数组，将字节的高低 4 位进行映射替换（这是分组加密的典型特征）</li>
+<li><strong>字节翻转</strong>：交换高低 4 位</li>
+</ol>
+<ul>
+<li><strong>结果</strong>：生成一个 8 字节的加密数组 <code>E</code></li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081545664.png"
+                      alt="image-20260408154538568"
+                ></p>
+<ol start="4">
+<li>目标生成：<code>R()</code> 函数</li>
+</ol>
+<p>程序同时调用 <code>R()</code> 函数。这个函数利用一组硬编码的种子数据（<code>rcSeed</code>），通过简单的异或运算，生成一个固定的 8 字节目标数组</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081546075.png"
+                      alt="image-20260408154613992"
+                ></p>
+<ol start="5">
+<li>最终比对</li>
+</ol>
+<p>调用 <code>eq(E, R)</code> 函数，比对 <code>E(input)</code> 的结果是否与固定的 <code>R()</code> <strong>完全一致</strong>。这是一个经典的<strong>恒定时间比较（Constant-Time Comparison）</strong>函数，功能上它和 <code>Arrays.equals(a, b)</code> 是一样的，但它可以防范计时攻击</p>
+<p><strong>普通比较的函数</strong>：如果密码的第一位就错了，程序返回极快；如果密码前 n-1 位都对，只有第 n 位错了，程序返回会稍微慢一点点。可以通过精密测量程序返回的时间，逐位爆破出密码</p>
+<p><strong>eq函数</strong>：不论密码是对是错，也不论是哪一位错，它都必须完整地跑完整个循环，它没有 <code>break</code> 或 <code>return false</code> 在循环中间，它利用 <code>r |= ...</code> 把所有的比较结果都累计起来，最后才判断</p>
+<p><strong>结果</strong>：对于相同长度的输入，函数的执行时间是<strong>恒定</strong>的，无法通过“计时”来推测密码</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081613996.png"
+                      alt="image-20260408161307911"
+                ></p>
+<p>真正的 Flag 并不是预先存储在 App 里的字符串，而是通过<strong>算法动态解密</strong>出来的。只有当上述验证通过（<code>eq(E, R)</code> 返回 <code>true</code>）时，解密流程才会被正确触发   </p>
+<ol>
+<li>密钥准备：<code>lastEnc</code></li>
+</ol>
+<p>当验证通过时，程序会将 <code>lastEnc</code>（一个私有的静态字节数组）赋值为成功的 <code>E(input)</code> 结果（也就是 <code>R()</code> 的结果）</p>
+<ul>
+<li><strong>关键点</strong>：<code>R()</code> 的结果就是解密真正 Flag 的<strong>密钥</strong></li>
+</ul>
+<ol start="2">
+<li>校验准备：<code>gate</code></li>
+</ol>
+<p>程序会根据 <code>E</code>（即 <code>R</code>）的内容，手动计算一个校验位 <code>gate</code>：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081531996.png"
+                      alt="image-20260408153102881"
+                ></p>
+<p>并将这个值存入私有静态变量 <code>gate</code> 中</p>
+<ol start="3">
+<li>执行解密函数 <code>F()</code></li>
+</ol>
+<p>当 UI 层收到 <code>validate</code> 返回的 <code>1</code> 时，会调用 <code>F()</code> 函数。<code>F()</code> 的执行逻辑如下：</p>
+<ol>
+<li><strong>依赖检查</strong>：检查 <code>lastEnc</code> 是否为空，且手动重新计算的 <code>g2</code> 是否等于之前存入的 <code>gate</code>。如果检查失败，解密终止，返回“验证失败”。</li>
+<li><strong>密文获取</strong>：获取硬编码的十六进制字符串 <code>FC_HEX</code> 作为<strong>密文</strong>。</li>
+<li><strong>密钥流生成</strong>：利用 <code>lastEnc</code>（密钥）和自定义的 <code>keystream</code> 算法，生成一组伪随机的<strong>密钥流</strong>（ks）。</li>
+<li><strong>算法解密</strong>：<ul>
+<li>利用 <code>NPinv</code>（NP 数组的逆向映射）对密文进行逆置换。</li>
+<li>与密钥流 <code>ks</code> 进行异或。</li>
+<li>进行 <code>swapN</code>（高低 4 位交换）。</li>
+<li>最后与一个基于循环索引的动态值 <code>(i * 31 + 93)</code> 进行异或。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><strong>结果</strong>：解密出的字节数组被转换为 UTF-8 字符串，这就是最终的真正的 Flag。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604081617503.png"
+                      alt="image-20260408161759409"
+                ></p>
+<p>输入8位的验证码并按下检验后（确保类加载完成，可以被获取），Frida脚本通过：</p>
+<p>直接获取 <code>R()</code> 函数运行后的结果，并赋值给<code>lastEnc</code>，同时更改<code>gate</code>为正确值，然后去调用解密函数<code>F()</code>，最后在终端控制台实时截获返回的Flag</p>
+<p>运行脚本得到PCTF{C0ngr4t5_0n_Cr4ck1ng_Th3_C0d3_YnPcz3Zc}</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Java.perform(function () &#123;</span><br><span class="line">    console.log(&quot;[*] 正在执行扫描模式...&quot;);</span><br><span class="line">    function pwn() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            // 1. 尝试手动获取类，这会强制 JVM 加载该类</span><br><span class="line">            var CryptoValidator = Java.use(&quot;com.example.pctf_ezandroid.CryptoValidator&quot;);</span><br><span class="line">            // 2. 尝试主动访问一下它的 INSTANCE 触发静态初始化</span><br><span class="line">            var targetInstance = CryptoValidator.INSTANCE.value;</span><br><span class="line">            console.log(&quot;[*] 成功激活目标类实例！&quot;);</span><br><span class="line">            // 3. 开始扫描内存中的实例</span><br><span class="line">            Java.choose(&quot;com.example.pctf_ezandroid.CryptoValidator&quot;, &#123;</span><br><span class="line">                onMatch: function (instance) &#123;</span><br><span class="line">                    console.log(&quot;[+] 在内存中抓到实例!&quot;);</span><br><span class="line">                    var correctKey = instance.R(); </span><br><span class="line">                    // 暴力注入静态变量</span><br><span class="line">                    var lastEncField = CryptoValidator.class.getDeclaredField(&quot;lastEnc&quot;);</span><br><span class="line">                    lastEncField.setAccessible(true);</span><br><span class="line">                    lastEncField.set(null, correctKey);</span><br><span class="line">                    var e0 = correctKey[0] &amp; 0xFF;</span><br><span class="line">                    var e7 = correctKey[7] &amp; 0xFF;</span><br><span class="line">                    var targetGate = ((e0 ^ e7) + 165) &amp; 0xFF;</span><br><span class="line">                    var gateField = CryptoValidator.class.getDeclaredField(&quot;gate&quot;);</span><br><span class="line">                    gateField.setAccessible(true);</span><br><span class="line">                    gateField.setInt(null, targetGate);</span><br><span class="line">                    var flag = instance.F();</span><br><span class="line">                    console.log(&quot;\n========================================&quot;);</span><br><span class="line">                    console.log(&quot;FLAG: &quot; + flag);</span><br><span class="line">                    console.log(&quot;========================================\n&quot;);</span><br><span class="line">                &#125;,</span><br><span class="line">                onComplete: function () &#123;</span><br><span class="line">                    console.log(&quot;[*] 内存扫描结束。&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">            console.log(&quot;[-] 目前无法激活类，可能尚未加载: &quot; + e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    // 设定延迟执行，给系统一点启动 Activity 的时间</span><br><span class="line">    setTimeout(pwn, 3000);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		</div>
 
