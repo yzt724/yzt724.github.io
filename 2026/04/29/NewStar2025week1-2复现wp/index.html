@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    
+    <meta name="author" content="whyy">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/04/29/newstar2025week1-2复现wp/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NewStar2025week1-2复现wp">
+<meta property="og:url" content="http://example.com/2026/04/29/NewStar2025week1-2%E5%A4%8D%E7%8E%B0wp/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-04-29T12:06:35.310Z">
+<meta property="article:modified_time" content="2026-05-06T13:28:36.953Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161349049.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161349049.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161349049.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            NewStar2025week1-2复现wp | Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+        
+            
+                
+                    <style>.home-article-meta .home-article-date { display: none !important; }</style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":true,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?"},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":false},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":"flase","site_uv":false,"post_pv":false},"single_page":true,"preloader":{"enable":"flase","custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":[],"qrs":[]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":999,"tags_style":"could"},"home":{"sidebar":{"enable":true,"position":"right","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200},"footer":{"runtime":false,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2022/8/17 11:45:14","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2022/8/17 11:45:14","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">NewStar2025week1-2复现wp</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] shrink-0 rounded-medium border border-border-color p-px">
+				<img src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505272034924.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">whyy</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-04-29 20:06:35</span>
+        <span class="mobile">2026-04-29 20:06:35</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-05-06 21:28:36</span>
+            <span class="mobile">2026-05-06 21:28:36</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="Week1"><a href="#Week1" class="headerlink" title="Week1"></a>Week1</h1><h2 id="EzMyDroid"><a href="#EzMyDroid" class="headerlink" title="EzMyDroid"></a>EzMyDroid</h2><p>下载下来显示文件错误，所以没有复现</p>
+<h2 id="Puzzle"><a href="#Puzzle" class="headerlink" title="Puzzle"></a>Puzzle</h2><p>exe文件，首先使用Exeinfo PE查看该文件的位数，是32位还是64位，有upx壳没有</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132052189.png"
+                      alt="image-20260413205158082"
+                ></p>
+<p>64位，无壳，直接使用对应的ida打开，（Fn+）F5反编译打开main函数，发现提示语</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132057206.png"
+                      alt="image-20260413205707146"
+                ></p>
+<p>根据提示，进入Puzzle_Challenge函数，找到flag的第一部分<strong>Do_Y0u_</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132111068.png"
+                      alt="image-20260413211115038"
+                ></p>
+<p>找到flag的第二部分<strong>Like_7his_Jig</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132059543.png"
+                      alt="image-20260413205915511"
+                ></p>
+<p>发现flag的第三个部分的有关信息</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132101582.png"
+                      alt="image-20260413210154538"
+                ></p>
+<p>点击encrypted_array查看数组内容，直接打开发现是奇怪的中文字，这是因为IDA 错误地把那一串十六进制数据当成了中文来显示</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132104052.png"
+                      alt="image-20260413210437019"
+                ></p>
+<p>点击快捷键D，转换为16进制后提取出来</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132106400.png"
+                      alt="image-20260413210641358"
+                ></p>
+<p>根据信息写脚本，得到flag的第三部分<strong>s@w_puzz</strong>代码</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 填入你在 IDA 中提取的原始十六进制数据</span></span><br><span class="line">encrypted_data = [<span class="number">0xDE</span>, <span class="number">0xED</span>, <span class="number">0xDA</span>, <span class="number">0xF2</span>, <span class="number">0xDD</span>, <span class="number">0xD8</span>, <span class="number">0xD7</span>, <span class="number">0xD7</span>]</span><br><span class="line"><span class="comment"># 2. 异或因子（Key）</span></span><br><span class="line">key = <span class="number">0xAD</span></span><br><span class="line"><span class="comment"># 3. 解密逻辑遍历数组，每个字节与 0xAD 异或，并转换回字符</span></span><br><span class="line">part3 = <span class="string">&quot;&quot;</span>.join([<span class="built_in">chr</span>(byte ^ key) <span class="keyword">for</span> byte <span class="keyword">in</span> encrypted_data])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;解密后的 Part 3 字符串为: <span class="subst">&#123;part3&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>shift+f12查看字符串，发现第一行是一个奇怪的字符串</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132113417.png"
+                      alt="image-20260413211315383"
+                ></p>
+<p>双击过去发现提示，找到flag的第四部分<strong>1e_Gam3</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132114492.png"
+                      alt="image-20260413211413454"
+                ></p>
+<p>组合起来就是Do_Y0u_Like_7his_Jigs@w_puzz1e_Gam3，再包上flag头，得到flag{Do_Y0u_Like_7his_Jigs@w_puzz1e_Gam3}</p>
+<h2 id="Strange-Base"><a href="#Strange-Base" class="headerlink" title="Strange Base"></a>Strange Base</h2><p>64位，无壳，ida打开，f5反编译</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132138228.png"
+                      alt="image-20260413213819182"
+                ></p>
+<p>main函数中，给出了enc（密文）&#x3D;”T&gt;6uTqOatL39aP!YIqruyv(YBA!8y7ouCa9&#x3D;”，用户输入input，调用base64_encode进行加密后得到output，比较output与enc是否相等，如果相等则显示”Oh! You’re awesome!!!”</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141309225.png"
+                      alt="image-20260414130925031"
+                ></p>
+<p>分析base64_encode函数，发现是标准的base64加密</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141318141.png"
+                     
+                ></p>
+<p>查看索引表，发现是自定义的索引表，提取出来索引表</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141318661.png"
+                      alt="image-20260414131854596"
+                ></p>
+<p>写脚本解密，得到flag{Wh4t_a_cra2y_8as3!!!}（注：使网站解密可能会提示解密失败）</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="comment"># 重新组合后的 64 位码表</span></span><br><span class="line"><span class="comment"># 注意：确保这里没有任何多余的换行或空格，总长度必须为 64</span></span><br><span class="line">custom_alphabet = <span class="string">&quot;HElLo!A=CrQzy-B4S3|is&#x27;waITt1ng&amp;Y0u^&#123;/(&gt;v&lt;)*&#125;GO~256789pPqWXVKJNMF&quot;</span></span><br><span class="line">standard_alphabet = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line"><span class="comment"># 目标密文</span></span><br><span class="line">cipher_text = <span class="string">&quot;T&gt;6uTqOatL39aP!YIqruyv(YBA!8y7ouCa9=&quot;</span></span><br><span class="line"><span class="comment"># 打印长度检查（调试用）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;自定义码表长度: <span class="subst">&#123;<span class="built_in">len</span>(custom_alphabet)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(custom_alphabet) != <span class="number">64</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;错误：码表长度依然不是 64 位，请检查提取的数据！&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    translation_table = <span class="built_in">str</span>.maketrans(custom_alphabet, standard_alphabet)</span><br><span class="line">    standard_cipher_text = cipher_text.translate(translation_table)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        flag = base64.b64decode(standard_cipher_text)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;解密后的 Flag 为:&quot;</span>, flag.decode())</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;解码失败，可能是由于码表字符顺序或密文问题:&quot;</span>, e)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="X0r"><a href="#X0r" class="headerlink" title="X0r"></a>X0r</h2><p>64位，无壳，ida打开，f5反编译</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132119725.png"
+                      alt="image-20260413211909684"
+                ></p>
+<p>分析main函数</p>
+<p>第一层加密：遍历用户输入，根据 i % 3的不同结果，走向不同的分支，进行不同的异或加密</p>
+<p>这段代码的核心在于 <code>i % 3</code>（<code>i</code> 对 3 取余数），余数只可能是 <code>0</code>, <code>1</code>, <code>2</code>。</p>
+<ul>
+<li>**如果 <code>i % 3 == 0</code>**（即第 1, 4, 7… 个字符）： 执行 <code>else</code> 分支：<code>Str[i] ^= 0x14u;</code></li>
+<li>**如果 <code>i % 3 == 1</code>**（即第 2, 5, 8… 个字符）： 执行 <code>if ( i % 3 == 1 )</code> 分支：<code>Str[i] ^= 0x11u;</code></li>
+<li>**如果 <code>i % 3 == 2</code>**（即第 3, 6, 9… 个字符）： 执行内部的 <code>else</code> 分支：<code>Str[i] ^= 0x45u;</code></li>
+</ul>
+<p>第二层加密：定义了一个包含 3 个整数的数组 <code>v5</code>，遍历用户输入，对每个字符进行异或操作</p>
+<p>**<code>j % 3</code>**：这是一个“取模”运算，它会让索引值在 <code>0, 1, 2</code> 之间不断循环。</p>
+<ul>
+<li>当 <code>j = 0, 3, 6...</code> 时，<code>j % 3 = 0</code>，使用的是 <code>v5[0]</code> (19)。</li>
+<li>当 <code>j = 1, 4, 7...</code> 时，<code>j % 3 = 1</code>，使用的是 <code>v5[1]</code> (19)。</li>
+<li>当 <code>j = 2, 5, 8...</code> 时，<code>j % 3 = 2</code>，使用的是 <code>v5[2]</code> (81)。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604132123626.png"
+                      alt="image-20260413212335581"
+                ></p>
+<p>根据之前讲过的知识，xor是对称加密，对密文再进行一次同样的加密即可得到明文，写脚本解密得到flag{y0u_Kn0W_b4s1C_xOr}</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目标字符串（加密后的结果）</span></span><br><span class="line">target = <span class="string">&quot;anu`ym7wKLl$P]v3q%D]lHpi&quot;</span></span><br><span class="line"><span class="comment"># 程序中定义的 v5 数组</span></span><br><span class="line">v5 = [<span class="number">19</span>, <span class="number">19</span>, <span class="number">81</span>]</span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(target)):</span><br><span class="line">    <span class="comment"># 获取当前字符的 ASCII 码</span></span><br><span class="line">    char_code = <span class="built_in">ord</span>(target[i])</span><br><span class="line">    <span class="comment"># 1. 撤销第二层异或 (Str[j] ^= v5[j % 3])</span></span><br><span class="line">    char_code ^= v5[i % <span class="number">3</span>]</span><br><span class="line">    <span class="comment"># 2. 撤销第一层异或 (根据 i % 3 的不同值)</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">3</span> == <span class="number">0</span>:</span><br><span class="line">        char_code ^= <span class="number">0x14</span></span><br><span class="line">    <span class="keyword">elif</span> i % <span class="number">3</span> == <span class="number">1</span>:</span><br><span class="line">        char_code ^= <span class="number">0x11</span></span><br><span class="line">    <span class="keyword">else</span>: <span class="comment"># i % 3 == 2</span></span><br><span class="line">        char_code ^= <span class="number">0x45</span></span><br><span class="line">    <span class="comment"># 将处理后的 ASCII 码转回字符并拼接</span></span><br><span class="line">    flag += <span class="built_in">chr</span>(char_code)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;解密后的 Flag 为:&quot;</span>, flag)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="plzdebugme"><a href="#plzdebugme" class="headerlink" title="plzdebugme"></a>plzdebugme</h2><p>elf文件，64位，ida打开，发现提示在<strong>xor函数</strong>中可以找到flag，在xor函数处下断点（f2）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141422313.png"
+                      alt="image-20260414142215247"
+                ></p>
+<p><strong>动调的准备步骤见下文</strong></p>
+<p>开始动调，光标停留在xor函数处，按f7步入函数</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141417187.png"
+                      alt="image-20260414141727154"
+                ></p>
+<p>在 flag[32] &#x3D; 0;处下断点，直接f9运行到flag[32] &#x3D; 0;处</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141418387.png"
+                      alt="image-20260414141818341"
+                ></p>
+<p>然后查看flag数组的内容，发现flag{It3_D3bugG_T11me!_le3_play}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141416604.png"
+                      alt="image-20260414141616549"
+                ></p>
+<h3 id="elf动调的步骤"><a href="#elf动调的步骤" class="headerlink" title="elf动调的步骤"></a>elf动调的步骤</h3><p>因为文件是elf文件，需要在虚拟机上远程动调，虚拟机和ida需要的准备步骤分别如下</p>
+<h4 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h4><p><strong>ubuntu</strong>（kali是找到tmp文件夹，新建re文件夹，其他步骤一样）</p>
+<p>在home下新建re文件夹，把题目拖进去，在本机上找到linux_server64文件，在IDA\dbgsrv\linux_server64路径下，也拖进去</p>
+<p>然后右键，点击Open in Terminal（打开终端)，执行</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./题目的文件名</span><br><span class="line">//如果是第一次动调，也需要运行chmod +x ./linux_server64</span><br><span class="line">//赋予文件可执行权限</span><br></pre></td></tr></table></figure></div>
+
+
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br><span class="line">//找到虚拟机的ip地址</span><br></pre></td></tr></table></figure></div>
+
+
+
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./linux_server64</span><br><span class="line">//运行linux_server64文件</span><br></pre></td></tr></table></figure></div>
+
+<p>示例如图</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141438762.png"
+                      alt="image-20260414143851697"
+                ></p>
+<h4 id="ida"><a href="#ida" class="headerlink" title="ida"></a>ida</h4><p>选择对应的动调方式，<code>Remote Linux debugger</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141423482.png"
+                      alt="image-20260414142348428"
+                ></p>
+<p>点击图中的绿色三角或者按f9，出现如图所示的弹窗</p>
+<p>Application：填该文件在虚拟机中的文件地址</p>
+<p>Input file：同上</p>
+<p>Directory：填该文件在虚拟机中的<strong>文件夹</strong>地址（注：跟之前两个不一样）</p>
+<p>Parameters：不用填</p>
+<p>Hostname：填使用ip addr命令查到的虚拟机ip地址</p>
+<p>Port：默认23946</p>
+<p>填好后点击OK，开始动调</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604141459043.png"
+                      alt="image-20260414145933960"
+                ></p>
+<h1 id="Week2"><a href="#Week2" class="headerlink" title="Week2"></a>Week2</h1><h2 id="Forgotten-Code"><a href="#Forgotten-Code" class="headerlink" title="Forgotten_Code"></a>Forgotten_Code</h2><p>chal.s，exeinfo显示这是一个cpp文件</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604151643162.png"
+                      alt="image-20260415164308078"
+                ></p>
+<p>在cmd运行命令，得到exe文件后使用ida分析</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\32870&gt;gcc chal.s的文件地址 -o 生成的chal.exe的文件地址</span><br></pre></td></tr></table></figure></div>
+
+<p>分析main函数，str1（flag）经fn（TEA）加密处理后等于ezgm</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604162014893.png"
+                      alt="image-20260416201438753"
+                ></p>
+<p>分析fn函数，一个对<strong>密钥key处理</strong>过的TEA加密函数</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604162017127.png"
+                      alt="image-20260416201712075"
+                ></p>
+<p>解密脚本，flag{4553m81y_5_s0o0o0_345y_jD5yQ5mD9}</p>
+<ol>
+<li>对提取出来的key进行相应的处理，得到真正用于加密时的key</li>
+<li>对ezmg进行TEA解密得到str1（flag）</li>
+</ol>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">import struct</span><br><span class="line">def decrypt(v, k):</span><br><span class="line">    v0, v1 = v[0], v[1]</span><br><span class="line">    delta = 0x9e3779b9</span><br><span class="line">    total_sum = (delta * 32) &amp; 0xffffffff</span><br><span class="line">    for i in range(32):</span><br><span class="line">        # 逆向顺序：先减 v1，再减 v0</span><br><span class="line">        # 汇编 v1 += ((v0 &lt;&lt; 4) + k[2]) ^ (v0 + sum) ^ ((v0 &gt;&gt; 5) + k[3])</span><br><span class="line">        v1 = (v1 - (((v0 &lt;&lt; 4) + k[2]) ^ (v0 + total_sum) ^ ((v0 &gt;&gt; 5) + k[3]))) &amp; 0xffffffff</span><br><span class="line">        # 汇编 v0 += ((v1 &lt;&lt; 4) + k[0]) ^ (v1 + sum) ^ ((v1 &gt;&gt; 5) + k[1])</span><br><span class="line">        v0 = (v0 - (((v1 &lt;&lt; 4) + k[0]) ^ (v1 + total_sum) ^ ((v1 &gt;&gt; 5) + k[1]))) &amp; 0xffffffff</span><br><span class="line">        total_sum = (total_sum - delta) &amp; 0xffffffff</span><br><span class="line">    return v0, v1</span><br><span class="line"># 原始数据</span><br><span class="line">ezgm = [</span><br><span class="line">    1210405119, 710975774, -90350153, -1958008304,</span><br><span class="line">    -745722482, 67707510, -86515270, -1728462407</span><br><span class="line">]</span><br><span class="line"># 转为无符号 32 位</span><br><span class="line">cipher = [x &amp; 0xffffffff for x in ezgm]</span><br><span class="line"># 密钥状态切换</span><br><span class="line">ng_original = list(b&quot;sp\177vuctp|xeb|hv~&quot;)</span><br><span class="line">ng_xor = [(b ^ 17) for b in ng_original]</span><br><span class="line">flag = b&quot;&quot;</span><br><span class="line">current_ng = ng_original[:]</span><br><span class="line">for i in range(4):</span><br><span class="line">    # 模拟 fn 开头的循环：对当前 ng 进行异或翻转</span><br><span class="line">    for j in range(16):</span><br><span class="line">        current_ng[j] ^= 17</span><br><span class="line">    # 将当前的 current_ng 转为 4 个 uint32 作为密钥</span><br><span class="line">    # 注意：这里必须和汇编读取密钥的方式完全一致 (小端序)</span><br><span class="line">    key_bytes = bytes(current_ng)</span><br><span class="line">    k = struct.unpack(&quot;&lt;4I&quot;, key_bytes)</span><br><span class="line">    # 解密当前块</span><br><span class="line">    v = (cipher[i*2], cipher[i*2+1])</span><br><span class="line">    res = decrypt(v, k)</span><br><span class="line">    flag += struct.pack(&quot;&lt;2I&quot;, *res)</span><br><span class="line">print(&quot;Decoded Flag Body:&quot;, flag)</span><br><span class="line">try:</span><br><span class="line">    print(&quot;Flag: flag&#123;&quot; + flag.decode(&#x27;ascii&#x27;) + &quot;&#125;&quot;)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;Flag (Hex):&quot;, flag.hex())</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="Look-at-me-carefully"><a href="#Look-at-me-carefully" class="headerlink" title="Look at me carefully"></a>Look at me carefully</h2><p>对用户输入进行下标混淆后，赋值给v6，v6需要等于v7（已给出），找到混淆的规律，把v7还原得到正确的flag。</p>
+<p>找混淆的规律时，结合题目提示要动态调试，可以输入一个没有重复字符的flag，提取出来混淆后的对应的密文，以此找出规律。</p>
+<ul>
+<li>flag{H4ve_you_lo0ked_at_me_c1o5ely?}</li>
+</ul>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 目标乱码串 (v7)</span><br><span class="line">v7 = &quot;cH4_1elo&#123;ookte?0dv_&#125;alafle___5yygume&quot;</span><br><span class="line"># 你输入的例子</span><br><span class="line">inp = &quot;flag&#123;ABCDEFGHIJKLMNOPQRSTUVWXYZqwer&#125;&quot;</span><br><span class="line"># 对应的输出例子</span><br><span class="line">out = &quot;WABEXNwY&#123;GKMRDrLOCV&#125;aJQflUISPZeFgHTq&quot;</span><br><span class="line"># 创建一个 36 位的空列表存放真正的 flag</span><br><span class="line">real_flag = [&#x27;&#x27;] * 36</span><br><span class="line">for i in range(len(v7)):</span><br><span class="line">    char_out = out[i]  # 例子输出中的字符</span><br><span class="line">    char_in_pos = inp.find(char_out) # 找到该字符在例子输入中的原始位置</span><br><span class="line">    # 将 v7 对应位置的字符填回原始位置</span><br><span class="line">    real_flag[char_in_pos] = v7[i]</span><br><span class="line">print(&quot;还原出的 Flag 是: &quot; + &quot;&quot;.join(real_flag))</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="OhNativeEnc"><a href="#OhNativeEnc" class="headerlink" title="OhNativeEnc"></a>OhNativeEnc</h2><p>native层函数找法：把apk文件后缀改为zip，解压，在lib&#x2F;x86或x86_64下，ida打开分析</p>
+<p>分析Java_work_pangbai_ohnativeenc_FirstFragment_checkFlag，xxtea加密函数，key，密文都已给出，写代码解密就行</p>
+<ul>
+<li>flag{Ur_G00d_@_n@tive_Func}</li>
+</ul>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">import struct</span><br><span class="line"></span><br><span class="line">def decrypt():</span><br><span class="line">    # 1. 提取的 mm 数组 (小端序转换后的 32 位整数)</span><br><span class="line">    mm_hex = &quot;B6 53 6E 4D 77 5D 08 D2 FB 2C 63 1E BB 7B 01 9B F5 04 6A F4 0E 84 27 47 64 A1 E4 D9 EF 12 44 37&quot;</span><br><span class="line">    mm_bytes = bytes.fromhex(mm_hex.replace(&quot; &quot;, &quot;&quot;))</span><br><span class="line">    v = list(struct.unpack(&quot;&lt;8I&quot;, mm_bytes))</span><br><span class="line"></span><br><span class="line">    # 2. 密钥处理</span><br><span class="line">    key_str = b&quot;ThisIsAXXteaKey\x00&quot;</span><br><span class="line">    key = struct.unpack(&quot;&lt;4I&quot;, key_str[:16])</span><br><span class="line"></span><br><span class="line">    # 3. 循环参数</span><br><span class="line">    delta = 114514</span><br><span class="line">    limit = 1488682</span><br><span class="line">    steps = []</span><br><span class="line">    i = delta</span><br><span class="line">    while i != limit:</span><br><span class="line">        steps.append(i)</span><br><span class="line">        i += delta</span><br><span class="line"></span><br><span class="line">    # 4. 定义加密时的 MX 函数变体</span><br><span class="line">    # 根据 IDA: (((next &gt;&gt; 5) ^ (4 * next)) + ((next &gt;&gt; 3) ^ (16 * next))) 是错误的，</span><br><span class="line">    # 重新观察 IDA 逻辑：</span><br><span class="line">    # v5 += (((v4 &gt;&gt; 5) ^ (4 * v6)) + ((v6 &gt;&gt; 3) ^ (16 * v4))) ^ ((i ^ v6) + (v14 ^ v4))</span><br><span class="line">    # 注意：这里的 prev 和 next 在每一行都在变，我们需要严格按照 IDA 的顺序逆推</span><br><span class="line">    </span><br><span class="line">    def get_mx(prev, next, sum_val, k):</span><br><span class="line">        return (((next &gt;&gt; 5) ^ (next &lt;&lt; 2)) + ((prev &gt;&gt; 3) ^ (prev &lt;&lt; 4))) ^ ((sum_val ^ prev) + (k ^ next))</span><br><span class="line"></span><br><span class="line">    # 5. 开始逆向迭代</span><br><span class="line">    for i in reversed(steps):</span><br><span class="line">        v13 = (i &gt;&gt; 2) &amp; 3</span><br><span class="line">        </span><br><span class="line">        # 逆推的顺序必须与加密顺序完全相反：v4 -&gt; v10 -&gt; v9 -&gt; v8 -&gt; v7 -&gt; v11 -&gt; v6 -&gt; v5</span><br><span class="line">        # 对应索引：7 -&gt; 6 -&gt; 5 -&gt; 4 -&gt; 3 -&gt; 2 -&gt; 1 -&gt; 0</span><br><span class="line">        </span><br><span class="line">        # v4 (v[7])</span><br><span class="line">        v[7] = (v[7] - (((v[6] &gt;&gt; 5) ^ (v[0] &lt;&lt; 2)) + ((v[0] &gt;&gt; 3) ^ (v[6] &lt;&lt; 4)) ^ ((i ^ v[0]) + (key[v13 ^ 3] ^ v[6])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v10 (v[6])</span><br><span class="line">        v[6] = (v[6] - (((v[5] &gt;&gt; 5) ^ (v[7] &lt;&lt; 2)) + ((v[7] &gt;&gt; 3) ^ (v[5] &lt;&lt; 4)) ^ ((i ^ v[7]) + (key[(i &gt;&gt; 2) &amp; 3 ^ 2] ^ v[5])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v9 (v[5])</span><br><span class="line">        v[5] = (v[5] - (((v[4] &gt;&gt; 5) ^ (v[6] &lt;&lt; 2)) + ((v[6] &gt;&gt; 3) ^ (v[4] &lt;&lt; 4)) ^ ((i ^ v[6]) + (key[(i &gt;&gt; 2) &amp; 3 ^ 1] ^ v[4])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v8 (v[4])</span><br><span class="line">        v[4] = (v[4] - (((v[3] &gt;&gt; 5) ^ (v[5] &lt;&lt; 2)) + ((v[5] &gt;&gt; 3) ^ (v[3] &lt;&lt; 4)) ^ ((i ^ v[5]) + (key[v13] ^ v[3])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v7 (v[3])</span><br><span class="line">        v[3] = (v[3] - (((v[2] &gt;&gt; 5) ^ (v[4] &lt;&lt; 2)) + ((v[4] &gt;&gt; 3) ^ (v[2] &lt;&lt; 4)) ^ ((i ^ v[4]) + (key[v13 ^ 3] ^ v[2])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v11 (v[2])</span><br><span class="line">        v[2] = (v[2] - (((v[1] &gt;&gt; 5) ^ (v[3] &lt;&lt; 2)) + ((v[3] &gt;&gt; 3) ^ (v[1] &lt;&lt; 4)) ^ ((i ^ v[3]) + (key[(i &gt;&gt; 2) &amp; 3 ^ 2] ^ v[1])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v6 (v[1])</span><br><span class="line">        v[1] = (v[1] - (((v[0] &gt;&gt; 5) ^ (v[2] &lt;&lt; 2)) + ((v[2] &gt;&gt; 3) ^ (v[0] &lt;&lt; 4)) ^ ((i ^ v[2]) + (key[(i &gt;&gt; 2) &amp; 3 ^ 1] ^ v[0])))) &amp; 0xFFFFFFFF</span><br><span class="line">        # v5 (v[0])</span><br><span class="line">        v[0] = (v[0] - (((v[7] &gt;&gt; 5) ^ (v[1] &lt;&lt; 2)) + ((v[1] &gt;&gt; 3) ^ (v[7] &lt;&lt; 4)) ^ ((i ^ v[1]) + (key[v13] ^ v[7])))) &amp; 0xFFFFFFFF</span><br><span class="line"></span><br><span class="line">    # 6. 还原字符串</span><br><span class="line">    result = struct.pack(&quot;&lt;8I&quot;, *v)</span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line">flag = decrypt()</span><br><span class="line">print(f&quot;解密结果: &#123;flag&#125;&quot;)</span><br><span class="line">try:</span><br><span class="line">    print(f&quot;字符串形式: &#123;flag.decode(&#x27;utf-8&#x27;)&#125;&quot;)</span><br><span class="line">except:</span><br><span class="line">    print(&quot;无法以 UTF-8 解码，请检查数据。&quot;)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="尤皮·埃克斯历险记（1）"><a href="#尤皮·埃克斯历险记（1）" class="headerlink" title="尤皮·埃克斯历险记（1）"></a>尤皮·埃克斯历险记（1）</h2><p>首先<code>upx -d</code>脱壳</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171134049.png"
+                      alt="image-20260417113431934"
+                ></p>
+<p>有反调试，但不影响，静态分析即可flag{E4sy_R3v3rSe_e4Sy_eNcrypt10n}</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># 1. 提取 main 函数中的 v10 原始数据 (小端序)</span><br><span class="line">v10 = [</span><br><span class="line">    0x69, 0x73, 0x66, 0x68, 0x47, 0x4A, 0x09, 0x74, # v10[0]</span><br><span class="line">    0x7E, 0x63, 0x55, 0x0A, 0x79, 0x0A, 0x75, 0x54, # v10[1]</span><br><span class="line">    0x6A, 0x63, 0x6A, 0x09, 0x54, 0x7E, 0x63, 0x6A, # v10[2]</span><br><span class="line">    0x51, 0x64, 0x75, 0x7E, 0x77, 0x7B, 0x04, 0x05, # v10[3]</span><br><span class="line">    0x71, 0x41                                     # v11 (0x4171)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># 2. 第一步：异或 0x3C (正常运行逻辑)</span><br><span class="line">xor_result = [b ^ 0x3C for b in v10]</span><br><span class="line"></span><br><span class="line"># 3. 第二步：逆推 encrypt 函数</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">for v7_prime in xor_result:</span><br><span class="line">    # 尝试逆推：由于加密是镜像变换 (105-x 或 187-x)，我们可以通过结果范围判断原字符</span><br><span class="line">    </span><br><span class="line">    # 尝试数字还原: x = 105 - v7&#x27;</span><br><span class="line">    temp_num = 105 - v7_prime</span><br><span class="line">    # 尝试字母还原: x = 187 - v7&#x27; (注意：在Python中处理8位截断)</span><br><span class="line">    temp_alpha = (187 - v7_prime) % 256</span><br><span class="line">    </span><br><span class="line">    if 48 &lt;= temp_num &lt;= 57: # &#x27;0&#x27;-&#x27;9&#x27;</span><br><span class="line">        flag += chr(temp_num)</span><br><span class="line">    elif (65 &lt;= temp_alpha &lt;= 90) or (97 &lt;= temp_alpha &lt;= 122): # &#x27;A&#x27;-&#x27;Z&#x27; 或 &#x27;a&#x27;-&#x27;z&#x27;</span><br><span class="line">        flag += chr(temp_alpha)</span><br><span class="line">    else:</span><br><span class="line">        # 其他字符直接还原</span><br><span class="line">        flag += chr(v7_prime)</span><br><span class="line"></span><br><span class="line">print(f&quot;Flag: &#123;flag&#125;&quot;)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="采一朵花，送给艾达（1）"><a href="#采一朵花，送给艾达（1）" class="headerlink" title="采一朵花，送给艾达（1）"></a>采一朵花，送给艾达（1）</h2><p>存在花指令</p>
+<p>花指令为：基于互补跳转的<code>永真/永假跳转</code>+<code>字节错位</code>，nop掉140001785-87</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171704103.png"
+                     
+                ></p>
+<p>基于互补跳转的永真&#x2F;永假跳转：根据代码可知，程序一定会执行jz跳转，jnz一定不会跳转，jnz存不存在效果一样，这就是花指令，nop掉jnz</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xor     eax, eax</span><br><span class="line">//将 EAX 置零并强制设置零标志位 ZF = 1</span><br><span class="line">jz      short near ptr loc_140001787+1</span><br><span class="line">//jz表示如果ZF=1，就跳转</span><br><span class="line">jnz     short near ptr loc_140001787+1</span><br><span class="line">//jnz表示如果ZF=0，就跳转</span><br></pre></td></tr></table></figure></div>
+
+<p>字节错位：jz跳转到的地方是loc_140001787+1，loc_140001787&#x3D;140001787，也就是说jz要从执行140001788开始执行，所以需要把140001787的对应的字节nop掉，从140001788开始才是真正执行的有用的内容</p>
+<p>第二个花指令，nop掉了140001808-16</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171712411.png"
+                      alt="image-20260417171221351"
+                ></p>
+<p>存在与第一个花指令相同的永真&#x2F;永假跳转+字节错位，但还包括</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call    near ptr 14874DB10h//永远不会被执行，jz会跳转，需要nop掉</span><br></pre></td></tr></table></figure></div>
+
+<p>此时会变成这样，这是因为jz      short loc_14000180D跳转到的地方是nop后的指令，不会有指令被执行，jz白跳转了，也需要nop，</p>
+<p>call指令要执行的，<code>0F848DB1Ah</code> 地址是非法的，这种情况一搬是因为插入了一个0xE8的字节码，ida把其识别成了call，把0xE8字节nop掉，重新识别函数</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171725417.png"
+                      alt="image-20260417172545362"
+                ></p>
+<p>main函数成功反汇编后，分析，发现rc4_init函数也存在花指令，跟mian函数中的第一个花指令相似，同样的处理办法</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171718234.png"
+                      alt="image-20260417171822176"
+                ></p>
+<p>rc4_crypt函数，跟mian函数中的第一个花指令相似，同样的处理办法</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171719234.png"
+                      alt="image-20260417171919178"
+                ></p>
+<p>四处花指令处理完毕后，分析main函数，一个rc4加密，密文给出</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202604171911714.png"
+                      alt="image-20260417191140627"
+                ></p>
+<p>写脚本得到，flag{Junk_C0d3s_4Re_345y_t0_rEc0gn1Ze!!}</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># 1. 题目给出的目标密文 v4</span><br><span class="line">target = [</span><br><span class="line">    0xC7, 0x7F, 0xC1, 0x43, 0x03, 0x64, 0x75, 0x11, </span><br><span class="line">    0x88, 0xB8, 0x8C, 0x55, 0xF6, 0xC0, 0x23, 0xDF,</span><br><span class="line">    0x4D, 0x0F, 0x2E, 0x9E, 0xF6, 0x82, 0xF0, 0xF2, </span><br><span class="line">    0xBC, 0x51, 0x6B, 0x08, 0x29, 0x83, 0x27, 0xE1,</span><br><span class="line">    0xCB, 0xBD, 0xC6, 0x88, 0xB1, 0x80, 0x4F, 0x4E</span><br><span class="line">]</span><br><span class="line"># 2. 你输入 40 个 &#x27;0&#x27; (0x30) 后在内存 v6 看到的加密结果</span><br><span class="line">keystream_from_v6 = [</span><br><span class="line">    0x91, 0x43, 0x90, 0x0C, 0xB8, 0x4A, 0x30, 0xD3, </span><br><span class="line">    0x4D, 0x89, 0x79, 0x55, 0xC2, 0xBD, 0xE0, 0xB0, </span><br><span class="line">    0x49, 0xED, 0xF9, 0x6F, 0xF3, 0x7E, 0xEB, 0xA9, </span><br><span class="line">    0x8D, 0x0D, 0x6B, 0xD9, 0xE7, 0x6E, 0xF4, 0xE1, </span><br><span class="line">    0x94, 0x7F, 0xC5, 0x5E, 0x7C, 0x8F, 0x5E, 0x01</span><br><span class="line">]</span><br><span class="line"># 3. 这里的 input_val 必须和你输入的东西严格对应</span><br><span class="line"># 如果你在控制台敲的是 &#x27;0&#x27;，这里就是 0x30</span><br><span class="line">input_val = 0x30</span><br><span class="line">flag = &quot;&quot;</span><br><span class="line">for i in range(40):</span><br><span class="line">    # 根据加密算式：Target = Flag + (v6_result - input)</span><br><span class="line">    # 逆推：Flag = Target - v6_result + input</span><br><span class="line">    res = (target[i] - keystream_from_v6[i] + input_val) % 256</span><br><span class="line">    flag += chr(res)</span><br><span class="line">print(&quot;Bingo! Flag is:&quot;, flag)</span><br></pre></td></tr></table></figure></div>
+
+
+		</div>
+
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/03/19/PCTF2025%E5%A4%8D%E7%8E%B0wp/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">PCTF2025复现wp</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">NewStar2025week1-2复现wp</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Week1"><span class="nav-number">1.</span> <span class="nav-text">Week1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EzMyDroid"><span class="nav-number">1.1.</span> <span class="nav-text">EzMyDroid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Puzzle"><span class="nav-number">1.2.</span> <span class="nav-text">Puzzle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strange-Base"><span class="nav-number">1.3.</span> <span class="nav-text">Strange Base</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#X0r"><span class="nav-number">1.4.</span> <span class="nav-text">X0r</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plzdebugme"><span class="nav-number">1.5.</span> <span class="nav-text">plzdebugme</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#elf%E5%8A%A8%E8%B0%83%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.5.1.</span> <span class="nav-text">elf动调的步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Week2"><span class="nav-number">2.</span> <span class="nav-text">Week2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Forgotten-Code"><span class="nav-number">2.1.</span> <span class="nav-text">Forgotten_Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Look-at-me-carefully"><span class="nav-number">2.2.</span> <span class="nav-text">Look at me carefully</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OhNativeEnc"><span class="nav-number">2.3.</span> <span class="nav-text">OhNativeEnc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%A4%E7%9A%AE%C2%B7%E5%9F%83%E5%85%8B%E6%96%AF%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%881%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">尤皮·埃克斯历险记（1）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%87%E4%B8%80%E6%9C%B5%E8%8A%B1%EF%BC%8C%E9%80%81%E7%BB%99%E8%89%BE%E8%BE%BE%EF%BC%881%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">采一朵花，送给艾达（1）</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">whyy</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 2 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="fa-regular fa-arrow-up"></i>
+		</li>
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+</body>
+
+</html>
